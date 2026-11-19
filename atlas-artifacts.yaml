@@ -1,0 +1,4 @@
+# Atlas artifact-store manifest. Keep this file in the artifact repository.
+version: 1
+
+layout: atlas-workflow
