@@ -1,6 +1,6 @@
 # M1-T03 — Create the Soft Rose UI system and accessible primitives
 
-- State: `awaiting_review`; batch/milestone: `2 / M1 / M1-W03`; depends on T01/H-01; parallel-safe with T02.
+- State: `approved`; batch/milestone: `2 / M1 / M1-W03`; depends on T01/H-01; parallel-safe with T02.
 - Source authority: M1-W03; Project Context visual direction/navigation boundary; supplied references; frontend-awareness findings in set README.
 - Successors/handoffs: `H-03` to T04–T06. Activation: `active-in-this-ticket` through shared route-shell smoke view.
 - Reuse: `extract-shared` / RD-01. Legacy: `forbidden`. SQL: `not-applicable`. Empty state: `not-applicable`.
