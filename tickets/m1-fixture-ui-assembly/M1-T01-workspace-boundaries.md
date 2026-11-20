@@ -1,6 +1,6 @@
 # M1-T01 — Establish review-build workspace and boundary checks
 
-- State: `ready`; batch/milestone: `1 / M1 / M1-W01`.
+- State: `awaiting_review`; batch/milestone: `1 / M1 / M1-W01`.
 - Source authority: M1-W01; implementation architecture (delivery/UI transition); Project Context current/target state.
 - Dependencies: none. Successors/handoff: `H-01` to T02/T03. Activation: `active-in-this-ticket` (review build only).
 - Reuse decision: `keep-local` — root workspace conventions have one consumer boundary. Legacy path: `forbidden`. SQL: `not-applicable`. Empty state: `not-applicable`.
