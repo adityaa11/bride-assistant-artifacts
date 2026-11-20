@@ -1,6 +1,6 @@
 # M1-T02 — Publish typed fixture scenario contracts and adapter
 
-- State: `ready`; batch/milestone: `2 / M1 / M1-W02`; depends on T01/H-01.
+- State: `awaiting_review`; batch/milestone: `2 / M1 / M1-W02`; depends on T01/H-01.
 - Source authority: M1-W02; architecture UI transition; Project Context lifecycle, publication, and current/target state.
 - Successors/handoffs: `H-02` to T04–T06 and M2-W04. Activation: `active-in-this-ticket` through T04–T06.
 - Reuse: `extract-shared` / RD-02. Legacy: `forbidden`. SQL: `not-applicable`. Empty state: required for empty catalogue/booking/content fixture scenarios.
