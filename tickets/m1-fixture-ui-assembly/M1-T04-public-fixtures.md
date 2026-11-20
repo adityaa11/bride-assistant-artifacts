@@ -15,6 +15,13 @@ Empty result says no currently published content/package and exposes no draft; i
 
 Reproduce the public composition shown in `project's goal/UI Reference/index.html` exactly. Match its visible structure, hierarchy, copy, typography, colors, spacing, geometry, imagery/icon treatment, navigation, and responsive composition. Do not invent an alternate public layout or substitute a generic card/list design. Capture the route at the reference viewport and record a visual comparison; any visible mismatch fails this ticket. Do not import the reference HTML/CSS/JS.
 
+## Amendment M1-T04-A1 — reference visual assets
+
+- Decision authority: explicit user authorization on 2026-11-20.
+- Permitted: extract the static embedded visual assets supplied by `project's goal/UI Reference/index.html` into project-managed local files under `public/reference-assets/`, then render those files through ordinary framework image elements. The extracted assets may be used only by this public fixture surface and are not an external origin.
+- Still forbidden: reference HTML, CSS, JavaScript, prototype storage, dynamic data, event handlers, and any other behavioral code. The adapter, typed published-only read model, non-authoritative result, and all existing security/publication boundaries remain required.
+- Verification: asset inventory must identify every extracted file and its reference role; source scans must confirm there is no copied reference execution or external source.
+
 ## Review Contract
 
 | ID | Authority | PASS iff / evidence / forbidden substitute / regression boundary |
