@@ -8,6 +8,10 @@
 
 Render fixture portfolio, testimonials, events, draft/published distinction, and proposed publish-result states. Entry is named content scenario ID; endpoint is a review workspace with no media upload, persistence, or public publication. H-15 provides scenario/version, publication display state, and M4 successor mapping. Use path: admin route → adapter → content review surface → reviewer.
 
+## UI Reference fidelity
+
+Reproduce the corresponding admin content/publication composition in `project's goal/UI Reference/Bride_Assistant_Planner_Standalone_v3_Content_Management.html` exactly. Match the visible structure, hierarchy, copy, typography, colors, spacing, geometry, imagery/icon treatment, navigation, and responsive composition. Extend draft/published, empty, and proposed-result states using the same referenced treatment without inventing a new visual language. Capture the route at the reference viewport and record a visual comparison; any visible mismatch fails this ticket. Do not import the reference HTML/CSS/JS.
+
 ## Review Contract, invariants, security/UI, validation
 
 No bytes/media origin, consent claim, publish mutation, or draft public output. Security preserves private/public delivery and consent seams; safe rendering only. UI: Entity Library/Settings Form and state semantics, VIS-003/06/08/10/11. `RC-25`: PASS iff draft and published are visually/non-color distinguishable and public T04 cannot render a draft fixture; cross-route negative test + captures; hidden DOM draft or client publication flag forbidden. Hard stop: M4 owns real publication/media policy.

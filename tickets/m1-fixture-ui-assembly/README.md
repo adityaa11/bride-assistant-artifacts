@@ -1,7 +1,7 @@
 # M1 Fixture-backed UI assembly — resized ticket set
 
 - Set ID: `BAP-M1-FIXTURE-UI-SET-01`; status: `ready`; artifact revision: `2.0`.
-- Authority: Project Context rev 3.0; Stack Context rev 1.2; M1 fixture-ui milestone; architecture, decisions, and verification records; supplied UI references as visual/field evidence only.
+- Authority: Project Context rev 3.0; Stack Context rev 1.2; M1 fixture-ui milestone; architecture, decisions, and verification records; `project's goal/UI Reference/` as the binding visual source of truth.
 - Revision reason: original T05/T06 crossed unrelated screen, information, and review boundaries. They are retained as `superseded`; no ticket ID is reused.
 - Artifact inventory remains unchanged: only this set's files are staged; pre-existing `checkpoints/`, `evidence/`, `feedback/`, and `tickets/.gitkeep` are untouched.
 
@@ -38,6 +38,12 @@ Each surface EUP is: named review route → scenario adapter (`scenarioId`, vers
 Security readiness for all UI tickets is `applicable`: `SEC-M1-01` preserve the future server-side identity/role/ownership seam; `SEC-M1-02` implement safe framework rendering, no HTML sinks/inline execution/unreviewed origin/client CSP authority (ASVS browser/input-output; OWASP 2025 A01/A03/A05/A08; NIST AC/SC/SI/SR). No ticket has an unresolved planning-security decision.
 
 UI readiness: State 1 / Build New UI. T03 creates the Soft Rose Atelier project visual contract. All surface tickets use only its tokens and relevant patterns—public discovery, customer workflow/knowledge list, admin data workspace/settings form/entity library—and pass relevant VIS-001–014 review rows, keyboard, focus, state, long-content, responsive, and reduced-motion evidence.
+
+## Binding UI Reference requirement
+
+`project's goal/UI Reference/` is a mandatory visual specification for M1. Every screen represented there must be reproduced with the same visible structure, hierarchy, copy, typography, colors, spacing, geometry, imagery/icon treatment, navigation, and responsive composition. A screen is not complete when it is merely inspired by the reference or when it passes functional tests with a different visual design.
+
+Reference HTML/CSS/JS and prototype storage must not be imported or copied. The implementation must reproduce the rendered result through the project UI system. States not explicitly shown in the reference must extend the same referenced shell, component geometry, tokens, and interaction treatment; they must not introduce a new visual language or arbitrary per-screen styling. Each surface ticket must include reference-viewport captures and a visual comparison record; any visible mismatch fails the ticket and M1 review.
 
 ## Finalization result
 
