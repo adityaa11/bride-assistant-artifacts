@@ -45,6 +45,19 @@ UI readiness: State 1 / Build New UI. T03 creates the Soft Rose Atelier project 
 
 Reference HTML/CSS/JS and prototype storage must not be imported or copied. The implementation must reproduce the rendered result through the project UI system. States not explicitly shown in the reference must extend the same referenced shell, component geometry, tokens, and interaction treatment; they must not introduce a new visual language or arbitrary per-screen styling. Each surface ticket must include reference-viewport captures and a visual comparison record; any visible mismatch fails the ticket and M1 review.
 
+## Amendment BAP-M1-UI-A1 — mapped implementation and asset extraction
+
+Explicit user authorization (2026-11-20) binds every active M1 UI ticket to
+the exact reference-page mapping and implementation rules in
+`docs/frontend/M1_UI_REFERENCE_IMPLEMENTATION_CONTRACT.md` at source commit
+`e98a804eeca02efb65363339c4f7d050bd3d861a`. This amendment requires an
+independent reusable Next.js refactor wired through T02 fixtures, exact
+rendered fidelity for each mapped HTML reference, extraction and local
+inventory of its static image/SVG assets, and extraction of its actual
+responsive transformations. It adds no authority or reference behaviour:
+reference HTML/CSS/JS, localStorage, seed data, events, and external origins
+remain forbidden.
+
 ## Finalization result
 
 Each active ticket has one coherent review surface/contract boundary, a direct route-to-visible-state proof, and a named handoff. T08–T16 may run in parallel only after T02/T03. T17 is the next eligible ticket only after their captures and seam records exist. T01 remains the next eligible ticket now.

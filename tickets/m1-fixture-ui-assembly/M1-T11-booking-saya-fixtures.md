@@ -12,6 +12,10 @@ Render Booking Saya list/detail, canonical statuses, proof/exception placeholder
 
 Reproduce `project's goal/UI Reference/booking_saya.html` exactly. Match the visible list/detail structure, hierarchy, copy, typography, colors, spacing, geometry, imagery/icon treatment, navigation, and responsive composition. Extend loading, empty, error, proof, and exception states using the same referenced treatment without inventing a new visual language. Capture the route at the reference viewport and record a visual comparison; any visible mismatch fails this ticket. Do not import the reference HTML/CSS/JS.
 
+## Amendment M1-T11-A1 — mapped reusable reference refactor
+
+Use the T11 mapping in `docs/frontend/M1_UI_REFERENCE_IMPLEMENTATION_CONTRACT.md` at source commit `e98a804eeca02efb65363339c4f7d050bd3d861a`: extract and inventory `booking_saya.html` static assets, refactor its list/detail and responsive composition into reusable typed Next.js components, and wire every state through T02 fixtures. Reference behaviour and lifecycle authority remain forbidden.
+
 ## Review Contract, invariants, security/UI, validation
 
 Only the owner-shaped fixture view appears; no file bytes/upload, status mutation, cancellation/reschedule submission, or cross-customer data. T02 scenario contract is shared; list/detail remains local. Security preserves owner/upload seams and safe rendering. UI: Knowledge List + workflow detail, VIS-003/06/08/09/10/11. `RC-21`: PASS iff each canonical state, no-booking, proof/exception placeholder and error is inspectable with no official change; matrix capture and negative mutation test; fixture upload/transition forbidden. Hard stop: rejection label remains undefined and is omitted.

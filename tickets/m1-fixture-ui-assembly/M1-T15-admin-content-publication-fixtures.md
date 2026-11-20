@@ -12,6 +12,10 @@ Render fixture portfolio, testimonials, events, draft/published distinction, and
 
 Reproduce the corresponding admin content/publication composition in `project's goal/UI Reference/Bride_Assistant_Planner_Standalone_v3_Content_Management.html` exactly. Match the visible structure, hierarchy, copy, typography, colors, spacing, geometry, imagery/icon treatment, navigation, and responsive composition. Extend draft/published, empty, and proposed-result states using the same referenced treatment without inventing a new visual language. Capture the route at the reference viewport and record a visual comparison; any visible mismatch fails this ticket. Do not import the reference HTML/CSS/JS.
 
+## Amendment M1-T15-A1 — mapped reusable reference refactor
+
+Use the T15 mapping in `docs/frontend/M1_UI_REFERENCE_IMPLEMENTATION_CONTRACT.md` at source commit `e98a804eeca02efb65363339c4f7d050bd3d861a`: refactor the admin reference `Portfolio & Testimonials` and `Events` compositions and their 1250px/930px/485px transformations into reusable typed Next.js workspace components, using only the corresponding locally extracted static assets and T02 fixtures. Reference behaviour, media delivery, and publication authority remain forbidden.
+
 ## Review Contract, invariants, security/UI, validation
 
 No bytes/media origin, consent claim, publish mutation, or draft public output. Security preserves private/public delivery and consent seams; safe rendering only. UI: Entity Library/Settings Form and state semantics, VIS-003/06/08/10/11. `RC-25`: PASS iff draft and published are visually/non-color distinguishable and public T04 cannot render a draft fixture; cross-route negative test + captures; hidden DOM draft or client publication flag forbidden. Hard stop: M4 owns real publication/media policy.

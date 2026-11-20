@@ -12,6 +12,10 @@ Render package/date/detail workflow with fixture form validation, availability-o
 
 Reproduce `project's goal/UI Reference/booking.html` exactly. Match the visible workflow structure, hierarchy, copy, typography, colors, spacing, geometry, imagery/icon treatment, navigation, and responsive composition. Extend validation, unavailable, empty, and non-authoritative result states using the same referenced treatment without inventing a new visual language. Capture the route at the reference viewport and record a visual comparison; any visible mismatch fails this ticket. Do not import the reference HTML/CSS/JS.
 
+## Amendment M1-T10-A1 — mapped reusable reference refactor
+
+Use the T10 mapping in `docs/frontend/M1_UI_REFERENCE_IMPLEMENTATION_CONTRACT.md` at source commit `e98a804eeca02efb65363339c4f7d050bd3d861a`: extract and inventory `booking.html` static assets, refactor its workflow and responsive composition into reusable typed Next.js components, and wire every state through T02 fixtures. Reference behaviour, availability authority, and booking writes remain forbidden.
+
 ## Review Contract, invariants, security/UI, validation
 
 Calendar must not disclose another customer or promise availability. No booking write, date blocking, WhatsApp activation, package snapshot, or client authority. Security preserves ownership/transaction seam and renders safely. UI: Workflow Sequence, semantic validation/status, responsive two-column-to-one-column, VIS-003/06/08/09/10/11. `RC-20`: PASS iff required/invalid/selected/unavailable/no-package/success-result scenarios render through T02 and success remains non-authoritative; state capture + negative data assertion; localStorage write/official transition forbidden. Hard stop: real submission is M3.

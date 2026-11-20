@@ -21,6 +21,10 @@ Write `docs/frontend/PROJECT_FRONTEND_CONTRACT.md` from `project's goal/UI Refer
 
 The reference directory is binding for visual output. Capture every M1 route at the corresponding reference viewport and compare the rendered result against the reference. PASS requires no visible divergence in layout, hierarchy, copy, typography, color, spacing, geometry, imagery/icon treatment, navigation, or responsive composition. Functional equivalence, a generic Soft Rose interpretation, or a reviewer preference is not a substitute for the comparison. Any visible mismatch blocks the handoff to T04/T08–T16.
 
+## Amendment M1-T03-A1 — M1 mapped reference system
+
+The shared system must implement `docs/frontend/M1_UI_REFERENCE_IMPLEMENTATION_CONTRACT.md` at source commit `e98a804eeca02efb65363339c4f7d050bd3d861a`. It owns reusable semantic primitives and responsive foundations, but must preserve each ticket's mapped reference composition rather than imposing a generic shell. Use only the corresponding locally extracted static assets recorded in `public/reference-assets/ui-reference/manifest.json`; no reference source or behaviour is authorized.
+
 ## Review Contract
 
 | ID | Authority | PASS iff / evidence / forbidden substitute / regression boundary |

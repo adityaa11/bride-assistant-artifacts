@@ -30,6 +30,10 @@ Reproduce the public composition shown in `project's goal/UI Reference/index.htm
 - Boundary preservation: this amendment adds visual specificity only. It does not authorize copied reference HTML/CSS/JS, reference execution, external origins, untyped prototype data, public writes, identity data, draft leakage, or a change to any T02/T03/publication/security boundary.
 - Verification: record same-viewport side-by-side captures and comparison findings for desktop, 830px, and 600px; validate keyboard focus/navigation plus default, empty, error, and draft-negative scenarios; maintain the local-asset inventory and source-boundary scan. A material visible mismatch fails M1-T04.
 
+## Amendment M1-T04-A3 — M1 mapped implementation contract
+
+Apply the M1-wide mapping, asset extraction, reusable-component, fixture-wiring, and responsive-extraction rules in `docs/frontend/M1_UI_REFERENCE_IMPLEMENTATION_CONTRACT.md` at source commit `e98a804eeca02efb65363339c4f7d050bd3d861a`. This supplements the more specific M1-T04-A1/A2 contract and does not broaden the no-reference-behaviour or public-data boundaries.
+
 ## Review Contract
 
 | ID | Authority | PASS iff / evidence / forbidden substitute / regression boundary |

@@ -12,6 +12,10 @@ Render fixture customer list/search/detail only. Entry is named admin-customer s
 
 Reproduce the corresponding admin customer workspace in `project's goal/UI Reference/Bride_Assistant_Planner_Standalone_v3_Content_Management.html` exactly. Match the visible structure, hierarchy, copy, typography, colors, spacing, geometry, imagery/icon treatment, navigation, and responsive composition. Extend empty, search, detail, and error states using the same referenced treatment without inventing a new visual language. Capture the route at the reference viewport and record a visual comparison; any visible mismatch fails this ticket. Do not import the reference HTML/CSS/JS.
 
+## Amendment M1-T14-A1 — mapped reusable reference refactor
+
+Use the T14 mapping in `docs/frontend/M1_UI_REFERENCE_IMPLEMENTATION_CONTRACT.md` at source commit `e98a804eeca02efb65363339c4f7d050bd3d861a`: refactor the admin reference `Customers` composition and its 1250px/930px/485px transformations into reusable typed Next.js workspace components, using only the corresponding locally extracted static assets and T02 fixtures. Reference behaviour and customer-data authority remain forbidden.
+
 ## Review Contract, invariants, security/UI, validation
 
 No real customer lookup, export, edit, customer-to-public leak, or role enforcement in client. Security preserves server role/record-ownership seam and prohibits shared client store; safe rendering is implement-now. UI: Data Workspace and empty/search states, VIS-002/06/08/10/11. `RC-24`: PASS iff fixture data remains route-local, list/detail/empty/error states render, and public/customer routes cannot import the model; boundary test + captures; CSS-hidden private data forbidden. Hard stop: protected data access is M2/M3.

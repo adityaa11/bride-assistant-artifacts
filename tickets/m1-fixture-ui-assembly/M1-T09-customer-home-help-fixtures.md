@@ -12,6 +12,10 @@ Render customer home summary/navigation and help/WhatsApp-unavailable scenarios 
 
 Reproduce `project's goal/UI Reference/home.html` and `project's goal/UI Reference/bantuan.html` exactly. Match the visible structure, hierarchy, copy, typography, colors, spacing, geometry, imagery/icon treatment, navigation, and responsive composition. Extend empty and WhatsApp-unavailable states using the same referenced treatment without inventing a new visual language. Capture both routes at the reference viewport and record a visual comparison; any visible mismatch fails this ticket. Do not import the reference HTML/CSS/JS.
 
+## Amendment M1-T09-A1 — mapped reusable reference refactor
+
+Use the T09 mapping in `docs/frontend/M1_UI_REFERENCE_IMPLEMENTATION_CONTRACT.md` at source commit `e98a804eeca02efb65363339c4f7d050bd3d861a`: extract and inventory the local static assets for `home.html` and `bantuan.html`, refactor their rendered/responsive compositions into reusable typed Next.js components, and wire every state through T02 fixtures. Reference behaviour and live WhatsApp authority remain forbidden.
+
 ## Review Contract, invariants, security/UI, validation
 
 Do not build booking form/list, live WhatsApp URL, notification backend, session, or private-data lookup. T03 shell is reused; navigation remains local because customer meaning differs from admin. Security: preserve future ownership seam; safe rendering now. UI: Knowledge List/empty-state pattern, VIS-002/06/08/10/11. `RC-19`: PASS iff home/help states, including empty and WhatsApp-unavailable, are scenario-backed and no URL is enabled without D-04; route captures plus link assertion; blank/guessed number forbidden. Hard stop: live communication policy remains deferred.

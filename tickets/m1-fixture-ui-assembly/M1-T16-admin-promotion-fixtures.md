@@ -12,6 +12,10 @@ Render promotion list/detail/form fixture states for applicable packages, percen
 
 Reproduce the corresponding admin promotion composition in `project's goal/UI Reference/Bride_Assistant_Planner_Standalone_v3_Content_Management.html` exactly. Match the visible structure, hierarchy, copy, typography, colors, spacing, geometry, imagery/icon treatment, navigation, and responsive composition. Extend validation, error, empty, long-content, and proposed-result states using the same referenced treatment without inventing a new visual language. Capture the route at the reference viewport and record a visual comparison; any visible mismatch fails this ticket. Do not import the reference HTML/CSS/JS.
 
+## Amendment M1-T16-A1 — mapped reusable reference refactor
+
+Use the T16 mapping in `docs/frontend/M1_UI_REFERENCE_IMPLEMENTATION_CONTRACT.md` at source commit `e98a804eeca02efb65363339c4f7d050bd3d861a`: refactor the admin reference `Promotions` composition and its 1250px/930px/485px transformations into reusable typed Next.js workspace components, using only the corresponding locally extracted static assets and T02 fixtures. Reference behaviour and promotion/price authority remain forbidden.
+
 ## Review Contract, invariants, security/UI, validation
 
 No promotion CRUD, effective-price calculation, booking snapshot mutation, or date-policy decision. Security preserves admin authorization and server validation seam; safe rendering now. UI: Settings Form, clear currency/percentage labels and responsive long package selections, VIS-003/06/08/09/10/11. `RC-26`: PASS iff all specified fixture states render with explicit non-authoritative result and no package price is mutated; capture + mutation scan; client calculation/seed save forbidden. Hard stop: authoritative promotion logic belongs to M3/M4.

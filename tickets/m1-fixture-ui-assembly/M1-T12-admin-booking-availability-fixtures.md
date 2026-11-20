@@ -12,6 +12,10 @@ Render admin booking list/detail, operational calendar, availability view, canon
 
 Reproduce the corresponding admin booking and availability composition in `project's goal/UI Reference/Bride_Assistant_Planner_Standalone_v3_Content_Management.html` exactly. Match the visible structure, hierarchy, copy, typography, colors, spacing, geometry, imagery/icon treatment, navigation, and responsive composition. Extend empty, filter, calendar, and non-authoritative result states using the same referenced treatment without inventing a new visual language. Capture the route at the reference viewport and record a visual comparison; any visible mismatch fails this ticket. Do not import the reference HTML/CSS/JS.
 
+## Amendment M1-T12-A1 — mapped reusable reference refactor
+
+Use the T12 mapping in `docs/frontend/M1_UI_REFERENCE_IMPLEMENTATION_CONTRACT.md` at source commit `e98a804eeca02efb65363339c4f7d050bd3d861a`: refactor the admin reference `Bookings` and `Availability` compositions and their 1250px/930px/485px transformations into reusable typed Next.js workspace components, using only the corresponding locally extracted static assets and T02 fixtures. Reference behaviour and admin/availability authority remain forbidden.
+
 ## Review Contract, invariants, security/UI, validation
 
 No admin login/role decision, availability mutation, status command, customer disclosure outside this admin fixture route, or `Confirmed`/`On Hold`. Security preserves server admin/transaction seams; safe rendering now. UI: Data Workspace, desktop sidebar/narrow drawer, VIS-003/06/08/10/11. `RC-22`: PASS iff populated/empty/filter/calendar states show canonical labels and non-authoritative controls; route capture + token scan; client role gate or mutation forbidden. Hard stop: operational activation is M3.
