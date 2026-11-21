@@ -61,3 +61,7 @@ remain forbidden.
 ## Finalization result
 
 Each active ticket has one coherent review surface/contract boundary, a direct route-to-visible-state proof, and a named handoff. T08–T16 may run in parallel only after T02/T03. T17 is the next eligible ticket only after their captures and seam records exist. T01 remains the next eligible ticket now.
+
+## Amendment BAP-M1-UI-A2 — measured acceptance for T08–T16
+
+User direction on 2026-11-21 binds T08–T16 to `docs/frontend/M1_REMAINING_UI_REFERENCE_CONTRACT.md` at source commit 30532594fbf730f773c07bd6c68178b75edf7540. Each ticket's A2 requires a reference ledger before implementation and same-viewport source/implementation captures, asset inventory, responsive boundary checks, state/keyboard/negative evidence, and closure of material visual mismatches before handoff. The diagnosis of T04 rework is recorded in `docs/frontend/M1-T04_REVIEW_AND_PREVENTION.md` at the same source commit. This changes visual acceptance specificity only; original fixture, security, publication, and successor boundaries continue.

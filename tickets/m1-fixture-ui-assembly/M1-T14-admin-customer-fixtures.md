@@ -19,3 +19,12 @@ Use the T14 mapping in `docs/frontend/M1_UI_REFERENCE_IMPLEMENTATION_CONTRACT.md
 ## Review Contract, invariants, security/UI, validation
 
 No real customer lookup, export, edit, customer-to-public leak, or role enforcement in client. Security preserves server role/record-ownership seam and prohibits shared client store; safe rendering is implement-now. UI: Data Workspace and empty/search states, VIS-002/06/08/10/11. `RC-24`: PASS iff fixture data remains route-local, list/detail/empty/error states render, and public/customer routes cannot import the model; boundary test + captures; CSS-hidden private data forbidden. Hard stop: protected data access is M2/M3.
+
+## Amendment M1-T14-A2 — measured rendered-reference acceptance
+
+- Decision authority: user request on 2026-11-21 to apply the M1-T04 visual-contract correction to the remaining UI tickets.
+- Binding contract: `docs/frontend/M1_REMAINING_UI_REFERENCE_CONTRACT.md` at source commit 30532594fbf730f773c07bd6c68178b75edf7540, specifically its M1-T14 row, entry ledger, asset/source boundary, and acceptance evidence. This supplements the existing A1 mapping and original ticket review contract.
+- Before implementation: record the mapped page/panel's ordered visible regions, measured desktop shell/panel and type geometry, source copy, local asset roles, actual breakpoints, and required fixture states. Use the reference-specific composition; T03 reuse must not flatten it into a generic shell.
+- Verification: same-viewport source/implementation captures for each mapped page or admin panel at desktop and each listed breakpoint, including the boundary itself; side-by-side findings for geometry, copy, typography, palette, art/icons, controls, navigation, focus and overflow; named T02 state captures; keyboard and negative authority/security evidence; local asset inventory and source scan. Correct each material mismatch before handoff. A build or general visual similarity cannot substitute.
+- Review row VIS-REF-M1-T14: PASS iff the ledger and all required captures are recorded, no material visible mismatch remains, and the original scenario/security review row also passes. Missing evidence or a mismatch blocks this ticket's visual handoff.
+- Boundary preservation: no reference executable behavior, prototype storage/seed, external media, production identity, data write, or authority is granted. Ticket-specific publication, privacy, lifecycle and successor rules remain binding.
