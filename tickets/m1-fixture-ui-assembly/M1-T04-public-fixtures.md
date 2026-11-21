@@ -1,6 +1,6 @@
 # M1-T04 — Assemble public discovery and published-content fixture screens
 
-- State: `awaiting_review`; batch/milestone: `3 / M1 / M1-W04`; depends on T02/H-02 and T03/H-03.
+- State: `approved`; batch/milestone: `3 / M1 / M1-W04`; depends on T02/H-02 and T03/H-03.
 - Source authority: M1-W04; Project Context public scope and published-only invariant.
 - Successor/handoff: `H-04` to M3-W03/M4-W06 and T07. Activation: `active-in-this-ticket` (fixture routes only).
 - Reuse: shared T02/T03 contracts; local public discovery composition (`keep-local`). Legacy: `forbidden`; SQL: `not-applicable`; empty state: published content/packages may be empty.
