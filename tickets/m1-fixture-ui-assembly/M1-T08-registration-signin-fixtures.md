@@ -1,6 +1,6 @@
 # M1-T08 — Render registration and sign-in fixture states
 
-- State: `awaiting_review`; batch/milestone/work package: `3 / M1 / M1-W05`; dependencies: T02/H-02, T03/H-03.
+- State: `approved`; batch/milestone/work package: `3 / M1 / M1-W05`; dependencies: T02/H-02, T03/H-03.
 - Source authority: M1-W05; Project Context separate customer identity; M1 excludes real sessions.
 - Successor/handoff: `H-08` → M2-W02 and T17. Activation: `active-in-this-ticket` (fixture routes only). Reuse: T02/T03; local auth-form composition (`keep-local`). Legacy: `forbidden`. SQL: `not-applicable`. Empty state: `not-applicable`.
 
