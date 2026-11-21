@@ -1,6 +1,6 @@
 # M1-T09 — Render customer home and help fixture surfaces
 
-- State: `ready`; batch/milestone/work package: `3 / M1 / M1-W05`; dependencies: T02/H-02, T03/H-03.
+- State: `awaiting_review`; batch/milestone/work package: `3 / M1 / M1-W05`; dependencies: T02/H-02, T03/H-03.
 - Source authority: M1-W05; Project Context customer navigation and deferred official WhatsApp handoff.
 - Successor/handoff: `H-09` → M2-W02, M3-W05, T17. Activation: `active-in-this-ticket` fixture routes. Reuse: T02/T03; local customer navigation/help meaning (`keep-local`). Legacy: `forbidden`. SQL: `not-applicable`. Empty state: no upcoming booking/help history is explicit.
 
