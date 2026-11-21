@@ -1,6 +1,6 @@
 # M1-T10 — Render the customer booking-request fixture workflow
 
-- State: `awaiting_review`; batch/milestone/work package: `3 / M1 / M1-W05`; dependencies: T02/H-02, T03/H-03.
+- State: `approved`; batch/milestone/work package: `3 / M1 / M1-W05`; dependencies: T02/H-02, T03/H-03.
 - Source authority: M1-W05; Project Context request lifecycle and availability boundary.
 - Successor/handoff: `H-10` → M3-W05 and T17. Activation: `active-in-this-ticket` fixture route. Reuse: T02/T03; local booking workflow/availability presentation (`keep-local`). Legacy: `forbidden`. SQL: `not-applicable`. Empty state: no package/available date has explicit no-action state.
 
@@ -36,3 +36,10 @@ Calendar must not disclose another customer or promise availability. No booking 
 - Required implementation path: start from the mapped HTML structure; extract its actual regions into JSX/TSX, preserve element order and visual relationships, adapt its CSS rules/media queries into project styles, use the extracted local visual assets in their mapped roles, and translate visible script-driven interactions into React state/handlers. Reuse only regions and controls evidenced by the reference or an already extracted matching region. Do not invent a substitute shell, card, form, navigation, calendar, artwork, or alternate visual language.
 - Fixture integration: replace prototype data, storage, writes, and business decisions with typed T02 scenario props and explicit non-authoritative results. Preserve this ticket's route/state scope, security, identity, publication, and successor boundaries. No original HTML page, inline script/handler, unsafe HTML sink, localStorage path, external origin, or reference business authority runs at runtime.
 - Review row `SRC-REF-M1-T10`: PASS iff the checkpoint contains a source-region/CSS/asset/interaction-to-component map for every mapped page or panel, the route uses those converted components and T02 fixtures, and the A2 same-viewport visual/state/keyboard evidence has no material mismatch. A generic reconstruction, missing mapped region/interaction without a recorded reason, direct prototype script execution, or build-only evidence is a FAIL.
+
+## Amendment M1-T10-A4 — shared customer chrome/footer authority
+
+- Decision authority: explicit user direction on 2026-11-21 correcting the prior CK interpretation of the booking footer.
+- The shared reference-derived `CustomerFrame` chrome, including its expanded footer composition, is the approved reusable customer-shell implementation for M1-T10. Its use is not a visual-fidelity defect and must not be treated as a required booking-specific footer replacement.
+- M1-T10 visual fidelity remains binding for the booking-specific workflow surface: breadcrumb, hero, steps, calendar, form, result state, responsive composition, controls, copy, typography, palette, spacing, and mapped local assets. A2/A3 source-region and evidence requirements remain binding for those regions.
+- This amendment supersedes only the prior interpretation that the booking reference's compact footer must be reproduced by the booking route. It does not grant prototype runtime behavior, external links, storage, booking writes, or any authority beyond the existing ticket boundaries.
