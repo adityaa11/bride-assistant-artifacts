@@ -1,6 +1,6 @@
 # M1-T10 — Render the customer booking-request fixture workflow
 
-- State: `ready`; batch/milestone/work package: `3 / M1 / M1-W05`; dependencies: T02/H-02, T03/H-03.
+- State: `awaiting_review`; batch/milestone/work package: `3 / M1 / M1-W05`; dependencies: T02/H-02, T03/H-03.
 - Source authority: M1-W05; Project Context request lifecycle and availability boundary.
 - Successor/handoff: `H-10` → M3-W05 and T17. Activation: `active-in-this-ticket` fixture route. Reuse: T02/T03; local booking workflow/availability presentation (`keep-local`). Legacy: `forbidden`. SQL: `not-applicable`. Empty state: no package/available date has explicit no-action state.
 
