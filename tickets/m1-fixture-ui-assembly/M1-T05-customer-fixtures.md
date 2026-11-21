@@ -26,3 +26,9 @@ Empty Booking Saya explains absence and offers allowed next navigation; it does 
 Security readiness: `applicable`; preserve the future server-side identity/ownership seam and enforce M1 safe-rendering discipline now.
 
 Capture registration and sign-in validation/loading/error/success-result states, selected/unavailable availability fixtures, each canonical status, no-bookings, unavailable WhatsApp, and narrow layout. Do not invent the deferred rejection customer label; omit that state until authority exists.
+
+## Amendment M1-T05-A1 — shared customer chrome/footer authority
+
+- Decision authority: explicit user direction on 2026-11-21.
+- Across the customer journey surfaces covered by this superseded umbrella ticket, the shared reference-derived `CustomerFrame` chrome, including its expanded footer composition, is the approved reusable customer shell. Its use is not a visual-fidelity defect.
+- Any successor ticket remains responsible for its own workflow-specific visual fidelity, states, responsive composition, and security boundaries. This does not grant prototype runtime behavior, external links, storage, writes, or business authority.
