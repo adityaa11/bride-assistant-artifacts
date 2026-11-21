@@ -11,3 +11,9 @@ Run the route/scenario review matrix and publish the fixture-to-backend seam inv
 ## Review Contract, invariants, security/UI, validation
 
 Review actual routes, not prototype HTML or isolated unit tests; fail any direct fixture feature import, unsafe sink, authority claim, public draft, canonical-label regression, missing responsive/accessibility evidence, or visible mismatch against `project's goal/UI Reference/`. No production acceptance or backend approval. Security verifies SEC-M1-01/02; UI verifies relevant VIS-001–014 plus VIS-REF-01. `RC-27`: PASS iff every active ticket has desktop/narrow, applicable loading/empty/error/result capture, reference-viewport comparison with no visible mismatch, and named successor seam; matrix + import scan + visual comparison record; build-only, functionally equivalent, or “inspired by” evidence is forbidden. Hard stop: any failed row leaves M1 not-ready.
+
+## Amendment M1-T17-A1 — verify source-led refactor
+
+- Decision authority: user direction on 2026-11-21; binding source contract `docs/frontend/M1_UI_REFERENCE_IMPLEMENTATION_CONTRACT.md` at commit `5b45033ba06cce63962e0e7bd0171086806d281e` and T08–T16 A3 amendments.
+- Extend `RC-27`: for every T08–T16 mapped page/panel, inspect the source-to-component map and actual route. Confirm reference-derived markup regions, CSS/media behavior, local asset roles, and visible interactions were converted into Next.js components and wired to typed T02 fixtures. Compare the rendered route with the source at the same viewports and required states; no material mismatch may remain.
+- Reject an invented replacement design, omitted reference region/interaction without a documented ticket reason, raw prototype HTML/script execution, unsafe sink, storage/seed/write authority, or an isolated component/build check as substitute for the actual route. Keep all existing privacy, publication, authentication and successor gates.
