@@ -35,7 +35,7 @@
 | `.availability-grid`, `.form-row`, `.form-field`, `.blocked-list` | `Availability` | Time, buffer and blocked-date controls preserve source geometry; save/block/unblock report no mutation. |
 | `#i-*` icon symbols | `Icon` reads `public/reference-assets/ui-reference/bride-assistant-planner-standalone-v3-content-management-inline-svg-01-e88f0a139761.svg` | Audited source symbols only, with decorative `aria-hidden`. Other extracted SVG files are not visible in the mapped states. |
 
-Omitted prototype behavior: inline scripts, `innerHTML`, browser storage, seed mutation, customer availability decisions, admin status transitions, production identity and external links. The visible note and footer use fixture wording because the prototype's storage, `Confirmed`/`On Hold`, and multiuser claims contradict the frozen M1 boundary. The source's final status command row is represented by a non-authoritative review action; no direct transition is implied.
+Omitted prototype behavior: inline scripts, `innerHTML`, browser storage, seed mutation, customer availability decisions, admin status transitions, production identity and external links. The source's final status command row is represented by a non-authoritative review action; no direct transition is implied.
 
 ## Rendered comparison
 
@@ -43,7 +43,13 @@ Omitted prototype behavior: inline scripts, `innerHTML`, browser storage, seed m
 - Desktop 1440px: source and implementation have the same 238px sidebar, 31px content inset, 72px filter bar, booking grid start at y=313px, calendar inner grid start at y=407px, 89px day cells and 117px selected-date header. Sidebar, topbar, title, action, cards, icons and palette were compared side by side. The initial 10px filter offset from the global button minimum was corrected.
 - At 930px, both stack the sidebar above content and retain a two-column booking grid. At 720px, both change to one column. At 485px, both use a single search row, date/status/reset row, full-width toggle and compact calendar. Long canonical status names wrap in the legend and badge; all source geometry and controls remain readable with no horizontal document overflow at any captured width.
 - `reference-list.png` / `implementation-list.png` and `reference-detail.png` / `implementation-detail.png` show the alternate table and selected customer sections. `implementation-empty-filter.png`, `implementation-empty-scenario.png`, `implementation-status-filter.png`, `implementation-focus.png`, `implementation-non-authoritative-result.png`, and `implementation-availability-result.png` show the ticket-specific fixture states.
-- Intentional visible differences: canonical Indonesian statuses and their longer wrapping; fixture note/provenance wording; non-authoritative status action. The source prototype's `Completed` and `On Hold` are not copied into runtime. These changes follow the ticket's T02/lifecycle boundary rather than an aesthetic preference.
+- Intentional visible differences: canonical Indonesian statuses and their longer wrapping; non-authoritative status action. The source prototype's `Completed` and `On Hold` are not copied into runtime. The user-directed removal of two annotations is recorded in A4 below.
+
+## User-directed annotation removal (A4)
+
+The user selected the Bookings `Fixture note:` block and the shared `Non-authoritative fixture` footer in the live browser and requested both be removed. Commit `f47e21187159d73d0a1fee4d9804af8d4930f04d` removes those rendered nodes and their unused styles; the typed fixture, `data-scenario-id`, and `role="status"` interaction result remain. The `Availability` source note remains because it was not selected.
+
+Fresh paired screenshots at 1440, 1251/1250, 931/930, 721/720, 486/485 and 420px are under `evidence/M1-T12-r2/`. The Playwright check asserts the two removed blocks are absent, preserves the matching shell/panel/calendar geometry within 2px, and passes interaction checks. The original comparison above records the prior checkpoint; A4 supersedes its Bookings note/footer observation.
 
 ## Interaction, accessibility and security observation
 
