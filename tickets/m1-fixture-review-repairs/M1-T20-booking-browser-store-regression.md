@@ -1,6 +1,6 @@
 # M1-T20 — Remove browser booking store and restore fixture-only customer flow
 
-- State: `ready`.
+- State: `awaiting_review`.
 - Batch / milestone / work-package: `BAP-M1-FIXTURE-REPAIR-01 / 1`, M1 / M1-W05 with M1-W07 regression handoff.
 - Code repository and planning baseline: `https://github.com/adityaa11/bride-assistant.git` at `2ee952c9d6230849ff70e2db62efcc76454ecad9`.
 - Source authority: user direction on 22 November 2026 to remove the browser booking store from `/booking`, `/beranda` and `/booking-saya`, keep submit result non-authoritative, and prove no browser booking write or new cross-route record; [T10 RC-20](../m1-fixture-ui-assembly/M1-T10-customer-booking-request-fixtures.md), [T09 RC-19](../m1-fixture-ui-assembly/M1-T09-customer-home-help-fixtures.md), [T11 RC-21](../m1-fixture-ui-assembly/M1-T11-booking-saya-fixtures.md), [T02/H-02](../m1-fixture-ui-assembly/M1-T02-contracts-scenarios.md), [Project Context](../../contexts/project.md), and [T17 F-01](../../evidence/M1-T17-v1.md).
