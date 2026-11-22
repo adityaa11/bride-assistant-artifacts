@@ -1,6 +1,6 @@
 # M1-T19 — Audit all M1 fixture relationships and list refactor candidates
 
-- State: `ready`.
+- State: `awaiting_review`.
 - Batch / milestone / work-package trace: `BAP-M1-FIXTURE-RELATION-AUDIT-01 / 1`, M1 / M1-W07 review and replacement-seam inventory.
 - Code repository and planning baseline: `https://github.com/adityaa11/bride-assistant.git` at `2ee952c9d6230849ff70e2db62efcc76454ecad9`.
 - Source authority: explicit user scope of 22 November 2026 to audit T01–T18 fixture creation and cross-module relationships; [Project Context v3.1](../../contexts/project.md) objectives, target state, domain invariants, access/governance and acceptance basis; [M1 milestone](../../contexts/implementation/milestones/M1-fixture-ui.md), [M1 verification](../../contexts/implementation/verification.md), [T02 contract](../m1-fixture-ui-assembly/M1-T02-contracts-scenarios.md), and the existing [M1 ticket set](../m1-fixture-ui-assembly/README.md).

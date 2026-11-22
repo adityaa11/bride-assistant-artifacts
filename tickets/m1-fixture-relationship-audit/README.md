@@ -1,6 +1,6 @@
 # M1 fixture relationship audit — single-ticket set
 
-- Set ID: `BAP-M1-FIXTURE-RELATION-AUDIT-01`; status: `ready`; artifact revision: `1.1`.
+- Set ID: `BAP-M1-FIXTURE-RELATION-AUDIT-01`; status: `awaiting_review`; artifact revision: `1.1`.
 - Code repository and inspected baseline: `https://github.com/adityaa11/bride-assistant.git` at `2ee952c9d6230849ff70e2db62efcc76454ecad9`.
 - Selected milestone/work package: M1 / M1-W07 review and fixture-to-backend replacement map. Explicit user scope on 22 November 2026: audit the relationships among **all** T01–T18 fixtures and generate the list that needs later refactoring across public, customer, and admin routes.
 - Authority: [Project Context v3.1](../../contexts/project.md) (single booking identity, consistent business facts, admin-originated catalogue/promotions/published content, privacy and availability), [Stack Context v1.3](../../contexts/stack.md), [Implementation Context v2.7](../../contexts/implementation.md), [M1 milestone](../../contexts/implementation/milestones/M1-fixture-ui.md), [M1 verification](../../contexts/implementation/verification.md), and the [existing M1 ticket set](../m1-fixture-ui-assembly/README.md). The [T17 failed review record](../../evidence/M1-T17-v1.md) is an audit input, not a replacement for the frozen tickets or a CK decision.
@@ -9,7 +9,7 @@
 
 | Ticket | State | Direct accepted inputs | Relation |
 | --- | --- | --- | --- |
-| [M1-T19 — audit fixture relationships](M1-T19-fixture-relationship-audit.md) | `ready` | T02/H-02 typed adapter; T04/H-04, T08/H-08–T14/H-14, T16/H-16 approved route boundaries; expanded T18/H-18 CK `PASS`; T15 media continuation through H-18; T17 v1 failure evidence | One bounded audit. It does not change or approve any predecessor. |
+| [M1-T19 — audit fixture relationships](M1-T19-fixture-relationship-audit.md) | `awaiting_review` | T02/H-02 typed adapter; T04/H-04, T08/H-08–T14/H-14, T16/H-16 approved route boundaries; expanded T18/H-18 CK `PASS`; T15 media continuation through H-18; T17 v1 failure evidence | One bounded audit. It does not change or approve any predecessor. |
 
 `T01–T18 source/evidence → T19 audit → H-19 candidate refactor inventory and T17 consumption ledger → human/planning authority for bounded refactor tickets → T17-A7 re-review when required corrections are CK-approved.` T19 is parallel-safe with T20, and T17-A7 requires T19 CK `PASS`. T19 is the only ticket in this set. It does not authorize or automatically create the successor tickets.
 
