@@ -1,6 +1,6 @@
 # M1-T13 — Render admin catalogue, bundle, package, and price fixture views
 
-- State: `awaiting_review`; batch/milestone/work package: `3 / M1 / M1-W06`; dependencies: T02/H-02, T03/H-03. Review target code commit: `b9fd31e3bd42f2a902dd6201445f471f677ac615`; [GO checkpoint](../../checkpoints/M1-T13-admin-catalogue-package-b9fd31e.md).
+- State: `approved`; batch/milestone/work package: `3 / M1 / M1-W06`; dependencies: T02/H-02, T03/H-03. Review target code commit: `b9fd31e3bd42f2a902dd6201445f471f677ac615`; [GO checkpoint](../../checkpoints/M1-T13-admin-catalogue-package-b9fd31e.md).
 - Source authority: M1-W06; Project Context catalogue/package/price hierarchy.
 - Successor/handoff: `H-13` → M3-W02 and T17. Activation: `active-in-this-ticket` fixture route. Reuse: T02/T03; catalogue hierarchy is local (`keep-local`). Legacy: `forbidden`. SQL: `not-applicable`. Empty state: empty catalogue has no generated default.
 
