@@ -1,6 +1,7 @@
 # M1-T14 — Render admin customer fixture list and detail views
 
-- State: `ready`; batch/milestone/work package: `3 / M1 / M1-W06`; dependencies: T02/H-02, T03/H-03.
+- State: `awaiting_review`; batch/milestone/work package: `3 / M1 / M1-W06`; dependencies: T02/H-02, T03/H-03.
+- GO checkpoint: [M1-T14 implementation](../../checkpoints/M1-T14-admin-customer-fixtures-15b6b9c.md), bound to code repository `https://github.com/adityaa11/bride-assistant.git` at commit `15b6b9c68fa74e0502a0acced13fca120d7185d8`.
 - Source authority: M1-W06; Project Context separate admin/customer access boundary.
 - Successor/handoff: `H-14` → M2-W02/M3-W02 and T17. Activation: `active-in-this-ticket` fixture route. Reuse: T02/T03; customer operational information is local (`keep-local`). Legacy: `forbidden`. SQL: `not-applicable`. Empty state: no customers has an explicit empty view.
 

@@ -1,0 +1,128 @@
+[
+  {
+    "width": 1440,
+    "sourceMain": {
+      "x": 285.515625,
+      "y": 97.5,
+      "width": 1106.96875,
+      "height": 451.71875
+    },
+    "appMain": {
+      "x": 285.515625,
+      "y": 97.5,
+      "width": 1106.96875,
+      "height": 507.71875
+    },
+    "sourceCards": 6,
+    "appCards": 6,
+    "overflow": false
+  },
+  {
+    "width": 1251,
+    "sourceMain": {
+      "x": 279.28125,
+      "y": 97.5,
+      "width": 930.4375,
+      "height": 448.3125
+    },
+    "appMain": {
+      "x": 279.28125,
+      "y": 97.5,
+      "width": 930.4375,
+      "height": 504.3125
+    },
+    "sourceCards": 6,
+    "appCards": 6,
+    "overflow": false
+  },
+  {
+    "width": 1250,
+    "sourceMain": {
+      "x": 230,
+      "y": 92.5,
+      "width": 997,
+      "height": 448.28125
+    },
+    "appMain": {
+      "x": 230,
+      "y": 92.5,
+      "width": 997,
+      "height": 504.28125
+    },
+    "sourceCards": 6,
+    "appCards": 6,
+    "overflow": false
+  },
+  {
+    "width": 931,
+    "sourceMain": {
+      "x": 230,
+      "y": 92.5,
+      "width": 678,
+      "height": 457.171875
+    },
+    "appMain": {
+      "x": 230,
+      "y": 92.5,
+      "width": 678,
+      "height": 513.171875
+    },
+    "sourceCards": 6,
+    "appCards": 6,
+    "overflow": false
+  },
+  {
+    "width": 930,
+    "sourceMain": {
+      "x": 17,
+      "y": 356.859375,
+      "width": 896,
+      "height": 436.78125
+    },
+    "appMain": {
+      "x": 17,
+      "y": 266.359375,
+      "width": 896,
+      "height": 492.78125
+    },
+    "sourceCards": 6,
+    "appCards": 6,
+    "overflow": false
+  },
+  {
+    "width": 486,
+    "sourceMain": {
+      "x": 17,
+      "y": 299.96875,
+      "width": 452,
+      "height": 548.0625
+    },
+    "appMain": {
+      "x": 17,
+      "y": 209.46875,
+      "width": 452,
+      "height": 604.0625
+    },
+    "sourceCards": 6,
+    "appCards": 6,
+    "overflow": false
+  },
+  {
+    "width": 485,
+    "sourceMain": {
+      "x": 12,
+      "y": 246,
+      "width": 461,
+      "height": 721.515625
+    },
+    "appMain": {
+      "x": 12,
+      "y": 140,
+      "width": 461,
+      "height": 797.90625
+    },
+    "sourceCards": 6,
+    "appCards": 6,
+    "overflow": false
+  }
+]
