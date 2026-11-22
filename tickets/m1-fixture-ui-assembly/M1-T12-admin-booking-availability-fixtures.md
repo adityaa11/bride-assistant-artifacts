@@ -43,3 +43,10 @@ No admin login/role decision, availability mutation, status command, customer di
 - Remove the visible `Fixture note:` block below the Bookings grid and the `Non-authoritative fixture` footer from the admin workspace. The footer is shared by Bookings and Availability, so remove it from both.
 - This is an explicit rendered-reference exception to the source's `.hintbox` prototype note on Bookings and to the implementation-added provenance footer. It changes those two visible annotations only. The Availability panel's source-mapped transactional note remains.
 - Keep named scenario IDs, typed fixture data, canonical statuses, non-authoritative action feedback, and all booking/availability authority boundaries intact. Record the visual exception and recapture the affected route.
+
+## Amendment M1-T12-A5 — user-directed sidebar removal
+
+- Decision authority: the user's browser comments on 2026-11-22 at `http://localhost:3000/admin`.
+- Remove the sidebar's `Standalone fixture review / Data demo tidak disimpan di browser.` line, `Customer experience` label, `Public Booking Page` item, and the divider that introduced that section from the shared Bookings/Availability admin shell.
+- This is a user-directed rendered-reference exception to the source's customer-experience navigation and the implementation-added offline line. The remaining Workspace and Website Content navigation, studio card, named fixture routes, and non-authoritative action results stay in place.
+- Recompare the retained source regions at the same widths. On narrow screens, measure main content geometry relative to its content origin because removing the navigation row intentionally changes the sidebar's height.

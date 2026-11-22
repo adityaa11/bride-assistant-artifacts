@@ -51,6 +51,12 @@ The user selected the Bookings `Fixture note:` block and the shared `Non-authori
 
 Fresh paired screenshots at 1440, 1251/1250, 931/930, 721/720, 486/485 and 420px are under `evidence/M1-T12-r2/`. The Playwright check asserts the two removed blocks are absent, preserves the matching shell/panel/calendar geometry within 2px, and passes interaction checks. The original comparison above records the prior checkpoint; A4 supersedes its Bookings note/footer observation.
 
+## User-directed sidebar removal (A5)
+
+The user selected the offline line and `Public Booking Page` link and explicitly requested removal of the `Customer experience` label above it. Commit `179190d6292efcf654ac6d5d4f0aa054ae7a1b6b` removes those nodes, the adjoining section divider, and unused offline styling from the shared sidebar. The Workspace and Website Content groups and studio card remain.
+
+Fresh source/implementation pairs for both panels at the same ten widths are under `evidence/M1-T12-r3/`. The retained topbar, title, controls, calendar and panel geometry still match within 2px relative to the content origin; the narrow sidebar is intentionally shorter. The visual spec asserts all three named sidebar texts are absent and all fixture-state interactions still pass. A5 supersedes the original ledger's full-navigation row for the omitted customer-experience group.
+
 ## Interaction, accessibility and security observation
 
 Playwright exercised list/detail/back, customer search with no result, reset, canonical status filter, calendar/list toggle, month navigation, date selection and New Booking result. Availability Save produced a status message without changing the fixture. All captured widths had `document.documentElement.scrollWidth <= innerWidth`. The search input has an accessible name and visible solid focus outline. The changed runtime files have no `innerHTML`, inline handler/script, `localStorage`, or executable reference code. Source and implementation use the extracted local icon symbol sheet; no external media origin was added.
