@@ -34,3 +34,8 @@ Review actual routes, not prototype HTML or isolated unit tests; fail any direct
 
 - Decision authority: explicit user planning direction on 2026-11-22; binding ticket [M1-T18](M1-T18-fixture-local-content-media.md) and T15-A7.
 - Extend `RC-27` to consume H-18: verify the actual Portfolio upload → fixture handler → local adapter → same-origin read path, isolated replace/cleanup evidence, no public/customer media output, T18 source/UI evidence, the direct T15 publication/media regressions, and the M2/M4 `DocumentStore` successor mapping. T18's local fixture directory is an M1 seam, not production acceptance.
+
+## Amendment M1-T17-A5 — review the expanded H-18 media paths
+
+- Explicit user direction on 2026-11-22 and [M1-T18-A2](M1-T18-fixture-local-content-media.md#amendment-m1-t18-a2--fixture-image-upload-for-testimonials-and-events) expand the H-18 review binding from Portfolio to Portfolio, Testimonials at `/admin/content`, and Events at `/admin/events`. Planning source is `https://github.com/adityaa11/bride-assistant.git` at code commit `387dde9aae69fe37795935b798e324e0fa315e3d`. This supersedes only A4's Portfolio-only review phrasing; its public-negative, T15 regression, source/UI, storage-seam and M2/M4 successor checks remain active.
+- T17's `RC-27` must inspect T18's **new** CK-reviewed checkpoint against `MEDIA-05`, `MEDIA-06`, `UI-MEDIA-01-A2`, `UI-MEDIA-02-A2`, and `EMPTY-18-A2`, including separate collection namespaces, actual UI-to-handler-to-read paths, cross-collection failure, cleanup isolation, fixture-only previews, and source/implementation evidence. The historical Portfolio-only T18 checkpoint is not sufficient for this expanded handoff; T17 does not issue T18's CK result.

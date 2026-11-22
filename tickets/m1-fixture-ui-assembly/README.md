@@ -1,13 +1,13 @@
 # M1 Fixture-backed UI assembly — resized ticket set
 
-- Set ID: `BAP-M1-FIXTURE-UI-SET-01`; status: `ready`; artifact revision: `2.1`.
+- Set ID: `BAP-M1-FIXTURE-UI-SET-01`; status: `ready`; artifact revision: `2.2`.
 - Authority: Project Context rev 3.0; Stack Context rev 1.2; M1 fixture-ui milestone; architecture, decisions, and verification records; `project's goal/UI Reference/` as the binding visual source of truth.
 - Revision reason: original T05/T06 crossed unrelated screen, information, and review boundaries. They are retained as `superseded`; no ticket ID is reused.
 - Artifact inventory remains unchanged: only this set's files are staged; pre-existing `checkpoints/`, `evidence/`, `feedback/`, and `tickets/.gitkeep` are untouched.
 
 ## Frozen M1 boundary
 
-All active tickets render named typed fixtures only. No real account/session, server authorization, persistence, upload, payment, official transition, public query, or live WhatsApp link exists in M1. Adapter/model version and an explicit non-authoritative result are required at every interactive surface. Prototype localStorage, static seed scripts, `Confirmed`, and `On Hold` are not carried forward.
+All active tickets render named typed fixtures only. No real account/session, server authorization, production persistence, payment, official transition, public query, or live WhatsApp link exists in M1. T18 alone may use the bounded fixture-local Portfolio, Testimonials, and Events upload/storage path defined by A8. Adapter/model version and an explicit non-authoritative result are required at every interactive surface. Prototype localStorage, static seed scripts, `Confirmed`, and `On Hold` are not carried forward.
 
 ## Active registry and sized batches
 
@@ -59,7 +59,7 @@ remain forbidden.
 
 ## Finalization result
 
-Each active ticket has one coherent review surface/contract boundary, a direct route-to-visible-state proof, and a named handoff. T08–T16 may run in parallel only after T02/T03. T17 is the next eligible ticket only after their captures and seam records exist. T01 remains the next eligible ticket now.
+Each active ticket has one coherent review surface/contract boundary, a direct route-to-visible-state proof, and a named handoff. T08–T16 may run in parallel only after T02/T03. T18 is ready for GO on its A2 scope; T17 is eligible only after the expanded H-18 and every other required capture/seam record exist.
 
 ## Amendment BAP-M1-UI-A2 — measured acceptance for T08–T16
 
