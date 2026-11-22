@@ -1,6 +1,6 @@
 # M1 fixture review regression repairs — two-ticket set
 
-- Set ID: `BAP-M1-FIXTURE-REPAIR-01`; status: `ready`; artifact revision: `1.0`.
+- Set ID: `BAP-M1-FIXTURE-REPAIR-01`; status: `ready`; artifact revision: `1.1`.
 - Code repository and planning baseline: `https://github.com/adityaa11/bride-assistant.git` at `2ee952c9d6230849ff70e2db62efcc76454ecad9`.
 - Selected milestone/work packages: M1-W05 customer fixture flow and M1-W07 review. User direction on 22 November 2026 authorizes two bounded tickets: remove the unauthorized browser booking store, then correct the T10/T12 browser assertions and rerun the route and M1-T17 review checks.
 - Authority: [Project Context v3.1](../../contexts/project.md), [Stack Context v1.3](../../contexts/stack.md), [M1 milestone](../../contexts/implementation/milestones/M1-fixture-ui.md), [M1 verification](../../contexts/implementation/verification.md), [original M1 set](../m1-fixture-ui-assembly/README.md), [T10](../m1-fixture-ui-assembly/M1-T10-customer-booking-request-fixtures.md), [T09](../m1-fixture-ui-assembly/M1-T09-customer-home-help-fixtures.md), [T11](../m1-fixture-ui-assembly/M1-T11-booking-saya-fixtures.md), [T12](../m1-fixture-ui-assembly/M1-T12-admin-booking-availability-fixtures.md), and the [T17 v1 failed review](../../evidence/M1-T17-v1.md). The [T19 cross-surface fixture audit](../m1-fixture-relationship-audit/M1-T19-fixture-relationship-audit.md) is a parallel planning input, not permission to redesign the fixture graph in these repair tickets.
@@ -12,7 +12,7 @@
 | [M1-T20 — remove booking browser store](M1-T20-booking-browser-store-regression.md) | `ready` | Approved T02/T09/T10/T11 interfaces and T17 F-01; no T19 completion dependency | `H-20`: fixture-only submit and T02-backed home/history, with browser no-write proof. |
 | [M1-T21 — repair browser selectors](M1-T21-browser-selector-regression.md) | `planned` | T20 `PASS` and its exact code checkpoint | `H-21`: updated T10/T12 assertions, passing affected route suite, and fresh T17 review evidence/handoff. |
 
-`T17 F-01 → T20/H-20 → T21/H-21 → explicit M1-T17 GO re-review.` The T19 audit may run independently and may recommend additional refactor tickets; its findings must be reconciled before M1 exit. T21 does not issue a T17 checkpoint or CK `PASS` itself.
+`T17 F-01 → T20/H-20 CK PASS → T21/H-21 CK PASS → explicit M1-T17-A7 GO re-review.` T19 runs independently of T20/T21, but T17-A7 also requires T19/H-19 CK `PASS` and finding-by-finding disposition. M1-required T19 findings need separately authorized CK-approved repairs before H-17; accepted M2+ deferrals need named successors. T21 does not issue a T17 checkpoint or CK `PASS` itself.
 
 ## Activation, expected paths, and reuse
 

@@ -1,6 +1,6 @@
 # M1 Fixture-backed UI assembly — resized ticket set
 
-- Set ID: `BAP-M1-FIXTURE-UI-SET-01`; status: `ready`; artifact revision: `2.3`.
+- Set ID: `BAP-M1-FIXTURE-UI-SET-01`; status: `ready`; artifact revision: `2.4`.
 - Authority: Project Context rev 3.0; Stack Context rev 1.2; M1 fixture-ui milestone; architecture, decisions, and verification records; `project's goal/UI Reference/` as the binding visual source of truth.
 - Revision reason: original T05/T06 crossed unrelated screen, information, and review boundaries. They are retained as `superseded`; no ticket ID is reused.
 - Artifact inventory remains unchanged: only this set's files are staged; pre-existing `checkpoints/`, `evidence/`, `feedback/`, and `tickets/.gitkeep` are untouched.
@@ -60,6 +60,8 @@ remain forbidden.
 ## Finalization result
 
 Each active ticket has one coherent review surface/contract boundary, a direct route-to-visible-state proof, and a named handoff. T08–T16 may run in parallel only after T02/T03. T18 is ready for GO on its A2 scope; T17 is eligible only after the expanded H-18 and every other required capture/seam record exist.
+
+For the post-v1 T17 re-review, [T17-A7](M1-T17-review-seam-inventory.md#amendment-m1-t17-a7--reconcile-fixture-audit-and-regression-repairs-before-re-review) adds T19/H-19, T20/H-20 and T21/H-21 CK `PASS` as direct entry dependencies. T19 may run alongside T20; T21 follows T20. T17 must reconcile every H-19 finding, independently verify the F-01/F-02 repairs, and rerun the full RC-27 review before H-17 or M1 exit. The original v1 failure record remains historical evidence.
 
 ## Amendment BAP-M1-UI-A2 — measured acceptance for T08–T16
 
