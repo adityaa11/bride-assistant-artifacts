@@ -86,3 +86,9 @@ The original M1 no-upload/no-persistence boundary remains binding for every tick
 ## Amendment BAP-M1-UI-A7 — correct T18 readiness dependency
 
 T18 must not require T15/H-15 `PASS`: T15's latest CK result is `CHANGES_REQUIRED`, and T18 is the bounded continuation that addresses the media gap. T18 depends on approved T02/H-02 and T03/H-03 only, uses the committed T15 implementation as an inspection baseline, and proves its direct T15 regressions. T17 consumes T18/H-18 for that continuation evidence; the historical T15 CK result remains unchanged.
+
+## Amendment BAP-M1-UI-A8 — T18 Testimonials and Events fixture media
+
+Explicit user direction on 2026-11-22 expands M1-T18 to image upload in the Testimonials tab of `/admin/content` and in `/admin/events`, alongside Portfolio. [M1-T18-A2](M1-T18-fixture-local-content-media.md#amendment-m1-t18-a2--fixture-image-upload-for-testimonials-and-events) is the effective ticket authority: it names the exact superseded Portfolio-only exclusions, two additional expected use paths, collection namespaces, UI/card behavior, security boundary, and new binary Review Contract rows. A6's Portfolio-only statement remains historical and is superseded only for this fixture-local expansion. All three flows remain non-authoritative; no real customer image, public delivery, consent assertion, production storage, publication transition, or new provider is authorized.
+
+The prior T18 Portfolio-only code commit `387dde9aae69fe37795935b798e324e0fa315e3d` and checkpoint remain historical, not a CK review target for A2. T18 is `ready` for a new GO continuation; the next GO checkpoint must prove the complete effective contract before CK can review it. T17 waits for that expanded H-18. The T02/H-02 and T03/H-03 prerequisites remain unchanged.
