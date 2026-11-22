@@ -1,6 +1,7 @@
 # M1-T18 — Implement the fixture-local content media storage seam
 
-- State: `awaiting_review`; batch/milestone/work package: `4 / M1 / M1-W07`; dependencies: T02/H-02 and T03/H-03 `sequence`.
+- State: `approved`; batch/milestone/work package: `4 / M1 / M1-W07`; dependencies: T02/H-02 and T03/H-03 `sequence`.
+- GO checkpoint: [expanded fixture media](../../checkpoints/M1-T18-fixture-local-content-media-0a69d9d.md), bound to code repository `https://github.com/adityaa11/bride-assistant.git` at commit `0a69d9da1ac204cb23a2bcbccc1fba4171844b92`; [CK review](../../feedback/M1-T18-fixture-local-content-media-0a69d9d-ck.md) recorded `PASS`.
 - Prior Portfolio-only GO commit: `387dde9aae69fe37795935b798e324e0fa315e3d`; historical [checkpoint](../../checkpoints/M1-T18-fixture-local-content-media-387dde9.md). Amendment A2 below supersedes it as the current review target; a new GO checkpoint must bind the expanded contract before CK reviews T18.
 - Effective review scope: original obligations except the exact Portfolio-only exclusions superseded by A2, plus A2's Testimonials/Events rows and A3's universal `DocumentStore` row. CK must use this effective contract for the next submitted checkpoint.
 - Planning source binding: code repository `https://github.com/adityaa11/bride-assistant.git` at `387dde9aae69fe37795935b798e324e0fa315e3d`; A2 changes the ticket contract, not that code revision.
