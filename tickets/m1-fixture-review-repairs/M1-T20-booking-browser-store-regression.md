@@ -1,7 +1,8 @@
 # M1-T20 — Remove browser booking store and restore fixture-only customer flow
 
-- State: `awaiting_review`.
+- State: `approved`.
 - Batch / milestone / work-package: `BAP-M1-FIXTURE-REPAIR-01 / 1`, M1 / M1-W05 with M1-W07 regression handoff.
+- H-20 checkpoint: [browser booking store removal](../../checkpoints/M1-T20-browser-booking-store-2c17ec7.md), bound to code repository `https://github.com/adityaa11/bride-assistant.git` at commit `2c17ec7cf247984a88a2bb1cf90e0a318ef5e4c7`; [CK review](../../feedback/M1-T20-browser-booking-store-2c17ec7-ck.md) recorded `PASS`.
 - Code repository and planning baseline: `https://github.com/adityaa11/bride-assistant.git` at `2ee952c9d6230849ff70e2db62efcc76454ecad9`.
 - Source authority: user direction on 22 November 2026 to remove the browser booking store from `/booking`, `/beranda` and `/booking-saya`, keep submit result non-authoritative, and prove no browser booking write or new cross-route record; [T10 RC-20](../m1-fixture-ui-assembly/M1-T10-customer-booking-request-fixtures.md), [T09 RC-19](../m1-fixture-ui-assembly/M1-T09-customer-home-help-fixtures.md), [T11 RC-21](../m1-fixture-ui-assembly/M1-T11-booking-saya-fixtures.md), [T02/H-02](../m1-fixture-ui-assembly/M1-T02-contracts-scenarios.md), [Project Context](../../contexts/project.md), and [T17 F-01](../../evidence/M1-T17-v1.md).
 - Dependencies: approved T02/T03 and T09/T10/T11 fixture interfaces, current T17 failure evidence. T19 audit is independent and cannot silently widen this repair.

@@ -9,7 +9,7 @@
 
 | Ticket | State | Dependency | Outcome / handoff |
 | --- | --- | --- | --- |
-| [M1-T20 — remove booking browser store](M1-T20-booking-browser-store-regression.md) | `awaiting_review` | Approved T02/T09/T10/T11 interfaces and T17 F-01; no T19 completion dependency | `H-20`: fixture-only submit and T02-backed home/history, with browser no-write proof. |
+| [M1-T20 — remove booking browser store](M1-T20-booking-browser-store-regression.md) | `approved` | Approved T02/T09/T10/T11 interfaces and T17 F-01; H-20 CK `PASS`; no T19 completion dependency | `H-20`: fixture-only submit and T02-backed home/history, with browser no-write proof. |
 | [M1-T21 — repair browser selectors](M1-T21-browser-selector-regression.md) | `planned` | T20 `PASS` and its exact code checkpoint | `H-21`: updated T10/T12 assertions, passing affected route suite, and fresh T17 review evidence/handoff. |
 
 `T17 F-01 → T20/H-20 CK PASS → T21/H-21 CK PASS → explicit M1-T17-A7 GO re-review.` T19 runs independently of T20/T21, but T17-A7 also requires T19/H-19 CK `PASS` and finding-by-finding disposition. M1-required T19 findings need separately authorized CK-approved repairs before H-17; accepted M2+ deferrals need named successors. T21 does not issue a T17 checkpoint or CK `PASS` itself.
@@ -26,4 +26,4 @@
 
 T20 security readiness is `applicable`: remove the browser write of contact and booking fields now (`SEC-REP-01 implement-now`), preserve the future server ownership/transaction seam (`SEC-REP-02 preserve-seam`), and keep T18's unrelated media `DocumentStore` boundary intact. Scoped lens: OWASP ASVS 5.0.0 browser/data protection, OWASP Top 10: 2025 access/integrity, NIST CSF 2.0 Protect, NIST SP 800-53 AC/SC/SI. T21 security relevance is limited to preserving test assertions for these boundaries. T20 frontend readiness uses the established `docs/frontend/PROJECT_FRONTEND_CONTRACT.md` in the code repository and the mapped T09–T11 source-led visuals; no redesign is authorized. T21 changes tests only. No SQL, production data, account/session, backend fetch, booking transaction, public content, or provider change is authorized.
 
-The T20 correction restores the approved M1 fixture boundary; it does not decide the wider one-source fixture model under T19. If T19 reveals a required new cross-surface behavior or interface, route that separately through planning. M1-T20 awaits CK review. M1-T21 becomes eligible only after T20 CK `PASS`.
+The T20 correction restores the approved M1 fixture boundary; it does not decide the wider one-source fixture model under T19. If T19 reveals a required new cross-surface behavior or interface, route that separately through planning. M1-T20 is approved after H-20 CK `PASS`; M1-T21 is eligible for its own bounded work.
