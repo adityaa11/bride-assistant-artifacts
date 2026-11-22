@@ -1,6 +1,7 @@
 # M1-T18 — Implement the fixture-local content media storage seam
 
-- State: `ready`; batch/milestone/work package: `4 / M1 / M1-W07`; dependencies: T02/H-02 and T03/H-03 `sequence`.
+- State: `awaiting_review`; batch/milestone/work package: `4 / M1 / M1-W07`; dependencies: T02/H-02 and T03/H-03 `sequence`.
+- GO review-target code commit: `387dde9aae69fe37795935b798e324e0fa315e3d`; checkpoint: [M1-T18](../../checkpoints/M1-T18-fixture-local-content-media-387dde9.md).
 - Source authority: M1-W07 backend-replacement seam inventory; M1-T15-A7; accepted Stack `DocumentStore` boundary and D-C03/D-06; M2-W04 and M4-W01/M4-W05 handoff contracts.
 - Dependencies and accepted predecessor outputs: T02/H-02 typed scenario and command-result contracts; T03/H-03 visual/form/a11y primitives. The committed T15 implementation at `8c40bf2` and its historical evidence are inspected inputs, not an approved predecessor dependency; T18 owns the direct media gap and regression checks without requiring T15/H-15 `PASS`.
 - Successors and handoffs: H-18 → T17/H-17 M1 review seam inventory; H-18 → M2-W04 contract integration and M4-W01/M4-W05 server-side media activation. The later backend ticket replaces the local adapter without changing the UI's opaque-key contract.
