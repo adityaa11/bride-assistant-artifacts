@@ -1,6 +1,6 @@
 # M1-T11 — Render Booking Saya lifecycle, proof, and exception fixture views
 
-- State: `awaiting_review`; batch/milestone/work package: `3 / M1 / M1-W05`; dependencies: T02/H-02, T03/H-03.
+- State: `approved`; batch/milestone/work package: `3 / M1 / M1-W05`; dependencies: T02/H-02, T03/H-03.
 - Source authority: M1-W05; Project Context customer-visible lifecycle, proof, and exception boundaries.
 - Successor/handoff: `H-11` → M3-W05, M4-W02–04, T17. Activation: `active-in-this-ticket` fixture route. Reuse: T02/T03; local lifecycle detail (`keep-local`). Legacy: `forbidden`. SQL: `not-applicable`. Empty state: no bookings is explicit and initializes nothing.
 
