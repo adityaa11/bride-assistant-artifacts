@@ -1,7 +1,8 @@
 # Implementation Context — Bride Assistant Planner / Ranur Bridal Care
 
-**Context ID:** `BAP-IMPLEMENTATION-CONTEXT` · **Revision:** `2.6` · **Date:** 20 November 2026  
+**Context ID:** `BAP-IMPLEMENTATION-CONTEXT` · **Revision:** `2.7` · **Date:** 22 November 2026
 **Status:** `ready` · **Project state:** `hybrid` · **Ticket-generation readiness:** `M1 ready; M2–M5 planned behind predecessor evidence and deferred production gates`
+**Source code repository / commit:** `https://github.com/adityaa11/bride-assistant.git` / `387dde9aae69fe37795935b798e324e0fa315e3d`.
 
 ## Read first
 
@@ -13,7 +14,7 @@
 
 | Next milestone | Eligible packages | Blocking decisions | Required predecessor evidence |
 | --- | --- | --- | --- |
-| M1 — Fixture-backed UI | M1-W01 | None | Project Context v3.0 and Stack Context v1.2 remain current; reference HTML is available. |
+| M1 — Fixture-backed UI | M1-W07 (T18-A2/A3 continuation, then T17 review) | None for fixture-local work | Project Context v3.1 and Stack Context v1.3; approved T02/H-02 and T03/H-03, T18-A2/A3 ticket, and reference HTML. The prior Portfolio-only T18 checkpoint is historical. |
 | M2 — Authoritative foundation | None | None | M1 exit evidence; then provision Vercel Singapore, Neon PostgreSQL/Object Storage in Singapore, Docker local services, and exact locked dependencies. |
 | M3–M5 | None | D-03/D-04 as applicable | Their direct milestone gates and production-hardening evidence. |
 
@@ -25,7 +26,7 @@ The system boundary is Next.js/React/TypeScript, Better Auth, PostgreSQL, Zod, `
 
 ## Repository reconciliation
 
-`hybrid` — observed repository evidence is standalone customer/admin HTML with `localStorage`, seed records, blank WhatsApp configuration, and prototype labels such as `Confirmed`/`On Hold`; it is valuable UI evidence but not authoritative runtime behavior. There is no application package, backend, test suite, or deployment metadata. Preserve the visual/workflow reference where it agrees with the contexts; replace local state, prototype authentication, and conflicting statuses.
+`hybrid` — the repository now has a Next.js fixture application, typed scenario adapter, review routes, tests, and a Portfolio-only local media seam at the source commit above. The standalone customer/admin HTML still supplies UI reference evidence, not authoritative runtime behavior; its `localStorage`, seed records, blank WhatsApp configuration, and prototype statuses are not production contracts. T18-A2 adds fixture-local Testimonials/Events media before T17 review. Real authentication, authoritative relational data, and the production `DocumentStore` adapter remain for later milestones.
 
 ## Registries
 
@@ -33,7 +34,7 @@ The system boundary is Next.js/React/TypeScript, Better Auth, PostgreSQL, Zod, `
 
 | ID | Status | Detail | Direct dependencies | Read when |
 | --- | --- | --- | --- | --- |
-| M1 | planned | [Fixture UI](implementation/milestones/M1-fixture-ui.md) | — | Starting implementation or changing UI fixtures/contracts. |
+| M1 | in-progress | [Fixture UI](implementation/milestones/M1-fixture-ui.md) | — | Continuing T18-A2 or reviewing M1 fixtures/contracts. |
 | M2 | planned | [Foundation](implementation/milestones/M2-foundation.md) | M1 | Selecting provider/auth/data seams. |
 | M3 | planned | [Booking core](implementation/milestones/M3-booking-core.md) | M2 | Building catalogue, booking, or availability. |
 | M4 | planned | [Evidence & publishing](implementation/milestones/M4-evidence-publishing.md) | M3; D-03/D-04 | Building proof, exceptions, or published content. |

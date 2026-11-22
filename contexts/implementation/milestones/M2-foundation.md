@@ -1,5 +1,7 @@
 # M2 — Authoritative foundation and decision gate
 
+**Source code repository / commit:** `https://github.com/adityaa11/bride-assistant.git` / `387dde9aae69fe37795935b798e324e0fa315e3d`.
+
 **Status:** `planned` · **Advances:** separate identity, protected data, durable implementation boundary.  
 **Outcome:** Approved production choices plus persistent auth, authorization, migration/test foundations, and adapters can replace fixtures. Without it, later UI is not authoritative.
 
@@ -12,7 +14,7 @@
 | M2-W01 | Environment/secrets conventions, migration/test DB, deployable shell; excludes domain models. | M2-R01/M2-R02 `sequence` | Replaces no live runtime; creates server/data baseline. | Fresh setup migrates and checks without committed secrets; handoff M2-W02–04. | N/A. |
 | M2-W02 | Persistent customer/admin auth and protected route/session boundary; excludes domain authorization detail. | M2-W01 `sequence` | Replaces M1 customer/admin placeholders. | Session/route-denial tests; handoff M2-W03 and M3-W05/06. | M1-W05/06 placeholders → M2-W02; invariant: customer/admin surfaces remain separate. |
 | M2-W03 | Server role/ownership utilities and Zod boundary convention; excludes catalogue rules. | M2-W02 `sequence` | Creates protected command/read seam. | Direct denial and invalid-payload tests; handoff M2-W04/M3/M4. | N/A. |
-| M2-W04 | Repository/adaptor contracts including DocumentStore; excludes concrete private-byte adapter. | M2-W01–03 `sequence` | Replaces fixture adapters incrementally; preserves UI contracts. | Fixture/backend contract tests; handoff M3/M4. | M1-W02 → M2-W04; invariant: feature components depend on contracts, not fixtures. |
+| M2-W04 | Repository/adaptor contracts including the single `DocumentStore` byte boundary for every upload; excludes concrete private-byte adapter. | M2-W01–03 `sequence` | Replaces fixture adapters incrementally; preserves UI contracts and T18/H-18's opaque media metadata, with content-specific lifecycle above `DocumentStore`. | Fixture/backend contract tests for Portfolio, Testimonials, Events and proof; handoff M3/M4. | M1-W02 and M1-W07/T18 → M2-W04; invariant: feature components depend on contracts, not fixtures or storage providers. |
 | M2-R03 | Verify five-minute retention rollout, then approve proof/media consent, scanner, recovery, incident, and accounting/legal rules; defer only the unresolved production-hardening values. | M2-R01 `decision gate` | Determines proof-file and operational controls; the eight-month retention policy is recorded in D-03. | Five-minute expiry evidence plus approved remaining policy/control record; handoff M4-W01/02/07 production hardening. | N/A; D-03 preserves the proof capability while its remaining controls are bound before release. |
 
 **Graph:** `M1-W07 → M2-R01 → M2-R02 → M2-W01 → M2-W02 → M2-W03 → M2-W04`; `M2-R01 → M2-R03`. M2-R03 is parallel-safe with R02/W01 after R01; it is required for M4 production hardening, not the proof capability.  

@@ -1,6 +1,6 @@
 # M1 Fixture-backed UI assembly — resized ticket set
 
-- Set ID: `BAP-M1-FIXTURE-UI-SET-01`; status: `ready`; artifact revision: `2.2`.
+- Set ID: `BAP-M1-FIXTURE-UI-SET-01`; status: `ready`; artifact revision: `2.3`.
 - Authority: Project Context rev 3.0; Stack Context rev 1.2; M1 fixture-ui milestone; architecture, decisions, and verification records; `project's goal/UI Reference/` as the binding visual source of truth.
 - Revision reason: original T05/T06 crossed unrelated screen, information, and review boundaries. They are retained as `superseded`; no ticket ID is reused.
 - Artifact inventory remains unchanged: only this set's files are staged; pre-existing `checkpoints/`, `evidence/`, `feedback/`, and `tickets/.gitkeep` are untouched.
@@ -92,3 +92,7 @@ T18 must not require T15/H-15 `PASS`: T15's latest CK result is `CHANGES_REQUIRE
 Explicit user direction on 2026-11-22 expands M1-T18 to image upload in the Testimonials tab of `/admin/content` and in `/admin/events`, alongside Portfolio. [M1-T18-A2](M1-T18-fixture-local-content-media.md#amendment-m1-t18-a2--fixture-image-upload-for-testimonials-and-events) is the effective ticket authority: it names the exact superseded Portfolio-only exclusions, two additional expected use paths, collection namespaces, UI/card behavior, security boundary, and new binary Review Contract rows. A6's Portfolio-only statement remains historical and is superseded only for this fixture-local expansion. All three flows remain non-authoritative; no real customer image, public delivery, consent assertion, production storage, publication transition, or new provider is authorized.
 
 The prior T18 Portfolio-only code commit `387dde9aae69fe37795935b798e324e0fa315e3d` and checkpoint remain historical, not a CK review target for A2. T18 is `ready` for a new GO continuation; the next GO checkpoint must prove the complete effective contract before CK can review it. T17 waits for that expanded H-18. The T02/H-02 and T03/H-03 prerequisites remain unchanged.
+
+## Amendment BAP-M1-UI-A9 — universal DocumentStore upload boundary
+
+Explicit user direction on 2026-11-22 binds all uploaded media bytes to the single `DocumentStore` interface. [M1-T18-A3](M1-T18-fixture-local-content-media.md#amendment-m1-t18-a3--one-documentstore-byte-boundary-for-every-upload) requires a disposable local byte adapter in M1 and leaves the Neon Object Storage S3-compatible production adapter to M4-W01. Content-specific association/replace/remove is a lifecycle facade above that byte layer, not a second storage authority. `MEDIA-07` is required for the next T18 CK review and T17 H-18 inventory. Project v3.1, Stack v1.3 and Implementation v2.7 carry the same boundary; checked-in static fixture images are not uploaded media.

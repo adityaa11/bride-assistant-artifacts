@@ -1,10 +1,12 @@
 # Context index
 
+Source code repository / planning baseline: `https://github.com/adityaa11/bride-assistant.git` at `387dde9aae69fe37795935b798e324e0fa315e3d`.
+
 | Artifact | Status | Purpose |
 | --- | --- | --- |
-| [Project Context](project.md) | ready | Durable product definition, boundary, governance, and acceptance basis for Bride Assistant Planner / Ranur Bridal Care. |
-| [Stack Context](stack.md) | ready | Selected technology baseline, trade-offs, storage boundary, and handoff constraints for later implementation work. |
-| [Implementation Context](implementation.md) | ready | Routing index for the milestone bundle, architecture/decision records, verification, and ticket-source work packages. Production payment-proof release is explicitly deferred. |
+| [Project Context](project.md) v3.1 | ready | Durable product definition, uploaded-media boundary, governance, and acceptance basis for Bride Assistant Planner / Ranur Bridal Care. |
+| [Stack Context](stack.md) v1.3 | ready | Selected technology baseline, universal `DocumentStore` upload boundary, Neon Object Storage production adapter, and handoff constraints. |
+| [Implementation Context](implementation.md) v2.7 | ready | Routing index for the milestone bundle, fixture media continuation, backend handoff, and ticket-source work packages. Production payment-proof release is explicitly deferred. |
 
 ## Canonical use
 

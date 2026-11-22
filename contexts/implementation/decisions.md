@@ -1,12 +1,14 @@
 # Decision Register and Research
 
+**Source code repository / planning baseline:** `https://github.com/adityaa11/bride-assistant.git` at `387dde9aae69fe37795935b798e324e0fa315e3d`.
+
 ## Confirmed constraints
 
 | ID | Question / status | Evidence and effect |
 | --- | --- | --- |
 | D-C01 | One web-only TypeScript/React/Next.js product — `confirmed` | Stack Context. Keeps public/customer/admin in one delivery boundary. |
 | D-C02 | Better Auth + PostgreSQL and server-side authorization — `confirmed` | Stack and Project Context. Enables durable separate identity and ownership enforcement. |
-| D-C03 | `DocumentStore` keeps bytes outside PostgreSQL — `confirmed` | Stack Context. Requires access control before bytes are read. |
+| D-C03 | `DocumentStore` owns every uploaded media/proof byte outside PostgreSQL — `confirmed` | Project v3.1 and Stack v1.3; explicit user direction, 22 Nov 2026. Requires server authorization before protected reads; content lifecycle metadata is separate from byte ownership. |
 | D-C04 | Canonical lifecycle/admin authority and WhatsApp as support — `confirmed` | Project Context. Controls official state and availability sequencing. |
 
 ## Deferred and blocked decisions
@@ -23,8 +25,8 @@
 
 ### D-06 Production DocumentStore provider and location
 
-**Status:** `confirmed` · **Decision:** Neon Object Storage in the same selected Singapore Neon project backs production `DocumentStore`; Vercel hosts the Next.js application only. Docker provides local PostgreSQL and a disposable local `DocumentStore` adapter for development.  
-**Evidence:** Neon Object Storage is S3-compatible, supports private buckets, and supports short-lived presigned URLs for private reads and direct uploads. **Boundary:** Neon credentials are server-only; the application authorizes the booking owner/admin before minting a URL. The development adapter is not production storage and must not receive real payment proofs. **Affects:** M2-R01/M2-W01, M4-W01, M5-W03/04. **Enables:** one Neon authority for production relational facts and document bytes without storing bytes in PostgreSQL. **Revisit trigger:** lack of Singapore availability for the provisioned account, unacceptable recovery/data-transfer terms, or a change to sensitive-byte handling.
+**Status:** `confirmed` · **Decision:** Neon Object Storage in the same selected Singapore Neon project backs production `DocumentStore` for every uploaded media/proof byte; Vercel hosts the Next.js application only. Docker provides local PostgreSQL and a disposable local `DocumentStore` adapter for development; T18's ignored local fixture adapter follows the same byte boundary.
+**Evidence:** User direction on 22 Nov 2026 establishes one upload-byte boundary; Neon Object Storage is S3-compatible, supports private buckets, and supports short-lived presigned URLs for private reads and direct uploads. **Boundary:** Neon credentials are server-only; the application authorizes the booking owner/admin before minting a URL. The development/fixture adapter is not production storage and must not receive real customer or payment-proof media. Portfolio, testimonial and event record association/replace/remove lives above `DocumentStore`; it cannot become a separate byte store. **Affects:** M1-W07/T18, M2-W04, M4-W01/W05/W06, M5-W03/04. **Enables:** one Neon authority for production relational facts and uploaded bytes without storing bytes in PostgreSQL. **Revisit trigger:** lack of Singapore availability for the provisioned account, unacceptable recovery/data-transfer terms, or a change to sensitive-byte handling.
 
 ### D-02 Runtime and auth/data integration
 

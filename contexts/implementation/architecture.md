@@ -1,5 +1,7 @@
 # Architecture Overview
 
+**Source code repository / commit:** `https://github.com/adityaa11/bride-assistant.git` / `387dde9aae69fe37795935b798e324e0fa315e3d`.
+
 ## Material boundaries
 
 | Boundary | Decision / claim | Consequence |
@@ -8,7 +10,7 @@
 | Authority | PostgreSQL is the future authoritative store; server-side roles and record ownership guard every protected command/read. `documented`/`inferred` | Browser state, route shape, and storage keys are never authority. |
 | Booking | One booking aggregate holds submitted package/promotion snapshot and status history. `user-intent` | Catalogue edits affect future selection only; status commands validate actor/current state. |
 | Availability | `Booking Berhasil` and approved reschedule are transactional conflict points. `user-intent` | Customer reads expose availability, never another customer’s facts. |
-| Bytes | `DocumentStore` owns immutable bytes; PostgreSQL holds metadata/linkage. `selected` | Private proof access is authorized before `read`; public media uses a separately governed path. |
+| Bytes | Every uploaded media/proof byte crosses `DocumentStore`; PostgreSQL holds metadata/linkage. `selected` / explicit user direction, 22 Nov 2026 | A content lifecycle facade may associate and replace opaque keys but cannot be a second byte store. Private proof access is authorized before `read`; public media uses a separately governed path. |
 | Deployment / development | Vercel hosts the application; Docker runs local PostgreSQL 18.7 and a disposable local `DocumentStore` adapter. `confirmed` | No development byte or database state is production data; local volumes are disposable and excluded from source control. |
 | Production bytes | Neon Object Storage in Singapore backs `DocumentStore`. `confirmed` | A private S3-compatible bucket plus server-side authorization and short-lived presigned access supplies the production byte boundary. |
 | Production data | Neon PostgreSQL 18.7 in Singapore backs authoritative relational facts. `confirmed` | Vercel server-side work uses the Neon connection path; preview deployments may use isolated Neon database branches. |
@@ -18,6 +20,8 @@
 ## Transition posture
 
 The standalone HTML is replaced, not migrated as data. Preserve its Soft Rose Atelier visual direction and useful screen/field cues where compatible. Retire `localStorage`, seed credentials/data, blank WhatsApp constants, and noncanonical statuses. No live data migration is currently evidenced; before any real prototype data import, create a separate migration decision and rehearsal gate.
+
+M1-T18's ignored local Portfolio, Testimonials and Events files are disposable fixture bytes behind a local `DocumentStore` implementation. M2-W04 preserves the byte contract; M4-W01 provides the Neon Object Storage production adapter; M4-W05 replaces fixture record associations with authorized durable records. Fixture files/manifests are not a production migration, and no public URL is inferred from an opaque key.
 
 ## Cross-cutting principles
 

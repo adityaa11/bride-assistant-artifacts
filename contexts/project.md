@@ -1,10 +1,11 @@
 # Project Context — Bride Assistant Planner / Ranur Bridal Care
 
 **Context ID:** `BAP-PROJECT-CONTEXT`  
-**Revision:** 3.0  
-**Date:** 18 November 2026  
+**Revision:** 3.1
+**Date:** 22 November 2026
 **Readiness:** `ready`  
 **Scope:** Product definition and business boundary only; this is not a stack, architecture, delivery plan, backlog, or API specification.
+**Source code repository / commit:** `https://github.com/adityaa11/bride-assistant.git` / `387dde9aae69fe37795935b798e324e0fa315e3d` (planning baseline; uploaded-media rule is user direction).
 
 ## Project frame
 
@@ -94,6 +95,7 @@ The system must distinguish a submitted request from a confirmed booking. Availa
 - One booking has one cross-surface identity. It must not become separate customer, admin, and WhatsApp transactions. **[inferred: I3]**
 - Official status is changed by the admin, is visible to the customer who owns the booking, and is not replaced by WhatsApp conversation state. **[user-intent: D2]**
 - Draft or unauthorized portfolio, testimonial, event, and promotional content must not be presented as public Ranur content. Images and testimonials require a valid basis for customer permission before publication. **[documented: S2; inferred: I4]**
+- Every media item uploaded **through this application**, including portfolio, testimonial, and event images and uploaded payment-proof bytes, must pass through one governed server-side byte-storage boundary. A payment proof sent separately through WhatsApp remains a communication handoff, not an application upload. Browser-local files, data URLs, public static assets, and relational rows are not production stores for application-uploaded bytes. This does not itself authorize public access or assert permission; publication and access remain governed separately. **[user-intent: D6]**
 - Promotions are managed through admin CRUD and may alter the final booking price. Each promotion identifies its applicable packages, discount type (percentage or rupiah amount), discount value, and active period. **[user-intent: D4]**
 
 ## Current and target state
@@ -125,6 +127,7 @@ At project level, the product is acceptable when it can demonstrate all of the f
 | Exception handling | An admin can reject Menunggu Konfirmasi; a Booking Berhasil customer can request cancellation or rescheduling with the specified fields, and an approved reschedule preserves history and releases the prior date. |
 | Shared record | The booking's latest official status and snapshot are consistent across customer and admin surfaces. |
 | Catalogue, promotion, and content control | Admin CRUD governs packages/pricing, active package-specific percentage-or-rupiah promotions, and published web content; draft content is not public. |
+| Uploaded-media boundary | Uploaded content images and payment-proof bytes are handled through the governed storage boundary; a file upload alone does not publish content or expose private bytes. |
 | Historic integrity | A later package change does not alter the facts on a completed or in-progress booking record. |
 
 ## Constraints, risks, and deferred decisions
@@ -153,6 +156,7 @@ These items are non-blocking for the current Project Context but must be resolve
 | `D3` | User clarification, 18 Nov 2026 | Customer/admin UI-reference boundary. |
 | `D4` | User response, 18 Nov 2026 | Rejection, cancellation, rescheduling, promotion, and WhatsApp-number decisions. |
 | `D5` | User response, 18 Nov 2026 | Drift-review communication and explicit-update approval rule. |
+| `D6` | User direction, 22 Nov 2026 | All uploaded media uses one governed byte-storage boundary; Stack Context selects `DocumentStore` and its production adapter. |
 
 ### Drift watchlist
 
