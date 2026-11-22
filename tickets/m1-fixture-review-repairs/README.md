@@ -10,7 +10,7 @@
 | Ticket | State | Dependency | Outcome / handoff |
 | --- | --- | --- | --- |
 | [M1-T20 — remove booking browser store](M1-T20-booking-browser-store-regression.md) | `approved` | Approved T02/T09/T10/T11 interfaces and T17 F-01; H-20 CK `PASS`; no T19 completion dependency | `H-20`: fixture-only submit and T02-backed home/history, with browser no-write proof. |
-| [M1-T21 — repair browser selectors](M1-T21-browser-selector-regression.md) | `awaiting_review` | T20 `PASS` and its exact code checkpoint | [H-21](../../checkpoints/M1-T21-browser-selector-regression-79b3478.md): updated T10/T12 assertions, passing affected route suite, and fresh T17 review evidence/handoff. |
+| [M1-T21 — repair browser selectors](M1-T21-browser-selector-regression.md) | `approved` | T20 `PASS` and its exact code checkpoint; H-21 CK `PASS` | [H-21](../../checkpoints/M1-T21-browser-selector-regression-79b3478.md): updated T10/T12 assertions, passing affected route suite, and fresh T17 review evidence/handoff. |
 
 `T17 F-01 → T20/H-20 CK PASS → T21/H-21 CK PASS → explicit M1-T17-A7 GO re-review.` T19 runs independently of T20/T21, but T17-A7 also requires T19/H-19 CK `PASS` and finding-by-finding disposition. M1-required T19 findings need separately authorized CK-approved repairs before H-17; accepted M2+ deferrals need named successors. T21 does not issue a T17 checkpoint or CK `PASS` itself.
 

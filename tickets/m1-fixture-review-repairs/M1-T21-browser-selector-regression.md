@@ -1,6 +1,6 @@
 # M1-T21 — Repair T10/T12 browser assertions and rerun M1 review checks
 
-- State: `awaiting_review`; batch / milestone / work-package: `BAP-M1-FIXTURE-REPAIR-01 / 2`, M1 / M1-W07 verification. GO checkpoint: [H-21](../../checkpoints/M1-T21-browser-selector-regression-79b3478.md), code commit `79b3478995737dd73165afaba50369dcb5242a08`.
+- State: `approved`; batch / milestone / work-package: `BAP-M1-FIXTURE-REPAIR-01 / 2`, M1 / M1-W07 verification. GO checkpoint: [H-21](../../checkpoints/M1-T21-browser-selector-regression-79b3478.md), code commit `79b3478995737dd73165afaba50369dcb5242a08`; CK review recorded `PASS`.
 - Code repository and planning baseline: `https://github.com/adityaa11/bride-assistant.git` at `2ee952c9d6230849ff70e2db62efcc76454ecad9`.
 - Source authority: explicit user direction on 22 November 2026 to check T10's current selected-date semantics, narrow T12's status assertion to `New Booking tidak diterapkan`, rerun the route suite and M1-T17 review; [T17 v1 F-02](../../evidence/M1-T17-v1.md), [T10 RC-20](../m1-fixture-ui-assembly/M1-T10-customer-booking-request-fixtures.md), [T12 RC-22](../m1-fixture-ui-assembly/M1-T12-admin-booking-availability-fixtures.md), and [T17 RC-27](../m1-fixture-ui-assembly/M1-T17-review-seam-inventory.md).
 - Dependency: M1-T20 CK `PASS` and exact H-20 code checkpoint. Any available T19 audit findings are recorded for the later T17 re-review but do not authorize extra test or fixture changes here; an unfinished T19 remains explicitly outstanding.
