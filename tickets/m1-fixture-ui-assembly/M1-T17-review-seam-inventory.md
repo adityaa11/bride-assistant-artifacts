@@ -1,6 +1,6 @@
 # M1-T17 — Verify active M1 surfaces and publish the replacement-seam inventory
 
-- State: `ready`; batch/milestone/work package: `4 / M1 / M1-W07`; dependencies: T04/H-04 and T08/H-08 through T16/H-16.
+- State: `ready`; batch/milestone/work package: `4 / M1 / M1-W07`; dependencies: T04/H-04 and T08/H-08 through T16/H-16, plus T18/H-18.
 - Source authority: M1-W07; M1 exit gate and cross-phase verification M1.
 - Successor/handoff: `H-17` → M2 planning. Activation: `active-in-this-ticket` for the M1 review gate only. Reuse: `keep-local` review evidence. Legacy: `forbidden`. SQL: `not-applicable`. Empty state: `not-applicable`.
 
@@ -29,3 +29,8 @@ Review actual routes, not prototype HTML or isolated unit tests; fail any direct
 - Decision authority: user direction on 2026-11-22. Binding contracts: `docs/frontend/M1_UI_REFERENCE_IMPLEMENTATION_CONTRACT.md` and `docs/frontend/M1_REMAINING_UI_REFERENCE_CONTRACT.md` at code commit `ef7a716897ec04e29f73d4dc01ff656d2140bf32`.
 - For T13–T16, audit every visible route-specific decision against its mapped HTML, CSS, assets, and interaction source; audit shared shell decisions against `AdminWorkspaceFrame` and displayed data against T02 fixture fields. Require the ledger and source-to-component map to identify those exact links.
 - Fail the review for invented or approximate UI, generic replacements, untraced copy or styling, inferred breakpoints or fixture-only states, unresolved source gaps, or material same-viewport differences. An unsupported UI portion remains blocked until explicit user direction is recorded. Preserve A1/A2 and every existing fixture, accessibility, security, and authority gate.
+
+## Amendment M1-T17-A4 — T18 fixture-local media seam review
+
+- Decision authority: explicit user planning direction on 2026-11-22; binding ticket [M1-T18](M1-T18-fixture-local-content-media.md) and T15-A7.
+- Extend `RC-27` to consume H-18: verify the actual Portfolio upload → fixture handler → local adapter → same-origin read path, isolated replace/cleanup evidence, no public/customer media output, T18 source/UI evidence, and the M2/M4 `DocumentStore` successor mapping. T18's local fixture directory is an M1 seam, not production acceptance.

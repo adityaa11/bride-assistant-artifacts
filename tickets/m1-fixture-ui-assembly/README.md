@@ -1,6 +1,6 @@
 # M1 Fixture-backed UI assembly — resized ticket set
 
-- Set ID: `BAP-M1-FIXTURE-UI-SET-01`; status: `ready`; artifact revision: `2.0`.
+- Set ID: `BAP-M1-FIXTURE-UI-SET-01`; status: `ready`; artifact revision: `2.1`.
 - Authority: Project Context rev 3.0; Stack Context rev 1.2; M1 fixture-ui milestone; architecture, decisions, and verification records; `project's goal/UI Reference/` as the binding visual source of truth.
 - Revision reason: original T05/T06 crossed unrelated screen, information, and review boundaries. They are retained as `superseded`; no ticket ID is reused.
 - Artifact inventory remains unchanged: only this set's files are staged; pre-existing `checkpoints/`, `evidence/`, `feedback/`, and `tickets/.gitkeep` are untouched.
@@ -16,7 +16,7 @@ All active tickets render named typed fixtures only. No real account/session, se
 | 1 | T01 workspace | sequence |
 | 2 | T02 scenario adapter; T03 visual system | both need T01; parallel-safe |
 | 3 | T04 public; T08 registration/sign-in; T09 customer home/help; T10 booking request; T11 Booking Saya; T12 admin booking/availability; T13 admin catalogue/packages; T14 admin customers; T15 admin content publication; T16 admin promotions | each needs T02 + T03; parallel-safe by surface |
-| 4 | T17 review and seam inventory | requires every active batch-3 ticket |
+| 4 | T18 fixture-local content media; then T17 review and seam inventory | T18 requires T15/H-15; T17 requires T18/H-18 and every other active batch-3 ticket |
 
 Superseded: T05 customer bundle → T08–T11; T06 admin bundle → T12–T16; T07 review → T17.
 
@@ -24,7 +24,7 @@ Superseded: T05 customer bundle → T08–T11; T06 admin bundle → T12–T16; T
 
 `T01 → H-01 → T02 + T03`<br>
 `T02/H-02 + T03/H-03 → T04, T08–T16`<br>
-`T04/H-04 + T08/H-08 + T09/H-09 + T10/H-10 + T11/H-11 + T12/H-12 + T13/H-13 + T14/H-14 + T15/H-15 + T16/H-16 → T17/H-17 → M2 planning`.
+`T02/H-02 + T03/H-03 → T04, T08–T16; T15/H-15 → T18/H-18; T04/H-04 + T08/H-08 + T09/H-09 + T10/H-10 + T11/H-11 + T12/H-12 + T13/H-13 + T14/H-14 + T15/H-15 + T16/H-16 + T18/H-18 → T17/H-17 → M2 planning`.
 
 Each surface EUP is: named review route → scenario adapter (`scenarioId`, version) → its local composition plus T03 primitives → explicit fixture UI state → reviewer capture. T17 EUP is review matrix → evidence/findings → successor seam map. Runtime activation is limited to those fixture routes.
 
@@ -77,3 +77,9 @@ User direction on 2026-11-22 binds T13–T16 and T17 to the shared admin layout 
 ## Amendment BAP-M1-UI-A5 — source-faithful work on upcoming tickets
 
 User direction on 2026-11-22 binds T13–T16 and the T17 review gate to `docs/frontend/M1_UI_REFERENCE_IMPLEMENTATION_CONTRACT.md` and `docs/frontend/M1_REMAINING_UI_REFERENCE_CONTRACT.md` at code commit `ef7a716897ec04e29f73d4dc01ff656d2140bf32`. Every visible decision in ticket-specific UI must trace to the exact mapped source, a shared component already bound by A4, a T02 fixture data field, or explicit user direction. No ticket may invent or approximate copy, regions, icons, assets, geometry, styles, breakpoints, interactions, or fixture-only states. An unsupported visual requirement is recorded as a source gap and blocks that portion until the user supplies direction. T17 fails any untraced or improvised UI and any material same-viewport mismatch. Apply the same source-trace rule when creating later UI tickets; all prior non-authority, privacy, publication, accessibility, and security gates remain in force.
+
+## Amendment BAP-M1-UI-A6 — fixture-local media continuation
+
+Explicit user planning direction on 2026-11-22 authorizes one new bounded M1 ticket, `M1-T18`, after T15/H-15 and before T17/H-17. T18 may support Portfolio fixture upload, local ignored-directory storage, same-origin admin-fixture reads, atomic replacement, and namespace cleanup, while preserving M1's non-authoritative UI boundary. It does not create production persistence, public media delivery, customer/admin authorization, consent, retention policy, provider configuration, or the M4 backend implementation. T18 hands the accepted opaque-key/metadata and `DocumentStore`-compatible seam to M2-W04/M4-W01/M4-W05; T17 reviews its route, evidence, and successor mapping.
+
+The original M1 no-upload/no-persistence boundary remains binding for every ticket except the exact T18 fixture-local scope above. All T01–T17 historical records and proven obligations remain preserved; T18 is not a replacement of T15 and does not reopen its unrelated visual or publication work.
