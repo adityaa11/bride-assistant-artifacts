@@ -1,7 +1,9 @@
 # M3 — Authoritative catalogue, booking, and availability
 
+**Source code repository / commit:** `https://github.com/adityaa11/bride-assistant.git` / `79b3478995737dd73165afaba50369dcb5242a08`.
+
 **Status:** `planned` · **Advances:** shared record, package/promotion control, snapshot integrity, official status, availability integrity.  
-**Outcome:** A customer submits a durable request and an authorized admin manages the same record through canonical core states; only `Booking Berhasil` reserves a date. **Entry:** M2 exit and its contracts. **Excludes:** proof upload, cancellation/reschedule, and full publishing. **Handoff:** verified aggregate to M4/M5. **Risk:** race or snapshot mutation; contain with transaction/constraint/concurrency tests.
+**Outcome:** A customer submits a durable request and an authorized admin manages the same record through canonical core states. Deliberate admin closure or `Booking Berhasil` makes a date unavailable; pending bookings alone do not reserve it. **Entry:** M2 exit and its contracts. **Excludes:** proof upload, cancellation/reschedule, and full publishing. **Handoff:** verified aggregate to M4/M5. **Risk:** race, closure/booking conflict, or snapshot mutation; contain with transaction/constraint/concurrency tests.
 
 | ID | Bounded outcome / scope; exclusions | Dependencies | Interfaces and preserved/replaced boundary | Evidence / handoff | Fixture → backend replacement / open trigger |
 | --- | --- | --- | --- | --- | --- |
@@ -11,8 +13,8 @@
 | M3-W04 | Booking, submitted package/promotion snapshot, and status history model; excludes UI command flow. | M3-W01 `sequence` | Replaces no live data; establishes official aggregate. | Immutable snapshot/history tests; handoff W05/W06. | N/A. |
 | M3-W05 | Customer submission, Booking Saya read, post-submit wa.me preparation; excludes live number if D-04 unresolved. | M3-W03/M3-W04/M2-W03 `sequence` | Replaces M1-W05 booking fixture; retires localStorage submission. | Durable record precedes link; cross-customer denial; handoff W07/M4. | M1-W05 → M3-W05; invariant: absent WhatsApp never loses booking. |
 | M3-W06 | Admin queue/detail and core status commands; excludes exceptions. | M3-W04/M2-W03 `sequence` | Replaces M1-W06 booking fixture; retires prototype statuses. | Admin-only canonical transition tests; handoff W07/M4. | M1-W06 → M3-W06; invariant: one record and admin authority. |
-| M3-W07 | Transactional availability protection; excludes temporary holds. | M3-W05/M3-W06 `sequence` | Replaces availability fixtures; preserves only-successful booking block rule. | Conflict/concurrency/privacy tests; handoff M4/M5. | M1 availability scenario → M3-W07; invariant: no identity disclosure and no pre-success block. |
+| M3-W07 | Transactional availability protection and admin date closure; excludes temporary pending-booking holds. | M3-W05/M3-W06 `sequence` | Replaces separate M1 customer/admin availability fixtures with one server-owned decision; admin may deliberately close a date without a booking, and `Booking Berhasil` also makes it unavailable. Pending bookings alone do not reserve it. | Admin-only closure, date-only customer projection, successful/pending booking, conflict/concurrency and privacy tests; handoff M4/M5. | M1 customer/admin availability scenarios → M3-W07; invariant: admin closure or successful booking blocks the date, without identity disclosure or pre-success booking hold. |
 
 **Graph:** `M3-W01 → M3-W02/M3-W03/M3-W04; M3-W03 + M3-W04 + M2-W03 → M3-W05; M3-W04 + M2-W03 → M3-W06; M3-W05 + M3-W06 → M3-W07.` Parallel-safe: W02/W03/W04 after W01.  
-**Exit:** same-record journey, immutable snapshot, valid/invalid transition, date-conflict/concurrency evidence pass; failure returns M3 to rework.
+**Exit:** same-record journey, immutable snapshot, valid/invalid transition, admin closure and successful-booking date-conflict/concurrency evidence pass; failure returns M3 to rework.
 

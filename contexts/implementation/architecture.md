@@ -1,6 +1,6 @@
 # Architecture Overview
 
-**Source code repository / commit:** `https://github.com/adityaa11/bride-assistant.git` / `387dde9aae69fe37795935b798e324e0fa315e3d`.
+**Source code repository / commit:** `https://github.com/adityaa11/bride-assistant.git` / `79b3478995737dd73165afaba50369dcb5242a08`.
 
 ## Material boundaries
 
@@ -9,7 +9,7 @@
 | Delivery | One responsive Next.js web application; public, customer, and admin route/surface boundaries. `documented` | No native app or separate transactional system. |
 | Authority | PostgreSQL is the future authoritative store; server-side roles and record ownership guard every protected command/read. `documented`/`inferred` | Browser state, route shape, and storage keys are never authority. |
 | Booking | One booking aggregate holds submitted package/promotion snapshot and status history. `user-intent` | Catalogue edits affect future selection only; status commands validate actor/current state. |
-| Availability | `Booking Berhasil` and approved reschedule are transactional conflict points. `user-intent` | Customer reads expose availability, never another customer’s facts. |
+| Availability | Deliberate admin date closure, `Booking Berhasil`, and approved reschedule are transactional conflict points; a pending booking alone does not reserve a date. `user-intent` (Project Context D2/D7) | M3-W07 combines admin closure and successful-booking date protection under server authority. Customer reads expose date availability, never another customer’s facts. |
 | Bytes | Every uploaded media/proof byte crosses `DocumentStore`; PostgreSQL holds metadata/linkage. `selected` / explicit user direction, 22 Nov 2026 | A content lifecycle facade may associate and replace opaque keys but cannot be a second byte store. Private proof access is authorized before `read`; public media uses a separately governed path. |
 | Deployment / development | Vercel hosts the application; Docker runs local PostgreSQL 18.7 and a disposable local `DocumentStore` adapter. `confirmed` | No development byte or database state is production data; local volumes are disposable and excluded from source control. |
 | Production bytes | Neon Object Storage in Singapore backs `DocumentStore`. `confirmed` | A private S3-compatible bucket plus server-side authorization and short-lived presigned access supplies the production byte boundary. |

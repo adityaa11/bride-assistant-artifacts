@@ -1,6 +1,6 @@
 # Decision Register and Research
 
-**Source code repository / planning baseline:** `https://github.com/adityaa11/bride-assistant.git` at `387dde9aae69fe37795935b798e324e0fa315e3d`.
+**Source code repository / planning baseline:** `https://github.com/adityaa11/bride-assistant.git` at `79b3478995737dd73165afaba50369dcb5242a08`.
 
 ## Confirmed constraints
 
@@ -8,8 +8,9 @@
 | --- | --- | --- |
 | D-C01 | One web-only TypeScript/React/Next.js product — `confirmed` | Stack Context. Keeps public/customer/admin in one delivery boundary. |
 | D-C02 | Better Auth + PostgreSQL and server-side authorization — `confirmed` | Stack and Project Context. Enables durable separate identity and ownership enforcement. |
-| D-C03 | `DocumentStore` owns every uploaded media/proof byte outside PostgreSQL — `confirmed` | Project v3.1 and Stack v1.3; explicit user direction, 22 Nov 2026. Requires server authorization before protected reads; content lifecycle metadata is separate from byte ownership. |
+| D-C03 | `DocumentStore` owns every uploaded media/proof byte outside PostgreSQL — `confirmed` | Project v3.2 and Stack v1.3; explicit user direction, 22 Nov 2026. Requires server authorization before protected reads; content lifecycle metadata is separate from byte ownership. |
 | D-C04 | Canonical lifecycle/admin authority and WhatsApp as support — `confirmed` | Project Context. Controls official state and availability sequencing. |
+| D-C05 | Admin date closure independent of booking; only `Booking Berhasil` among booking states reserves a date — `confirmed` | Project Context v3.2, D7 (user clarification, 23 Nov 2026). M1 admin/customer date fixtures remain non-authoritative review states; M3-W07 must unify both unavailability causes, keep pending requests selectable, and expose no customer details. Accepted M1-W07 deferral of H-19 FRA-04 does not approve a new temporary hold. |
 
 ## Deferred and blocked decisions
 
