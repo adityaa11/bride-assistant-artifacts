@@ -29,6 +29,7 @@
 `M1-W04 → public content/package scenarios → M3-W03/M4-W06 → drafts remain absent`  
 `M1-W05 → customer booking/proof/exception scenarios → M3-W05/M4-W02–04 → no fixture creates official state`  
 `M1-W06 → admin scenarios → M3-W02/M3-W06/M4-W05 → admin-only actions keep canonical statuses`
+`M1-W05/M1-W06 → separate customer/admin availability fixtures → M3-W07 → one server-owned date decision protects admin closures and Booking Berhasil without a pending-booking hold or customer identity disclosure`
 `M1-W07/T18 → Portfolio, Testimonials and Events fixture media → local DocumentStore byte implementation plus content lifecycle facade → M2-W04/M4-W05; M4-W06 governs later public reads → storage keys never grant access`
 
 ### T17-A7 H-19 planning dispositions — 23 November 2026
