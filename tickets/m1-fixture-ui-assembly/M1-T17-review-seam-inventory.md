@@ -23,3 +23,9 @@ Review actual routes, not prototype HTML or isolated unit tests; fail any direct
 - Decision authority: user direction on 2026-11-22. Source binding: code commit `a1ee30e493e5fab3452095db5f02450a573c3d47`.
 - Verify that T13–T16 use `AdminWorkspaceFrame` from `shared/admin-workspace-frame.tsx` and keep route-specific content inside it. Reject copied or overridden sidebar, navigation, top bar, title region, mobile drawer, collapse behavior, or outer responsive width.
 - Compare Bookings, Availability, and every new admin route at desktop, 930px, 720px, and 485px after any shared-shell change. Record active navigation, full-width desktop fit, no horizontal overflow, and mobile drawer behavior. A missing shared-layout check fails the M1 review row; all prior visual, fixture, accessibility, and security gates remain binding.
+
+## Amendment M1-T17-A3 — source-trace acceptance gate
+
+- Decision authority: user direction on 2026-11-22. Binding contracts: `docs/frontend/M1_UI_REFERENCE_IMPLEMENTATION_CONTRACT.md` and `docs/frontend/M1_REMAINING_UI_REFERENCE_CONTRACT.md` at code commit `ef7a716897ec04e29f73d4dc01ff656d2140bf32`.
+- For T13–T16, audit every visible route-specific decision against its mapped HTML, CSS, assets, and interaction source; audit shared shell decisions against `AdminWorkspaceFrame` and displayed data against T02 fixture fields. Require the ledger and source-to-component map to identify those exact links.
+- Fail the review for invented or approximate UI, generic replacements, untraced copy or styling, inferred breakpoints or fixture-only states, unresolved source gaps, or material same-viewport differences. An unsupported UI portion remains blocked until explicit user direction is recorded. Preserve A1/A2 and every existing fixture, accessibility, security, and authority gate.
