@@ -1,6 +1,6 @@
 # M1-T16 — Render admin promotion fixture workspace
 
-- State: `awaiting_review`; batch/milestone/work package: `3 / M1 / M1-W06`; dependencies: T02/H-02, T03/H-03.
+- State: `approved`; batch/milestone/work package: `3 / M1 / M1-W06`; dependencies: T02/H-02, T03/H-03. GO checkpoint: [M1-T16 admin promotion fixtures](../../checkpoints/M1-T16-admin-promotion-fixtures-2ee952c.md), bound to code repository `https://github.com/adityaa11/bride-assistant.git` at commit `2ee952c9d6230849ff70e2db62efcc76454ecad9`; [CK review](../../feedback/M1-T16-admin-promotion-fixtures-2ee952c-ck.md) recorded `PASS`.
 - Source authority: M1-W06; Project Context promotion representation and catalogue boundary.
 - Successor/handoff: `H-16` → M3-W02/M4-W05 and T17. Activation: `active-in-this-ticket` fixture route. Reuse: T02/T03; promotion rule presentation is local (`keep-local`). Legacy: `forbidden`. SQL: `not-applicable`. Empty state: no promotion is explicit without a default.
 
