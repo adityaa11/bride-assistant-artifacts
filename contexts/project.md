@@ -1,11 +1,11 @@
 # Project Context — Bride Assistant Planner / Ranur Bridal Care
 
 **Context ID:** `BAP-PROJECT-CONTEXT`  
-**Revision:** 3.1
-**Date:** 22 November 2026
+**Revision:** 3.2
+**Date:** 23 November 2026
 **Readiness:** `ready`  
 **Scope:** Product definition and business boundary only; this is not a stack, architecture, delivery plan, backlog, or API specification.
-**Source code repository / commit:** `https://github.com/adityaa11/bride-assistant.git` / `387dde9aae69fe37795935b798e324e0fa315e3d` (planning baseline; uploaded-media rule is user direction).
+**Source code repository / commit:** `https://github.com/adityaa11/bride-assistant.git` / `79b3478995737dd73165afaba50369dcb5242a08` (source baseline; admin date-closure rule is user direction).
 
 ## Project frame
 
@@ -21,7 +21,7 @@ The project succeeds when:
 - Customers can register, sign in, submit a complete booking request, follow its official status, and use an appropriate payment-proof handoff.
 - Administrators can manage package/pricing information, incoming requests, booking decisions, availability, and customer-facing content from their workspace.
 - A booking is a single business record shared between customer and admin surfaces; WhatsApp is communication support, not a separate source of truth.
-- A date becomes unavailable to other customers only after the administrator has approved payment and marked the booking **Booking Berhasil**.
+- A date is unavailable to other customers when an admin deliberately closes it or when a booking for that date reaches **Booking Berhasil**. A pending booking alone does not reserve the date. **[user-intent: D2, D7]**
 - Published website content, package information, and promotional information originate from authorized admin management rather than unmanaged prototype data. **[user-intent: D2; inferred: I1]**
 
 No numeric growth, conversion, SLA, or service-volume target has been provided. These are intentionally deferred and do not block the initial product definition. **[unknown: U1, non-blocking]**
@@ -73,6 +73,8 @@ The canonical customer flow is:
 8. After the admin checks and approves payment proof, the admin changes the status to **Booking Berhasil**.
 9. Once a booking is **Booking Berhasil**, its date is no longer available for another customer to select.
 
+Separately from booking status, an admin may deliberately make a date unavailable even when no booking exists for it. A booking in **Menunggu Konfirmasi** or **Menunggu Pembayaran** does not, by itself, make its date unavailable. **[user-intent: D2, D7]**
+
 ### Rejection, cancellation, and rescheduling
 
 An admin may reject a request while it is **Menunggu Konfirmasi**. The specific rejection reason and any customer-facing rejection-status label remain to be defined. **[user-intent: D4; unknown: U2, non-blocking]**
@@ -80,13 +82,13 @@ An admin may reject a request while it is **Menunggu Konfirmasi**. The specific 
 Only a customer whose booking is **Booking Berhasil** may request cancellation or rescheduling through Booking Saya:
 
 - **Cancellation:** the customer submits a Pembatalan Booking form with **Alasan**. The booking becomes **Menunggu Pembatalan Booking**; after admin approval, it becomes **Dibatalkan**.
-- **Reschedule:** the customer submits a Reschedule Booking form with **Tanggal Wedding**, **Lokasi Wedding**, and **Alasan**. The booking becomes **Menunggu Reschedule Booking**. After admin approval, it remains **Booking Berhasil**, records a reschedule-history entry, updates its wedding date and location, and releases its prior date for other customers to select.
+- **Reschedule:** the customer submits a Reschedule Booking form with **Tanggal Wedding**, **Lokasi Wedding**, and **Alasan**. The booking becomes **Menunggu Reschedule Booking**. After admin approval, it remains **Booking Berhasil**, records a reschedule-history entry, updates its wedding date and location, and releases the prior booking's reservation of its date. A separate admin closure, if present, still makes that date unavailable.
 
 Admin can access and change all booking statuses from the admin workspace. Customer-request forms are deliberately limited to **Booking Berhasil**. **[user-intent: D4]**
 
 **Canonical statuses:** `Menunggu Konfirmasi` → `Menunggu Pembayaran` → `Booking Berhasil`, with the exception states `Menunggu Pembatalan Booking` → `Dibatalkan` and `Menunggu Reschedule Booking` → `Booking Berhasil`. **[user-intent: D2, D4]**
 
-The system must distinguish a submitted request from a confirmed booking. Availability surfaced to customers must never disclose another customer's identity or booking details. The policy explicitly reserves date unavailability for **Booking Berhasil**; any future temporary-hold policy while awaiting payment must be approved as a new business rule. **[user-intent: D2]**
+The system must distinguish a submitted request from a confirmed booking. Availability surfaced to customers must never disclose another customer's identity or booking details. A date may be unavailable because an admin deliberately closed it or because a booking is **Booking Berhasil**. Pending bookings do not reserve dates; any future temporary-hold policy while awaiting payment must be approved as a new business rule. **[user-intent: D2, D7]**
 
 ## Domain rules and invariants
 
@@ -123,8 +125,8 @@ At project level, the product is acceptable when it can demonstrate all of the f
 | Booking request | An authenticated customer can submit all required booking information; one record starts as Menunggu Konfirmasi and is available to admin even if WhatsApp cannot be opened. |
 | Admin decision | Admin can move an agreed request to Menunggu Pembayaran and only mark it Booking Berhasil after approving payment proof. |
 | Payment-proof flexibility | A customer can optionally upload proof in Booking Saya or provide it to admin through WhatsApp. |
-| Availability integrity | A date attached to Booking Berhasil cannot be selected by another customer, and customer-facing availability does not reveal other customers' data. |
-| Exception handling | An admin can reject Menunggu Konfirmasi; a Booking Berhasil customer can request cancellation or rescheduling with the specified fields, and an approved reschedule preserves history and releases the prior date. |
+| Availability integrity | A date deliberately closed by an admin or attached to Booking Berhasil cannot be selected by another customer. A pending booking alone does not block selection, and customer-facing availability does not reveal other customers' data. |
+| Exception handling | An admin can reject Menunggu Konfirmasi; a Booking Berhasil customer can request cancellation or rescheduling with the specified fields, and an approved reschedule preserves history and releases the prior booking's date reservation. |
 | Shared record | The booking's latest official status and snapshot are consistent across customer and admin surfaces. |
 | Catalogue, promotion, and content control | Admin CRUD governs packages/pricing, active package-specific percentage-or-rupiah promotions, and published web content; draft content is not public. |
 | Uploaded-media boundary | Uploaded content images and payment-proof bytes are handled through the governed storage boundary; a file upload alone does not publish content or expose private bytes. |
@@ -132,7 +134,7 @@ At project level, the product is acceptable when it can demonstrate all of the f
 
 ## Constraints, risks, and deferred decisions
 
-**Constraints:** customer and admin access are separated; admin is the decision authority; WhatsApp supports communication but not the official transaction state; only Booking Berhasil blocks a date; payment proof upload is optional; cancellation and rescheduling requests are customer actions only after Booking Berhasil. **[user-intent: D2, D4]**
+**Constraints:** customer and admin access are separated; admin is the decision authority; WhatsApp supports communication but not the official transaction state; a date is unavailable through deliberate admin closure or a Booking Berhasil booking, not merely a pending request; payment proof upload is optional; cancellation and rescheduling requests are customer actions only after Booking Berhasil. **[user-intent: D2, D4, D7]**
 
 **Risks to manage:** unapproved media/testimonials, privacy exposure of customer wedding data, misleading availability before final payment approval, and a mismatch between WhatsApp discussion and the official booking record. **[inferred: I2–I4]**
 
@@ -157,9 +159,10 @@ These items are non-blocking for the current Project Context but must be resolve
 | `D4` | User response, 18 Nov 2026 | Rejection, cancellation, rescheduling, promotion, and WhatsApp-number decisions. |
 | `D5` | User response, 18 Nov 2026 | Drift-review communication and explicit-update approval rule. |
 | `D6` | User direction, 22 Nov 2026 | All uploaded media uses one governed byte-storage boundary; Stack Context selects `DocumentStore` and its production adapter. |
+| `D7` | User clarification, 23 Nov 2026 | An admin may deliberately make a date unavailable without a booking; pending bookings alone still do not reserve dates. |
 
 ### Drift watchlist
 
-Potential drift occurs if Ranur becomes multi-business, payment becomes automated, a date-hold policy is introduced, admin authority is delegated, the booking lifecycle changes, or the business expands beyond personal Bride Assistant service.
+Potential drift occurs if Ranur becomes multi-business, payment becomes automated, a pending-booking date-hold policy is introduced, admin date-closure authority changes, the booking lifecycle changes, or the business expands beyond personal Bride Assistant service.
 
 When potential drift is found, do **not** silently update this Project Context. First explain to the accountable decision owner in simple language: what changed, which recorded decision it conflicts with or extends, and why it matters. Then ask whether to update the context. Update it only after the decision owner explicitly chooses to do so; otherwise record no change to the context. **[user-intent: D5]**
