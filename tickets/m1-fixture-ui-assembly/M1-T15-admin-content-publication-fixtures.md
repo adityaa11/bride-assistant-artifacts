@@ -1,6 +1,6 @@
 # M1-T15 — Render admin content-publication fixture workspace
 
-- State: `ready`; batch/milestone/work package: `3 / M1 / M1-W06`; dependencies: T02/H-02, T03/H-03.
+- State: `awaiting_review`; batch/milestone/work package: `3 / M1 / M1-W06`; dependencies: T02/H-02, T03/H-03.
 - Source authority: M1-W06; Project Context published-only and permission boundary.
 - Successor/handoff: `H-15` → M4-W05/M4-W06 and T17. Activation: `active-in-this-ticket` fixture route. Reuse: T02/T03; publication review is local (`keep-local`). Legacy: `forbidden`. SQL: `not-applicable`. Empty state: empty portfolio/testimonial/event collections are explicit.
 
