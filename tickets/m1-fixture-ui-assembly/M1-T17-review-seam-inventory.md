@@ -1,6 +1,6 @@
 # M1-T17 — Verify active M1 surfaces and publish the replacement-seam inventory
 
-- State: `ready` (re-review entry gated by A7); batch/milestone/work package: `4 / M1 / M1-W07`; dependencies: T04/H-04, T08/H-08 through T14/H-14, T16/H-16, plus T18/H-18. For the post-v1 re-review, also require T19/H-19, T20/H-20 and T21/H-21 with CK `PASS` at their exact checkpoints; T21 follows T20, while T19 may run independently. T15's media continuation is consumed through H-18; its historical CK result is not promoted.
+- State: `awaiting_review` ([T17-A7 GO checkpoint](../../checkpoints/M1-T17-review-seam-inventory-79b3478.md) at `79b3478995737dd73165afaba50369dcb5242a08`); batch/milestone/work package: `4 / M1 / M1-W07`; dependencies: T04/H-04, T08/H-08 through T14/H-14, T16/H-16, plus T18/H-18. For the post-v1 re-review, also require T19/H-19, T20/H-20 and T21/H-21 with CK `PASS` at their exact checkpoints; T21 follows T20, while T19 may run independently. T15's media continuation is consumed through H-18; its historical CK result is not promoted.
 - Source authority: M1-W07; M1 exit gate and cross-phase verification M1.
 - Successor/handoff: `H-17` → M2 planning. Activation: `active-in-this-ticket` for the M1 review gate only. Reuse: `keep-local` review evidence. Legacy: `forbidden`. SQL: `not-applicable`. Empty state: `not-applicable`.
 
