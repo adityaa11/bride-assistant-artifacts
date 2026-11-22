@@ -16,15 +16,14 @@ All active tickets render named typed fixtures only. No real account/session, se
 | 1 | T01 workspace | sequence |
 | 2 | T02 scenario adapter; T03 visual system | both need T01; parallel-safe |
 | 3 | T04 public; T08 registration/sign-in; T09 customer home/help; T10 booking request; T11 Booking Saya; T12 admin booking/availability; T13 admin catalogue/packages; T14 admin customers; T15 admin content publication; T16 admin promotions | each needs T02 + T03; parallel-safe by surface |
-| 4 | T18 fixture-local content media; then T17 review and seam inventory | T18 requires T15/H-15; T17 requires T18/H-18 and every other active batch-3 ticket |
+| 4 | T18 fixture-local content media; then T17 review and seam inventory | T18 requires T02/H-02 + T03/H-03 and uses the T15 code baseline; T17 requires T18/H-18 and every other active batch-3 ticket |
 
 Superseded: T05 customer bundle → T08–T11; T06 admin bundle → T12–T16; T07 review → T17.
 
 ## Handoff and expected-use graph
 
 `T01 → H-01 → T02 + T03`<br>
-`T02/H-02 + T03/H-03 → T04, T08–T16`<br>
-`T02/H-02 + T03/H-03 → T04, T08–T16; T15/H-15 → T18/H-18; T04/H-04 + T08/H-08 + T09/H-09 + T10/H-10 + T11/H-11 + T12/H-12 + T13/H-13 + T14/H-14 + T15/H-15 + T16/H-16 + T18/H-18 → T17/H-17 → M2 planning`.
+`T02/H-02 + T03/H-03 → T04, T08–T16 and T18; T04/H-04 + T08/H-08 + T09/H-09 + T10/H-10 + T11/H-11 + T12/H-12 + T13/H-13 + T14/H-14 + T16/H-16 + T18/H-18 → T17/H-17 → M2 planning`.
 
 Each surface EUP is: named review route → scenario adapter (`scenarioId`, version) → its local composition plus T03 primitives → explicit fixture UI state → reviewer capture. T17 EUP is review matrix → evidence/findings → successor seam map. Runtime activation is limited to those fixture routes.
 
@@ -83,3 +82,7 @@ User direction on 2026-11-22 binds T13–T16 and the T17 review gate to `docs/fr
 Explicit user planning direction on 2026-11-22 authorizes one new bounded M1 ticket, `M1-T18`, after T15/H-15 and before T17/H-17. T18 may support Portfolio fixture upload, local ignored-directory storage, same-origin admin-fixture reads, atomic replacement, and namespace cleanup, while preserving M1's non-authoritative UI boundary. It does not create production persistence, public media delivery, customer/admin authorization, consent, retention policy, provider configuration, or the M4 backend implementation. T18 hands the accepted opaque-key/metadata and `DocumentStore`-compatible seam to M2-W04/M4-W01/M4-W05; T17 reviews its route, evidence, and successor mapping.
 
 The original M1 no-upload/no-persistence boundary remains binding for every ticket except the exact T18 fixture-local scope above. All T01–T17 historical records and proven obligations remain preserved; T18 is not a replacement of T15 and does not reopen its unrelated visual or publication work.
+
+## Amendment BAP-M1-UI-A7 — correct T18 readiness dependency
+
+T18 must not require T15/H-15 `PASS`: T15's latest CK result is `CHANGES_REQUIRED`, and T18 is the bounded continuation that addresses the media gap. T18 depends on approved T02/H-02 and T03/H-03 only, uses the committed T15 implementation as an inspection baseline, and proves its direct T15 regressions. T17 consumes T18/H-18 for that continuation evidence; the historical T15 CK result remains unchanged.

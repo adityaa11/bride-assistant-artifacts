@@ -1,8 +1,8 @@
 # M1-T18 — Implement the fixture-local content media storage seam
 
-- State: `ready`; batch/milestone/work package: `4 / M1 / M1-W07`; dependency: T15/H-15 `sequence`.
+- State: `ready`; batch/milestone/work package: `4 / M1 / M1-W07`; dependencies: T02/H-02 and T03/H-03 `sequence`.
 - Source authority: M1-W07 backend-replacement seam inventory; M1-T15-A7; accepted Stack `DocumentStore` boundary and D-C03/D-06; M2-W04 and M4-W01/M4-W05 handoff contracts.
-- Dependencies and accepted predecessor outputs: T02/H-02 typed scenario and command-result contracts; T03/H-03 visual/form/a11y primitives; T15/H-15 admin content fixture routes, source ledger, shared shell, publication distinction, and local checked-in Portfolio images. T15's prior visual and publication results remain historical and are not reopened.
+- Dependencies and accepted predecessor outputs: T02/H-02 typed scenario and command-result contracts; T03/H-03 visual/form/a11y primitives. The committed T15 implementation at `8c40bf2` and its historical evidence are inspected inputs, not an approved predecessor dependency; T18 owns the direct media gap and regression checks without requiring T15/H-15 `PASS`.
 - Successors and handoffs: H-18 → T17/H-17 M1 review seam inventory; H-18 → M2-W04 contract integration and M4-W01/M4-W05 server-side media activation. The later backend ticket replaces the local adapter without changing the UI's opaque-key contract.
 - Activation: `active-in-this-ticket` for the admin fixture upload/read/replace/cleanup path only.
 - Reuse decision: `reuse-existing` accepted `DocumentStore` byte boundary; the fixture adapter is a local implementation/facade and must not create a second production storage authority.
@@ -151,3 +151,9 @@ Project state: established T03 Soft Rose Atelier visual contract; task mode: ref
 
 - Do not add production auth, production `DocumentStore`/Neon configuration, public media delivery, PostgreSQL metadata, or M4 policy controls.
 - Stop for planning if the requested behavior requires customer/public visibility, real consent, retention/legal policy, provider credentials, durable production records, or a second storage abstraction that conflicts with `DocumentStore`.
+
+## Amendment M1-T18-A1 — remove circular T15 approval dependency
+
+- Planning correction on 2026-11-22: T15's latest CK result is `CHANGES_REQUIRED`, and T18 exists to address its media-boundary gap. T18 therefore must not require a T15/H-15 CK `PASS` before GO.
+- T18 consumes only the approved T02/H-02 and T03/H-03 contracts. It uses T15's committed implementation/evidence as a bounded inspection baseline, preserves T15's historical outcomes, and proves the direct T15 media/publication regressions in `REG-M1-T15`.
+- T17 consumes H-18 for the T15 continuation evidence; no historical T15 artifact is rewritten or silently promoted to `PASS`.

@@ -1,6 +1,6 @@
 # M1-T17 — Verify active M1 surfaces and publish the replacement-seam inventory
 
-- State: `ready`; batch/milestone/work package: `4 / M1 / M1-W07`; dependencies: T04/H-04 and T08/H-08 through T16/H-16, plus T18/H-18.
+- State: `ready`; batch/milestone/work package: `4 / M1 / M1-W07`; dependencies: T04/H-04, T08/H-08 through T14/H-14, T16/H-16, plus T18/H-18. T15's media continuation is consumed through H-18; its historical CK result is not promoted.
 - Source authority: M1-W07; M1 exit gate and cross-phase verification M1.
 - Successor/handoff: `H-17` → M2 planning. Activation: `active-in-this-ticket` for the M1 review gate only. Reuse: `keep-local` review evidence. Legacy: `forbidden`. SQL: `not-applicable`. Empty state: `not-applicable`.
 
@@ -33,4 +33,4 @@ Review actual routes, not prototype HTML or isolated unit tests; fail any direct
 ## Amendment M1-T17-A4 — T18 fixture-local media seam review
 
 - Decision authority: explicit user planning direction on 2026-11-22; binding ticket [M1-T18](M1-T18-fixture-local-content-media.md) and T15-A7.
-- Extend `RC-27` to consume H-18: verify the actual Portfolio upload → fixture handler → local adapter → same-origin read path, isolated replace/cleanup evidence, no public/customer media output, T18 source/UI evidence, and the M2/M4 `DocumentStore` successor mapping. T18's local fixture directory is an M1 seam, not production acceptance.
+- Extend `RC-27` to consume H-18: verify the actual Portfolio upload → fixture handler → local adapter → same-origin read path, isolated replace/cleanup evidence, no public/customer media output, T18 source/UI evidence, the direct T15 publication/media regressions, and the M2/M4 `DocumentStore` successor mapping. T18's local fixture directory is an M1 seam, not production acceptance.
