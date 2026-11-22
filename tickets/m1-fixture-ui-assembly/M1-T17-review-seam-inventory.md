@@ -17,3 +17,9 @@ Review actual routes, not prototype HTML or isolated unit tests; fail any direct
 - Decision authority: user direction on 2026-11-21; binding source contract `docs/frontend/M1_UI_REFERENCE_IMPLEMENTATION_CONTRACT.md` at commit `5b45033ba06cce63962e0e7bd0171086806d281e` and T08–T16 A3 amendments.
 - Extend `RC-27`: for every T08–T16 mapped page/panel, inspect the source-to-component map and actual route. Confirm reference-derived markup regions, CSS/media behavior, local asset roles, and visible interactions were converted into Next.js components and wired to typed T02 fixtures. Compare the rendered route with the source at the same viewports and required states; no material mismatch may remain.
 - Reject an invented replacement design, omitted reference region/interaction without a documented ticket reason, raw prototype HTML/script execution, unsafe sink, storage/seed/write authority, or an isolated component/build check as substitute for the actual route. Keep all existing privacy, publication, authentication and successor gates.
+
+## Amendment M1-T17-A2 — shared layout regression gate
+
+- Decision authority: user direction on 2026-11-22. Source binding: code commit `a1ee30e493e5fab3452095db5f02450a573c3d47`.
+- Verify that T13–T16 use `AdminWorkspaceFrame` from `shared/admin-workspace-frame.tsx` and keep route-specific content inside it. Reject copied or overridden sidebar, navigation, top bar, title region, mobile drawer, collapse behavior, or outer responsive width.
+- Compare Bookings, Availability, and every new admin route at desktop, 930px, 720px, and 485px after any shared-shell change. Record active navigation, full-width desktop fit, no horizontal overflow, and mobile drawer behavior. A missing shared-layout check fails the M1 review row; all prior visual, fixture, accessibility, and security gates remain binding.
