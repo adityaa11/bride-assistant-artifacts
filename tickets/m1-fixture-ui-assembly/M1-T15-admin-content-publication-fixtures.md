@@ -56,3 +56,37 @@ No bytes/media origin, consent claim, publish mutation, or draft public output. 
 - Decision authority: explicit user correction on 2026-11-22 after the first implementation checkpoint: “can you try to actually use image for the fixtures?” This authorizes fictional local still-life images for the populated Portfolio fixtures in place of the image-icon placeholder. It supersedes A1/A5's extracted-asset-only restriction and the original no-media-bytes clause **only for these checked-in static fixture images**. It does not authorize uploads, remote origins, customer photos, consent claims, public media delivery, persistence, or publication.
 - Keep image choice in typed T02 fixture fields as a closed asset key, resolve that key to fixed local files, and provide descriptive alt text. Preserve the reference `.web-media img` crop and card geometry. Event theme symbols and testimonial quote cards retain their mapped source treatment.
 - Capture the populated Portfolio at desktop and mobile, confirm both images load from local assets, and rerun the existing T15 visual, public-draft, no-mutation, and shared-shell evidence against the new code commit. The earlier checkpoint remains historical; the new image checkpoint is the review target.
+
+## Amendment M1-T15-A7 — fixture-local uploaded image storage seam
+
+- Decision authority: explicit user planning direction on 2026-11-22 to support fixture image upload with a local directory now and leave a backend-ready seam for later server-side implementation.
+- Supersession: this amendment supersedes only A6's checked-in-only image-source restriction and the original/A6 prohibition on fixture-local upload and persistence for Portfolio images. It does not authorize customer media, consent claims, public delivery, production identity, publication authority, cloud/provider selection, or a production backend. All unrelated M1-T15 visual, fixture, security, publication, and successor obligations remain binding. The historical CK artifact and its `CK-001.a` result remain immutable; this amendment identifies the changed ticket authority for the next contract validation.
+
+### Ownership and directory
+
+- The fixture storage adapter owns the runtime directory `.local-storage/m1-t15/content/portfolio/` relative to the code checkout. The adapter creates the directory on demand and is the only code allowed to resolve filesystem paths. The directory is local runtime state, is excluded from Git through `.gitignore`, is never placed under `public/`, and is not an intended migration, seed, or production-data store.
+- Portfolio UI components consume a typed `ContentImageStore` interface rather than importing `fs` or constructing paths. The interface exposes `put`, `read`, `replace`, and `remove` operations and returns an opaque `storageKey` plus media metadata (`mediaType`, byte length, and descriptive alt text). Original client filenames are metadata only and never become path segments.
+
+### Write behavior
+
+- The Portfolio add/edit form may submit one `multipart/form-data` image through the fixture adapter. Accepted media types are `image/jpeg`, `image/png`, and `image/webp`, with a maximum size of 5 MB. The adapter validates the declared type and byte limit, generates an opaque key, writes to a temporary file within the owned directory, and atomically renames it into place only after the write completes.
+- Uploading an image stores fixture media only. It does not create a production content record, change official publication state, assert consent, or make the image available to customer/public routes. Testimonials and Events retain their source-mapped non-image forms unless a later ticket explicitly expands them.
+
+### Read and serving visibility
+
+- The admin fixture UI reads images through a same-origin fixture media handler under `/api/fixtures/m1-t15/content-media/[storageKey]`. The handler serves only an exact opaque key, returns the stored media type and byte length, rejects traversal or unknown keys, and exposes no directory listing.
+- The handler is an admin-fixture seam only: it is not linked from `/`, public discovery, customer routes, or any public content adapter; it does not create a public media URL or production access-control claim. Local fixture serving must remain outside `public/` and must not use an external origin.
+
+### Replace and cleanup behavior
+
+- Replacing a Portfolio image writes and validates the new object first, atomically updates the fixture record's `storageKey` only after the new object is readable, and removes the prior object after the pointer update succeeds. If write, validation, or rename fails, the prior image and pointer remain usable.
+- Removing a fixture image deletes only the object referenced by that fixture record and clears its local pointer; it does not alter publication state. A fixture cleanup operation removes orphaned files only within `.local-storage/m1-t15/content/portfolio/`, and test teardown removes the entire fixture directory. No cleanup operation may traverse outside the owned directory.
+
+### Backend handoff
+
+- The route/component contract must depend on `ContentImageStore` and opaque storage metadata, not on local paths, `public/` URLs, data URLs, or filesystem-specific behavior. The later backend ticket may replace the local adapter with a server-side media adapter implementing the same `put/read/replace/remove` contract, then add authentication, authorization, retention, consent, private/public delivery, and durable record ownership. Migrating local fixture files is not part of M1-T15.
+
+### Acceptance and evidence
+
+- Review row `LOCAL-MEDIA-M1-T15`: PASS iff a Portfolio fixture upload reaches the local adapter and owned directory, the admin fixture handler reads the stored object, replacement is atomic with old-object cleanup, explicit cleanup removes only the ticket namespace, public/customer routes cannot render the local fixture media, and no upload changes official publication state.
+- Required proof is an integration test or Playwright scenario using the actual admin fixture form and handler, assertions for write/read/replace/cleanup and failure preservation, a filesystem-boundary check, public-route negative evidence, source scan for direct component filesystem access or data-URL persistence, and the existing `npm run check` plus T15 visual, keyboard, empty/error, public-draft, and shared-shell evidence. The amendment does not authorize weaker unit-only proof for the actual upload path.
