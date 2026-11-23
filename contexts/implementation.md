@@ -1,21 +1,21 @@
 # Implementation Context — Bride Assistant Planner / Ranur Bridal Care
 
 **Context ID:** `BAP-IMPLEMENTATION-CONTEXT` · **Revision:** `3.0` · **Date:** 23 November 2026
-**Status:** `ready` · **Project state:** `hybrid` · **Ticket-generation readiness:** `M1.1-W01 audit ready; M1.1 refactor tickets await findings; M2–M5 planned behind predecessor evidence`
+**Status:** `ready` · **Project state:** `hybrid` · **Ticket-generation readiness:** `M1.1 exit PASS with no refactor; M2 planning may begin behind its own gates; M3–M5 remain planned`
 **Source code repository / commit:** `https://github.com/adityaa11/bride-assistant.git` / `79b3478995737dd73165afaba50369dcb5242a08`.
 
 ## Read first
 
 1. This routing index, then [milestone map](implementation/milestones.md).
-2. For the next executable work, read [M1.1](implementation/milestones/M1.1-architecture-audit-refactor.md), its [M1 predecessor](implementation/milestones/M1-fixture-ui.md), [architecture](implementation/architecture.md), [decisions](implementation/decisions.md), and [verification](implementation/verification.md).
-3. Create M1.1 refactor tickets only after its audited finding register and dispositions; do not generate M2+ tickets until their decision gates and direct predecessor evidence are satisfied.
+2. For the next executable work, read [M2](implementation/milestones/M2-foundation.md), the [M1.1 exit](implementation/milestones/M1.1-architecture-audit-refactor.md#w02-reconciliation-and-m11-exit--23-november-2026), [architecture](implementation/architecture.md), [decisions](implementation/decisions.md), and [verification](implementation/verification.md).
+3. M1.1 has no refactor ticket after its [W02 decision](../evidence/M1.1-W02-disposition-79b3478.md). Generate M2+ tickets only when their decision gates and direct predecessor evidence are satisfied.
 
 ## Current execution
 
 | Next milestone | Eligible packages | Blocking decisions | Required predecessor evidence |
 | --- | --- | --- | --- |
-| M1.1 — Architecture audit and bounded refactor | M1.1-W01 audit; W02/W03 conditional on findings | None for read-only audit | Project Context v3.2, Stack Context v1.3, M1 exit PASS at `79b3478`, and M1-T17/H-17 CK PASS. |
-| M2 — Authoritative foundation | None | None | M1 and M1.1 exit evidence; then provision Vercel Singapore, Neon PostgreSQL/Object Storage in Singapore, Docker local services, and exact locked dependencies. |
+| M1.1 — Architecture audit and bounded refactor | Complete; W03 skipped after W02 no-refactor decision | None | T01 CK PASS and [W02/exit record](implementation/milestones/M1.1-architecture-audit-refactor.md#w02-reconciliation-and-m11-exit--23-november-2026) at `79b3478`. |
+| M2 — Authoritative foundation | Planning/ticket creation may begin; execution follows M2 entry gates | None for planning | M1 and M1.1 exit evidence; then provision Vercel Singapore, Neon PostgreSQL/Object Storage in Singapore, Docker local services, and exact locked dependencies. |
 | M3–M5 | None | D-03/D-04 as applicable | Their direct milestone gates and production-hardening evidence. |
 
 ## Target-product baseline
@@ -35,7 +35,7 @@ The system boundary is Next.js/React/TypeScript, Better Auth, PostgreSQL, Zod, `
 | ID | Status | Detail | Direct dependencies | Read when |
 | --- | --- | --- | --- | --- |
 | M1 | complete | [Fixture UI](implementation/milestones/M1-fixture-ui.md) | — | Reviewed fixture/UI baseline and exit evidence. |
-| M1.1 | planned | [Architecture audit and bounded refactor](implementation/milestones/M1.1-architecture-audit-refactor.md) | M1 | Auditing architecture and efficiency, then planning finding-backed refactors. |
+| M1.1 | complete | [Architecture audit and bounded refactor](implementation/milestones/M1.1-architecture-audit-refactor.md) | M1 | T01 audit approved; W02 no-refactor decision; conditional W03 skipped; exit PASS at `79b3478`. |
 | M2 | planned | [Foundation](implementation/milestones/M2-foundation.md) | M1.1 | Selecting provider/auth/data seams after M1.1 exit. |
 | M3 | planned | [Booking core](implementation/milestones/M3-booking-core.md) | M2 | Building catalogue, booking, or availability. |
 | M4 | planned | [Evidence & publishing](implementation/milestones/M4-evidence-publishing.md) | M3; D-03/D-04 | Building proof, exceptions, or published content. |
@@ -63,5 +63,5 @@ The system boundary is Next.js/React/TypeScript, Better Auth, PostgreSQL, Zod, `
 
 ## Readiness
 
-`ready`: The end product is coherently planned. M1's fixture/UI exit is `PASS` at `79b3478`, backed by T17-A7 CK `PASS`; M1-W07 records accepted deferrals for H-19 FRA-01/02/04, and M3-W07 owns the later admin-closure and successful-booking availability relation. M1.1-W01 is ready for an architecture and code-efficiency audit. Its later refactor tickets depend on the audited finding register and dispositions; a scan result alone is insufficient. Vercel application hosting plus Neon PostgreSQL/Object Storage and the development profile are confirmed; M2 follows M1.1's exit gate. Proof formats, limits, retention rollout, authorization, audit, incident containment, and private-object delivery are confirmed. The payment-proof capability remains enabled in the product plan; deferred provider/legal/recovery choices are explicit production-hardening seams to resolve before release. The official WhatsApp number remains intentionally deferred and leaves the live handoff disabled.
+`ready`: The end product is coherently planned. M1's fixture/UI exit is `PASS` at `79b3478`, backed by T17-A7 CK `PASS`; M1-W07 records accepted deferrals for H-19 FRA-01/02/04, and M3-W07 owns the later admin-closure and successful-booking availability relation. M1.1-T01's audit is approved and W02 records no justified refactor; M1.1 exits `PASS` on the unchanged code baseline. Vercel application hosting plus Neon PostgreSQL/Object Storage and the development profile are confirmed; M2 planning can now consume the M1.1 handoff, with its own entry and verification gates still required. Proof formats, limits, retention rollout, authorization, audit, incident containment, and private-object delivery are confirmed. The payment-proof capability remains enabled in the product plan; deferred provider/legal/recovery choices are explicit production-hardening seams to resolve before release. The official WhatsApp number remains intentionally deferred and leaves the live handoff disabled.
 

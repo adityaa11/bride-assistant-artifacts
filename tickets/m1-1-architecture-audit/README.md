@@ -1,6 +1,6 @@
 # M1.1 architecture audit — ticket set
 
-- Set ID: `BAP-M1.1-ARCH-AUDIT-SET-01`; status: `ready-for-W01-only`; artifact revision: `1.0`.
+- Set ID: `BAP-M1.1-ARCH-AUDIT-SET-01`; status: `W01-approved; W02-no-refactor; M1.1-exit-PASS`; artifact revision: `1.1`.
 - Source code repository / exact audit baseline: `https://github.com/adityaa11/bride-assistant.git` at `79b3478995737dd73165afaba50369dcb5242a08`.
 - Source authority: [Project Context v3.2](../../contexts/project.md), [Stack Context v1.3](../../contexts/stack.md), [Implementation Context v3.0](../../contexts/implementation.md), [M1.1 milestone](../../contexts/implementation/milestones/M1.1-architecture-audit-refactor.md), its [M1 predecessor and exit decision](../../contexts/implementation/milestones/M1-fixture-ui.md), [architecture](../../contexts/implementation/architecture.md), [decisions](../../contexts/implementation/decisions.md), and [verification](../../contexts/implementation/verification.md).
 - Accepted predecessor: M1 exit `PASS` at `79b3478`, backed by [M1-T17/H-17 CK PASS](../../feedback/M1-T17-review-seam-inventory-79b3478-ck.md). The M1 route, fixture, media, visual, accessibility, and privacy contracts are the audit baseline.
@@ -10,11 +10,13 @@
 
 | Batch | Ticket | State | Dependency | Parallel-safe work | Outcome |
 | --- | --- | --- | --- | --- | --- |
-| 1 | [M1.1-T01 — architecture and code-efficiency audit](M1.1-T01-architecture-code-efficiency-audit.md) | `awaiting_review` | M1/H-17 CK `PASS` | Read-only source, route, test, visual and measurement probes may be gathered in parallel within the ticket; one owner reconciles the register. | [Versioned register](../../evidence/M1.1-T01-audit-register-v1.md) and [GO checkpoint](../../checkpoints/M1.1-T01-architecture-audit-79b3478.md); CK pending. |
+| 1 | [M1.1-T01 — architecture and code-efficiency audit](M1.1-T01-architecture-code-efficiency-audit.md) | `approved` | M1/H-17 CK `PASS` | Read-only source, route, test, visual and measurement probes were reconciled into one register. | [Versioned register](../../evidence/M1.1-T01-audit-register-v1.md), [GO checkpoint](../../checkpoints/M1.1-T01-architecture-audit-79b3478.md), and [CK `PASS`](../../feedback/M1.1-T01-architecture-audit-79b3478-ck.md). |
 
 `M1/H-17 PASS → M1.1-T01/H-1.1-01 → M1.1-W02 planning reconciliation → conditional W03 ticket set and reviews → M1.1 exit → M2`.
 
-No W02/W03 refactor ticket is allocated now. [M1.1](../../contexts/implementation/milestones/M1.1-architecture-audit-refactor.md) explicitly makes W03 conditional on W01's versioned register and accepted dispositions. A scan match, code smell, or audit recommendation alone does not authorize an implementation ticket. If W01 finds no justified M1.1 refactor, W02 records the no-refactor decision and the conditional branch has no implementation ticket. W02 must name the smallest distinct owner/change, any reused handoff, and added validation cost before allocating each later ticket.
+No W02/W03 refactor ticket was allocated. [M1.1](../../contexts/implementation/milestones/M1.1-architecture-audit-refactor.md) made W03 conditional on W01's versioned register and accepted dispositions. A scan match, code smell, or audit recommendation alone did not authorize an implementation ticket.
+
+**W02 result:** [Reconciliation and no-refactor decision](../../evidence/M1.1-W02-disposition-79b3478.md) accepted `no-action` for `M11-AUD-001/002/003`; no justified refactor slice, W03 ticket, or added validation cost exists. The [M1.1 exit](../../contexts/implementation/milestones/M1.1-architecture-audit-refactor.md#w02-reconciliation-and-m11-exit--23-november-2026) is `PASS` on the unchanged code baseline.
 
 ## Entrypoint, endpoint, handoff and use path
 
@@ -35,4 +37,4 @@ No W02/W03 refactor ticket is allocated now. [M1.1](../../contexts/implementatio
 
 ## Planning blockers and next eligibility
 
-T01 has no unresolved authority blocker and is the sole next GO-eligible ticket. W02/W03 are not yet ticket-ready: their finding IDs, accepted dispositions, owners, exact interfaces, regression paths and security/UI bindings do not exist. A candidate that conflicts with Project/Stack/Implementation decisions, M1 fixture authority or reference fidelity must trigger context refresh before a refactor ticket is frozen. No M2 execution follows until the M1.1 exit gate is recorded.
+No M1.1 GO ticket remains. W02 found no justified implementation owner or change, and the M1.1 exit gate is recorded `PASS`. M2 planning consumes the exit record; M2 execution still follows its own provisioning and verification gates.
