@@ -1,6 +1,6 @@
 # M2 authoritative foundation — ticket set
 
-- Set ID: `BAP-M2-SET-01`; revision `1.0`; status `T01 awaiting CK review, later tickets gated`; selected milestone `M2`.
+- Set ID: `BAP-M2-SET-01`; revision `1.0`; status `T01 approved; T02/T07 eligible within their dependencies`; selected milestone `M2`.
 - Source code repository and exact planning baseline: `https://github.com/adityaa11/bride-assistant.git` at `79b3478995737dd73165afaba50369dcb5242a08`.
 - Authority: [Project Context v3.2](../../contexts/project.md), [Stack Context v1.3](../../contexts/stack.md), [Implementation Context v3.0](../../contexts/implementation.md), [M2](../../contexts/implementation/milestones/M2-foundation.md), [architecture](../../contexts/implementation/architecture.md), [decisions D-02/03/05/06](../../contexts/implementation/decisions.md), and [verification](../../contexts/implementation/verification.md).
 - Accepted predecessor: [M1.1 no-refactor exit PASS](../../contexts/implementation/milestones/M1.1-architecture-audit-refactor.md#w02-reconciliation-and-m11-exit--23-november-2026) at the unchanged code commit, with [T01 CK PASS](../../feedback/M1.1-T01-architecture-audit-79b3478-ck.md) and [W02 disposition](../../evidence/M1.1-W02-disposition-79b3478.md). M1 fixture contracts remain review baselines, never production authority.
@@ -10,7 +10,7 @@
 
 | Batch | Ticket / owner outcome | State | Dependency | Activation | Parallel safety |
 | --- | --- | --- | --- | --- | --- |
-| 1 | [M2-T01 topology and local profile](M2-T01-topology-local-profile.md) | awaiting_review | M1.1 exit | preparation-only → T03 | T07 may start after T01 CK PASS. |
+| 1 | [M2-T01 topology and local profile](M2-T01-topology-local-profile.md) | approved | M1.1 exit | preparation-only → T03 | T07 may start after T01 CK PASS. |
 | 2 | [M2-T02 exact runtime lock](M2-T02-runtime-lock.md) | planned | T01 interface evidence | active-in-this-ticket | T07 may run in parallel. |
 | 3 | [M2-T03 environment and migration shell](M2-T03-data-shell.md) | planned | T01, T02 | active-in-this-ticket | T07 may run in parallel. |
 | 4 | [M2-T04 persistent auth and protected surfaces](M2-T04-persistent-auth.md) | planned | T03 | active-in-this-ticket | sequence. |
@@ -44,4 +44,4 @@ T04 uses established Soft Rose Atelier visual contract and `frontend-awareness` 
 
 ## Gates and next action
 
-T01 GO is awaiting CK review at source commit `123e6b49b5a0090ef8023e20b9289b2eb82cafc2`; [H-M2-01 v1.0](../../evidence/m2-t01/H-M2-01-topology-v1.md) is its redacted handoff. Do not introduce real customer/proof data until CK accepts its regional, private-bucket, credential, connection and recovery evidence. T02 follows the confirmed D-02 versions and stops for a D-02 review if a security advisory or peer conflict invalidates them. T07 cannot be approved until the five-minute expiry rehearsal and accountable decisions on the five D-03 production choices are recorded; leave M4 production hardening gated meanwhile. No M2 ticket may silently choose an ORM, scanner, legal hold, recovery target, or WhatsApp number.
+T01 GO is approved at source commit `123e6b49b5a0090ef8023e20b9289b2eb82cafc2`, with CK `PASS` recorded in [`M2-T01 CK`](../../feedback/M2-T01-topology-local-profile-123e6b4-ck.md); [H-M2-01 v1.0](../../evidence/m2-t01/H-M2-01-topology-v1.md) is its redacted handoff. Do not introduce real customer/proof data until the approved regional, private-bucket, credential, connection and recovery evidence is consumed within successor boundaries. T02 follows the confirmed D-02 versions and stops for a D-02 review if a security advisory or peer conflict invalidates them. T07 cannot be approved until the five-minute expiry rehearsal and accountable decisions on the five D-03 production choices are recorded; leave M4 production hardening gated meanwhile. No M2 ticket may silently choose an ORM, scanner, legal hold, recovery target, or WhatsApp number.

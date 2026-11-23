@@ -1,6 +1,6 @@
 # M2-T01 — verified production topology and disposable local profile
 
-- State: `awaiting_review`; batch 1; work package `M2-R01`. Planning baseline source code: `https://github.com/adityaa11/bride-assistant.git` at `79b3478995737dd73165afaba50369dcb5242a08`. GO implementation checkpoint: [M2-T01 / `123e6b4`](../../checkpoints/M2-T01-topology-local-profile-123e6b4.md).
+- State: `approved`; batch 1; work package `M2-R01`. Planning baseline source code: `https://github.com/adityaa11/bride-assistant.git` at `79b3478995737dd73165afaba50369dcb5242a08`. GO implementation checkpoint: [M2-T01 / `123e6b4`](../../checkpoints/M2-T01-topology-local-profile-123e6b4.md); CK review recorded [`PASS`](../../feedback/M2-T01-topology-local-profile-123e6b4-ck.md).
 - Authority: [M2-R01](../../contexts/implementation/milestones/M2-foundation.md), [D-05/D-06](../../contexts/implementation/decisions.md), [Stack](../../contexts/stack.md), [architecture](../../contexts/implementation/architecture.md). Dependency: M1.1 exit PASS. Successors: T02/T03/T07 via `H-M2-01`.
 - Activation: `preparation-only`, T03 activates the deployed shell connection. Legacy: forbidden. SQL: `ephemeral-test-setup` for disposable local PostgreSQL only; no intended migration. Empty state: fresh database/bucket has no customer rows or uploads; connection and privacy checks must work without seeding. Reuse: `RD-M2-02` local DocumentStore byte boundary.
 
