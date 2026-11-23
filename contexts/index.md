@@ -6,7 +6,7 @@ Source code repository / planning baseline: `https://github.com/adityaa11/bride-
 | --- | --- | --- |
 | [Project Context](project.md) v3.2 | ready | Durable product definition, admin date-closure and uploaded-media boundaries, governance, and acceptance basis for Bride Assistant Planner / Ranur Bridal Care. |
 | [Stack Context](stack.md) v1.3 | ready | Selected technology baseline, universal `DocumentStore` upload boundary, Neon Object Storage production adapter, and handoff constraints. |
-| [Implementation Context](implementation.md) v2.8 | ready | Routing index for the milestone bundle, T17-A7 finding dispositions, admin date-closure handoff, and ticket-source work packages. Production payment-proof release is explicitly deferred. |
+| [Implementation Context](implementation.md) v2.9 | ready | Routing index for M1.1 architecture/code-efficiency audit, conditional finding-backed refactors before M2, T17-A7 dispositions, and ticket-source work packages. Production payment-proof release is explicitly deferred. |
 
 ## Canonical use
 

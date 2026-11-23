@@ -5,7 +5,7 @@
 **Status:** `in-progress` · **Advances:** discovery, separate-workspace clarity, complete workflow review, responsive quality.
 **Outcome:** A navigable, responsive UI renders approved public/customer/admin scenarios against typed fixtures; it is explicitly non-authoritative. Without it, product behavior cannot be reviewed safely before backend choices.
 
-**Entry:** Project Context v3.2, Stack Context v1.3, and HTML references remain available. **Excludes:** real auth, production persistence, payments, production storage, or business-rule execution. T18-A2 alone permits disposable, ignored, fixture-local Portfolio/Testimonials/Events upload bytes behind the local `DocumentStore` byte boundary; this is no public/customer media delivery or production data. **Handoff:** reviewed UI contracts and fixture/backend seams to M2. **Risks:** fixture behavior becoming product policy; contain by labeling controls non-authoritative and keeping contracts typed/versioned.
+**Entry:** Project Context v3.2, Stack Context v1.3, and HTML references remain available. **Excludes:** real auth, production persistence, payments, production storage, or business-rule execution. T18-A2 alone permits disposable, ignored, fixture-local Portfolio/Testimonials/Events upload bytes behind the local `DocumentStore` byte boundary; this is no public/customer media delivery or production data. **Handoff:** reviewed UI contracts and fixture/backend seams to M1.1 audit, then M2. **Risks:** fixture behavior becoming product policy; contain by labeling controls non-authoritative and keeping contracts typed/versioned.
 
 ## Candidate work packages
 

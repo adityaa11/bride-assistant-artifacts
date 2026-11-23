@@ -23,6 +23,8 @@ The standalone HTML is replaced, not migrated as data. Preserve its Soft Rose At
 
 M1-T18's ignored local Portfolio, Testimonials and Events files are disposable fixture bytes behind a local `DocumentStore` implementation. M2-W04 preserves the byte contract; M4-W01 provides the Neon Object Storage production adapter; M4-W05 replaces fixture record associations with authorized durable records. Fixture files/manifests are not a production migration, and no public URL is inferred from an opaque key.
 
+M1.1 audits the current fixture application's architecture and code efficiency before M2 execution. An audit finding does not by itself change these boundaries; accepted refactors must preserve the M1 visible/fixture contracts and the named M2 replacement seams. Any finding that requires a different architecture decision returns to Implementation Context before a refactor ticket is frozen.
+
 ## Cross-cutting principles
 
 - Zod validates untrusted inputs; database constraints/transactions and authorization enforce durable rules.
