@@ -1,0 +1,115 @@
+Code commit: ccf351ba15075bd10d523d35e8583bfa94b3c22b
+Command: node --version; npm --version
+v24.22.3
+11.19.1
+Command: npm ci --no-fund
+npm warn deprecated eslint@9.39.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+
+added 385 packages, and audited 386 packages in 2m
+
+found 0 vulnerabilities
+Command: npm run check
+
+> bride-assistant@0.1.0 check
+> npm run lint && npm run typecheck && npm test && npm run build
+
+
+> bride-assistant@0.1.0 lint
+> eslint .
+
+
+> bride-assistant@0.1.0 typecheck
+> tsc --noEmit
+
+
+> bride-assistant@0.1.0 test
+> node --test tests/**/*.test.mjs
+
+✔ public, customer, and admin route groups compose through the approved fixture seams (5.1787ms)
+✔ public review states are named routes with declared scenario IDs (1.2671ms)
+✔ feature routes reach declared scenarios only through the versioned adapter seam (0.966ms)
+✔ admin booking and availability routes use named adapter fixtures without mutation authority (0.8327ms)
+✔ admin catalogue and package routes use typed fixtures and preserve no-mutation boundary (0.7685ms)
+✔ admin customer route keeps its fixture projection in the server-only admin route (0.8901ms)
+✔ customer auth fixture routes expose declared register and sign-in states without authority (0.9015ms)
+✔ customer home and help routes use declared fixtures and never enable a live WhatsApp URL (1.0947ms)
+✔ Booking Saya routes use typed fixture history and preserve the lifecycle and owner boundary (0.8046ms)
+✔ the public success route renders only adapter-provided published promotions (0.6496ms)
+✔ scenario catalogue covers review states and protects lifecycle, publication, and provenance boundaries (0.5941ms)
+✔ review-build source has no prototype execution or unsafe rendering escape hatch (2.2657ms)
+✔ public discovery styles remain route-local instead of leaking through global CSS (0.5319ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 88.5575
+
+> bride-assistant@0.1.0 build
+> next build
+
+▲ Next.js 16.4.6 (Turbopack)
+✓ Running next.config.ts took 29ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 2.3s
+  Running TypeScript ...
+  Finished TypeScript in 2.1s ...
+  Collecting page data using 15 workers ...
+  Generating static pages using 15 workers (0/25) ...
+  Generating static pages using 15 workers (6/25) 
+  Generating static pages using 15 workers (12/25) 
+  Generating static pages using 15 workers (18/25) 
+✓ Generating static pages using 15 workers (25/25) in 422ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /admin
+├ ○ /admin/availability
+├ ƒ /admin/bookings/[state]
+├ ○ /admin/catalogue
+├ ƒ /admin/catalogue/[state]
+├ ○ /admin/content
+├ ƒ /admin/content/[state]
+├ ○ /admin/customers
+├ ƒ /admin/customers/[state]
+├ ○ /admin/events
+├ ƒ /admin/events/[state]
+├ ○ /admin/packages
+├ ƒ /admin/packages/[state]
+├ ○ /admin/promotions
+├ ƒ /admin/promotions/[state]
+├ ƒ /api/fixtures/m1-t15/content-media
+├ ƒ /api/fixtures/m1-t15/content-media/[storageKey]
+├ ○ /bantuan
+├ ○ /beranda
+├ ƒ /beranda/[state]
+├ ○ /booking
+├ ○ /booking-saya
+├ ƒ /booking-saya/[state]
+├   /booking/[state]
+│ ├ ● /booking/invalid
+│ ├ ● /booking/unavailable
+│ ├ ● /booking/no-package
+│ └ ● /booking/result
+├ ○ /customer
+├ ○ /daftar
+├ ƒ /daftar/[state]
+├ ○ /fixtures/empty
+├ ○ /fixtures/error
+├ ○ /masuk
+└ ƒ /masuk/[state]
+
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+
+Command: npm audit --audit-level=moderate
+found 0 vulnerabilities
+Command: npm ls --all --json (problem count)
+peer resolution errors: 0
