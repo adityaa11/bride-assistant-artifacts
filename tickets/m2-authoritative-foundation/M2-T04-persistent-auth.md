@@ -1,6 +1,6 @@
 # M2-T04 — persistent separate customer and admin authentication
 
-- State: `planned`; batch 4; work package `M2-W02`. Source code: `https://github.com/adityaa11/bride-assistant.git` at `79b3478995737dd73165afaba50369dcb5242a08`.
+- State: `planned`; batch 4; work package `M2-W02`. Source code: `https://github.com/adityaa11/bride-assistant.git` at `d5fbececd2dd57598ba1d5630a9f85d86a4f5990` (ERD contract amendment; implementation baseline remains `79b3478995737dd73165afaba50369dcb5242a08`).
 - Authority: [Project access](../../contexts/project.md), [Stack auth choice](../../contexts/stack.md), [M2-W02](../../contexts/implementation/milestones/M2-foundation.md), [D-02](../../contexts/implementation/decisions.md), and code-repository `docs/frontend/PROJECT_FRONTEND_CONTRACT.md`. Dependency: T03 `H-M2-03`. Successors: T05 and M3-W05/06 via `H-M2-04`.
 - Activation: `active-in-this-ticket`. Legacy: forbidden. SQL: intended Better Auth identity/session migrations; test identities only in disposable database/transaction. Empty state: first customer can register; no admin is implicitly created and protected admin access fails closed until an explicitly provisioned admin exists.
 
@@ -19,6 +19,10 @@ Integrate Better Auth with persistent PostgreSQL backing, separate customer and 
 
 Real auth routes use Better Auth persisted sessions; remove reachable prototype/localStorage credentials or placeholder sign-in success paths. Preserve separate customer/admin route surfaces, Soft Rose Atelier reference hierarchy, shell components, keyboard/focus and responsive form behavior. `frontend-awareness` established-language MODE A binds the existing visual contract and fresh desktop/mobile/error/loading captures. Pinned modern-web `forms`, `autofill-sign-in-form`, `validate-input-after-interaction` guide native form labels, email/password autocomplete, and interaction-timed errors; no passkey/OTP requirement follows from them. Follow local Next 16 docs before code changes. Preserve CSP-safe framework rendering.
 
+## ERD review contract
+
+Before implementation, show the proposed identity/session table and relationship ERD for the chosen supported Better Auth adapter, including the T03 baseline. GO must render and commit an SVG or PNG of the actual schema before and after the T04 migrations, embed it in the checkpoint, and display it in the user-facing handoff. Label tables, primary keys, foreign keys, and relationship cardinalities; map each migration file/version to the change and verify the diagram against a fresh migrated database. CK must inspect the displayed image and comparison. Do not treat a migration inventory, source-only Mermaid block, or path-only citation as ERD proof.
+
 ## Acceptance criteria / Review Contract
 
 | ID | PASS iff required behavior and observation | Harness and evidence | Forbidden substitute / direct regression |
@@ -27,6 +31,7 @@ Real auth routes use Better Auth persisted sessions; remove reachable prototype/
 | `RC-M2-04B` | Customer cannot enter admin protected routes, admin cannot be impersonated with a client role value, and a fresh empty DB grants no admin. | Direct route requests with anonymous/customer/admin sessions and forged role/cookie scenarios. | Hiding admin links in UI; role-confusion regression. |
 | `RC-M2-04C` | Active sign-in/registration routes no longer use prototype/localStorage success or seed credentials, while review fixture routes remain visibly non-authoritative. | Actual route/call graph, browser sign-in and negative placeholder probes. | Side-by-side fallback; M1 fixture route or visual regression. |
 | `RC-M2-04D` | Customer/admin forms keep reference-derived hierarchy and accessible labels, autofill, focus/error/loading and narrow-width operation. | Fresh current-revision browser captures at desktop/mobile and keyboard/form-state observations against committed M1 reference baseline. | Build pass or old implementation capture alone; visual/accessibility regression. |
+| `RC-M2-04E` | The rendered before/after ERD shows the actual T04 identity/session schema, affected keys and cardinalities, and agrees with each authorized migration and fresh database introspection. | Committed SVG/PNG embedded in GO/CFC checkpoint and shown in user handoff; migration-to-diagram mapping and CK visual comparison. | Inventory, Mermaid source, or file path alone. |
 
 ## Security readiness and validation
 

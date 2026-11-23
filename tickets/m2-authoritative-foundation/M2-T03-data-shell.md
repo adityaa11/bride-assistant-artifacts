@@ -1,6 +1,6 @@
 # M2-T03 — deployable environment and migration shell
 
-- State: `planned`; batch 3; work package `M2-W01`. Source code: `https://github.com/adityaa11/bride-assistant.git` at `79b3478995737dd73165afaba50369dcb5242a08`.
+- State: `planned`; batch 3; work package `M2-W01`. Source code: `https://github.com/adityaa11/bride-assistant.git` at `d5fbececd2dd57598ba1d5630a9f85d86a4f5990` (ERD contract amendment; implementation baseline remains `79b3478995737dd73165afaba50369dcb5242a08`).
 - Authority: [M2-W01](../../contexts/implementation/milestones/M2-foundation.md), [D-02/05/06](../../contexts/implementation/decisions.md), [verification](../../contexts/implementation/verification.md). Dependencies: T01 `H-M2-01`, T02 `H-M2-02`. Successors: T04/T05/T06 via `H-M2-03`.
 - Activation: `active-in-this-ticket` for deployable server/database shell. Legacy: forbidden. SQL: intended migrations only for a minimal schema/migration ledger needed by auth; ephemeral test database/rollback is separate; no domain schema or production seed. Empty state: fresh database migrates with zero business records and remains empty.
 
@@ -19,6 +19,10 @@ Define validated environment names and server-only secrets, a deployable Next se
 
 One server-side PostgreSQL connection path is authoritative. Remove test/local fallbacks from production composition; fixture routes may remain explicitly review-only. Secrets stay server-side and out of Git/client bundles. No hidden default DB, test seed migration, or `public/` upload path. T01's preparation reaches application use in this ticket.
 
+## ERD review contract
+
+The baseline fresh database has no business tables. Before implementing a schema migration, record the proposed affected tables and relationships in a visible planning ERD; do not invent auth/domain tables beyond the accepted T03 scope. GO must render and commit an SVG or PNG of the actual fresh migrated database schema, embed it in the checkpoint, and display it in the user-facing handoff. Show the before and after schema for any structural change; for migration-runner-only work, show the current schema and state that it is unchanged. Label tables, primary and foreign keys, and relationship cardinalities where present. Map each migration version/file to the rendered state and compare it with fresh database introspection. CK must inspect the displayed image and comparison. A migration inventory, source-only Mermaid block, or path-only citation does not close this obligation.
+
 ## Acceptance criteria / Review Contract
 
 | ID | PASS iff required behavior and observation | Harness and evidence | Forbidden substitute / direct regression |
@@ -27,6 +31,7 @@ One server-side PostgreSQL connection path is authoritative. Remove test/local f
 | `RC-M2-03B` | Production DB connection verifies TLS certificate and reads only server environment; client artifact and committed files contain no credential. | Config assertion, negative connection test, bundle/Git secret scan. | Merely setting a TLS flag or copying `.env` into build. |
 | `RC-M2-03C` | Intended SQL graph contains only authorized minimal shell/auth prerequisites, and test data uses disposable DB/schema or transaction rollback with cleanup; empty first-use has zero business rows. | Migration inventory, fresh DB row counts, isolated test setup/teardown and post-test comparison. | Durable fixture seed or conditional migration branch. |
 | `RC-M2-03D` | The deployed shell invokes the documented connection/migration path at this code revision and publishes the exact contract T04 will consume. | End-to-end startup/config trace and handoff record. | Unit-only connection helper with no deployed caller. |
+| `RC-M2-03E` | The actual post-migration schema is shown in a rendered ERD, with before/after states for structural changes or an explicit unchanged-schema statement for runner-only work; all affected keys and relationships agree with a fresh migrated database and every migration version is mapped. | Committed SVG/PNG embedded in GO/CFC checkpoint and shown in user handoff; fresh database introspection comparison; CK visual inspection. | Migration list, Mermaid source, or artifact path without a displayed, verified diagram. |
 
 ## Security readiness and validation
 

@@ -1,7 +1,7 @@
 # M2 authoritative foundation — ticket set
 
-- Set ID: `BAP-M2-SET-01`; revision `1.0`; status `T01 approved; T02/T07 eligible within their dependencies`; selected milestone `M2`.
-- Source code repository and exact planning baseline: `https://github.com/adityaa11/bride-assistant.git` at `79b3478995737dd73165afaba50369dcb5242a08`.
+- Set ID: `BAP-M2-SET-01`; revision `1.1` (visible ERD contract for T03/T04); status `T01 approved; T02/T07 eligible within their dependencies`; selected milestone `M2`.
+- Source code repository and exact contract-amendment commit: `https://github.com/adityaa11/bride-assistant.git` at `d5fbececd2dd57598ba1d5630a9f85d86a4f5990`; original implementation planning baseline: `79b3478995737dd73165afaba50369dcb5242a08`.
 - Authority: [Project Context v3.2](../../contexts/project.md), [Stack Context v1.3](../../contexts/stack.md), [Implementation Context v3.0](../../contexts/implementation.md), [M2](../../contexts/implementation/milestones/M2-foundation.md), [architecture](../../contexts/implementation/architecture.md), [decisions D-02/03/05/06](../../contexts/implementation/decisions.md), and [verification](../../contexts/implementation/verification.md).
 - Accepted predecessor: [M1.1 no-refactor exit PASS](../../contexts/implementation/milestones/M1.1-architecture-audit-refactor.md#w02-reconciliation-and-m11-exit--23-november-2026) at the unchanged code commit, with [T01 CK PASS](../../feedback/M1.1-T01-architecture-audit-79b3478-ck.md) and [W02 disposition](../../evidence/M1.1-W02-disposition-79b3478.md). M1 fixture contracts remain review baselines, never production authority.
 - Pre-write artifact inventory: untracked `checkpoints/.gitkeep`, `evidence/.gitkeep`, `feedback/.gitkeep`, `tickets/.gitkeep`; no staged or tracked changes. Reserved paths: this index and `M2-T01` through `M2-T07` below; none existed before writing. Stage only these eight paths.
@@ -19,6 +19,8 @@
 | 2P | [M2-T07 proof-policy decision gate](M2-T07-proof-policy-gate.md) | planned | T01; decisions by accountable owner | not-applicable | parallel with T02–T06; gates M4 production hardening, not proof feature construction. |
 
 T01–T06 are separate because they have different verification or authority boundaries: provider/account topology, dependency provenance, SQL lifecycle, identity/session, authorization/validation, and storage/repository contracts. T07 is a policy decision and expiry rehearsal, not an implementation substitute. No other M2 ticket is allocated. Each ticket has one owner and one review matrix; successors check only their own consumption of a predecessor handoff.
+
+T03 and T04 now require a rendered, embedded ERD in their implementation checkpoints and user-facing handoffs, with fresh database comparison and CK inspection (`RC-M2-03E`, `RC-M2-04E`). The general rule for later SQL migration tickets is in the code repository `AGENTS.md` at the contract-amendment commit. This amendment changes review evidence only; it does not add schema or authorize a new migration.
 
 ## Handoffs, use paths, and activation
 
