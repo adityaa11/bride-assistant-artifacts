@@ -10,7 +10,7 @@
 
 | Batch | Ticket | State | Dependency | Parallel-safe work | Outcome |
 | --- | --- | --- | --- | --- | --- |
-| 1 | [M1.1-T01 — architecture and code-efficiency audit](M1.1-T01-architecture-code-efficiency-audit.md) | `ready` | M1/H-17 CK `PASS` | Read-only source, route, test, visual and measurement probes may be gathered in parallel within the ticket; one owner reconciles the register. | Versioned, evidence-backed finding register and disposition proposals. |
+| 1 | [M1.1-T01 — architecture and code-efficiency audit](M1.1-T01-architecture-code-efficiency-audit.md) | `awaiting_review` | M1/H-17 CK `PASS` | Read-only source, route, test, visual and measurement probes may be gathered in parallel within the ticket; one owner reconciles the register. | [Versioned register](../../evidence/M1.1-T01-audit-register-v1.md) and [GO checkpoint](../../checkpoints/M1.1-T01-architecture-audit-79b3478.md); CK pending. |
 
 `M1/H-17 PASS → M1.1-T01/H-1.1-01 → M1.1-W02 planning reconciliation → conditional W03 ticket set and reviews → M1.1 exit → M2`.
 
