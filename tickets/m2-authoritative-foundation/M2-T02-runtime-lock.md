@@ -1,6 +1,6 @@
 # M2-T02 — exact approved runtime and dependency lock
 
-- State: `awaiting_review`; batch 2; work package `M2-R02`. Source code: `https://github.com/adityaa11/bride-assistant.git` at `ccf351ba15075bd10d523d35e8583bfa94b3c22b`; original planning baseline `79b3478995737dd73165afaba50369dcb5242a08`.
+- State: `approved`; batch 2; work package `M2-R02`. Source code: `https://github.com/adityaa11/bride-assistant.git` at `ccf351ba15075bd10d523d35e8583bfa94b3c22b`; original planning baseline `79b3478995737dd73165afaba50369dcb5242a08`. GO checkpoint: [M2-T02 / `ccf351b`](../../checkpoints/M2-T02-runtime-lock-ccf351b.md); CK review recorded [`PASS`](../../feedback/M2-T02-runtime-lock-ccf351b-ck.md).
 - Authority: [M2-R02](../../contexts/implementation/milestones/M2-foundation.md), [D-02](../../contexts/implementation/decisions.md), [architecture](../../contexts/implementation/architecture.md). Dependency: T01 `H-M2-01`. Successor: T03 via `H-M2-02`.
 - Activation: `active-in-this-ticket` for the build/test toolchain, not an auth capability. Legacy: forbidden. SQL and empty state: not applicable; no persistence behavior. Reuse: existing Next/React/TypeScript package and scripts, not a new framework.
 
