@@ -2,7 +2,7 @@
 
 **Source code repository / commit:** `https://github.com/adityaa11/bride-assistant.git` / `79b3478995737dd73165afaba50369dcb5242a08`.
 
-**Status:** `in-progress` · **Advances:** discovery, separate-workspace clarity, complete workflow review, responsive quality.
+**Status:** `complete` (exit recorded 23 November 2026) · **Advances:** discovery, separate-workspace clarity, complete workflow review, responsive quality.
 **Outcome:** A navigable, responsive UI renders approved public/customer/admin scenarios against typed fixtures; it is explicitly non-authoritative. Without it, product behavior cannot be reviewed safely before backend choices.
 
 **Entry:** Project Context v3.2, Stack Context v1.3, and HTML references remain available. **Excludes:** real auth, production persistence, payments, production storage, or business-rule execution. T18-A2 alone permits disposable, ignored, fixture-local Portfolio/Testimonials/Events upload bytes behind the local `DocumentStore` byte boundary; this is no public/customer media delivery or production data. **Handoff:** reviewed UI contracts and fixture/backend seams to M1.1 audit, then M2. **Risks:** fixture behavior becoming product policy; contain by labeling controls non-authoritative and keeping contracts typed/versioned.
@@ -45,4 +45,12 @@ User direction accepts M2+ deferral of the three previously unknown H-19 finding
 `FRA-03` remains the M1-required browser-store repair closed by T20/H-20 CK PASS and carried through T21/H-21; T17-A7 still independently rechecks F-01. `FRA-05/06` retain H-19's accepted M2+ deferrals to M4-W05/06, and T17 F-02 still requires independent selected-date/toast evidence. These dispositions remove the planning unknown only; any failed current M1 route, security, visual, media or regression row still blocks H-17.
 
 **Exit gate:** inspect fixture coverage, mobile/desktop review, three collection-specific upload/read/replace/cleanup paths, empty roots, public/customer negatives, state boundaries, H-19 finding dispositions, independent F-01/F-02 checks, and the `DocumentStore` successor seam. On failure revise M1; do not treat local bytes or independent fixture dates as a live media/availability system.
+
+### M1 exit decision — 23 November 2026
+
+**Result:** `PASS` for the fixture-backed UI milestone at code commit `79b3478995737dd73165afaba50369dcb5242a08`. The active M1 ticket registry is approved; T05–T07 remain superseded historical tickets. The final [T17-A7 checkpoint](../../../checkpoints/M1-T17-review-seam-inventory-79b3478.md) and independent [CK review](../../../feedback/M1-T17-review-seam-inventory-79b3478-ck.md) prove all nine RC-27 rows and report no blocking finding. T15's final media continuation and expanded T18 media handoff each have CK `PASS`; T19/H-19 and T20/H-20 and T21/H-21 also have CK `PASS` and were consumed by T17-A7. The earlier failed T17 v1 review remains historical.
+
+The exit evidence includes the versioned route/scenario and successor-seam inventory, 110/110 actual-route viewport observations, 42/42 browser cases, the three collection-specific media paths and public/customer negatives, the `DocumentStore` substitution, and independent closure of F-01/F-02. H-19 `FRA-03` is repaired within M1; `FRA-01/02/04/05/06` have accepted M2+ dispositions and named successors. [Cross-phase verification](../verification.md) retains the boundary: this exit establishes a reviewed, non-authoritative fixture UI and does not accept production authentication, booking, availability, persistence, or public media delivery.
+
+**Handoff:** M1.1 audits this exact M1 baseline for architecture and code-efficiency findings before any finding-backed refactor tickets; M2 execution follows the M1.1 exit gate. No code change or new runtime claim is part of this status decision.
 
