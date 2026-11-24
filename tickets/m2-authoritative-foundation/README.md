@@ -1,6 +1,6 @@
 # M2 authoritative foundation — ticket set
 
-- Set ID: `BAP-M2-SET-01`; revision `1.3` (T02 CK approval); status `T01 approved; T02 approved; T03 approved; T04 approved; T05 approved; T06 awaiting review; T07 eligible within its dependencies`; selected milestone `M2`.
+- Set ID: `BAP-M2-SET-01`; revision `1.3` (T02 CK approval); status `T01 approved; T02 approved; T03 approved; T04 approved; T05 approved; T06 approved; T07 eligible within its dependencies`; selected milestone `M2`.
 - Source code repository and exact contract-amendment commit: `https://github.com/adityaa11/bride-assistant.git` at `d5fbececd2dd57598ba1d5630a9f85d86a4f5990`; original implementation planning baseline: `79b3478995737dd73165afaba50369dcb5242a08`.
 - Authority: [Project Context v3.2](../../contexts/project.md), [Stack Context v1.3](../../contexts/stack.md), [Implementation Context v3.0](../../contexts/implementation.md), [M2](../../contexts/implementation/milestones/M2-foundation.md), [architecture](../../contexts/implementation/architecture.md), [decisions D-02/03/05/06](../../contexts/implementation/decisions.md), and [verification](../../contexts/implementation/verification.md).
 - Accepted predecessor: [M1.1 no-refactor exit PASS](../../contexts/implementation/milestones/M1.1-architecture-audit-refactor.md#w02-reconciliation-and-m11-exit--23-november-2026) at the unchanged code commit, with [T01 CK PASS](../../feedback/M1.1-T01-architecture-audit-79b3478-ck.md) and [W02 disposition](../../evidence/M1.1-W02-disposition-79b3478.md). M1 fixture contracts remain review baselines, never production authority.
@@ -15,7 +15,7 @@
 | 3 | [M2-T03 environment and migration shell](M2-T03-data-shell.md) | approved | T01, T02 | active-in-this-ticket | T07 may run in parallel. |
 | 4 | [M2-T04 persistent auth and protected surfaces](M2-T04-persistent-auth.md) | approved | T03 | active-in-this-ticket | sequence. |
 | 5 | [M2-T05 authorization and input boundary](M2-T05-authorization-validation.md) | approved | T04 | active-in-this-ticket | sequence. |
-| 6 | [M2-T06 repository and document contracts](M2-T06-adapter-contracts.md) | awaiting_review | T03–T05 | preparation-only → M3/M4 | sequence. |
+| 6 | [M2-T06 repository and document contracts](M2-T06-adapter-contracts.md) | approved | T03–T05 | preparation-only → M3/M4 | sequence. |
 | 2P | [M2-T07 proof-policy decision gate](M2-T07-proof-policy-gate.md) | planned | T01; decisions by accountable owner | not-applicable | parallel with T02–T06; gates M4 production hardening, not proof feature construction. |
 
 T01–T06 are separate because they have different verification or authority boundaries: provider/account topology, dependency provenance, SQL lifecycle, identity/session, authorization/validation, and storage/repository contracts. T07 is a policy decision and expiry rehearsal, not an implementation substitute. No other M2 ticket is allocated. Each ticket has one owner and one review matrix; successors check only their own consumption of a predecessor handoff.

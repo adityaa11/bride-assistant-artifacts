@@ -1,6 +1,6 @@
 # M2-T06 — repository and universal DocumentStore contracts
 
-- State: `awaiting_review`; batch 6; work package `M2-W04`. Source code: `https://github.com/adityaa11/bride-assistant.git` at `79b3478995737dd73165afaba50369dcb5242a08`.
+- State: `approved` ([CK PASS](../../feedback/M2-T06-adapter-contracts-d806c93-ck.md)); batch 6; work package `M2-W04`. Source code: `https://github.com/adityaa11/bride-assistant.git` at `79b3478995737dd73165afaba50369dcb5242a08`. GO checkpoint: [M2-T06 at d806c93](../../checkpoints/M2-T06-adapter-contracts-d806c93.md).
 - Authority: [Project uploaded-media rule](../../contexts/project.md), [Stack DocumentStore](../../contexts/stack.md), [M2-W04](../../contexts/implementation/milestones/M2-foundation.md), [architecture](../../contexts/implementation/architecture.md), [M1.1 W02](../../evidence/M1.1-W02-disposition-79b3478.md). Dependencies: T03 `H-M2-03`, T04 `H-M2-04`, T05 `H-M2-05`. Successors: M3 catalogue/booking repositories and M4-W01/W05/06 via `H-M2-06`.
 - Activation: `preparation-only`; named M3/M4 tickets activate authoritative business repositories and Neon Object Storage. Existing T18 local fixture path stays review-only. Legacy: forbidden for production; fixture routes explicitly remain non-authoritative. SQL: no intended domain migration; ephemeral contract fixtures only. Empty state: no rows/objects yields empty read/`null`, never a fixture fallback or hidden record.
 
