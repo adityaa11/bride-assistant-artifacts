@@ -1,6 +1,6 @@
 # M2-T05 — server actor, ownership and input boundary
 
-- State: `awaiting_review`; batch 5; work package `M2-W03`. Source code: `https://github.com/adityaa11/bride-assistant.git` at `79b3478995737dd73165afaba50369dcb5242a08`.
+- State: `approved` ([CK PASS](../../feedback/M2-T05-authorization-validation-4cac47c-ck.md)); batch 5; work package `M2-W03`. Source code: `https://github.com/adityaa11/bride-assistant.git` at `79b3478995737dd73165afaba50369dcb5242a08`. GO checkpoint: [M2-T05 at 4cac47c](../../checkpoints/M2-T05-authorization-validation-4cac47c.md).
 - Authority: [Project role/privacy rules](../../contexts/project.md), [Stack authorization/Zod](../../contexts/stack.md), [M2-W03](../../contexts/implementation/milestones/M2-foundation.md), [architecture](../../contexts/implementation/architecture.md). Dependency: T04 `H-M2-04`. Successors: T06 and M3/M4 via `H-M2-05`.
 - Activation: `active-in-this-ticket` for role/session denial on existing protected workspace routes; ownership and payload contracts are preparation for T06/M3/M4 with disposable test-scoped records. Legacy: forbidden. SQL: `ephemeral-test-setup` only; no production migration. Empty state: anonymous access denies; an empty customer scope yields no record and never another customer's data.
 
