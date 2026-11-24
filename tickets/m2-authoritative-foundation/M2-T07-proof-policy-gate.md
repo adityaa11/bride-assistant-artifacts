@@ -1,6 +1,6 @@
 # M2-T07 — production-aligned configurable proof foundation
 
-- Revision: `2.0`; state: `planned` (explicit GO required); batch `2P`; work package `M2-R03`.
+- Revision: `2.0`; state: `awaiting_review` (GO checkpoint `1513413`; CK required); batch `2P`; work package `M2-R03`.
 - Planning authority: [PA-M2-T07-01 approved](../../contexts/implementation/decisions/PA-M2-T07-01-approved.md), 24 November 2026. Source code repository: `https://github.com/adityaa11/bride-assistant.git`; planning source commit `ad10fb47284517d0a77bdc39d228764f03b4c630`.
 - Preserved revision-1 evidence: [five-minute rehearsal](../../evidence/m2-t07/rehearsal-ad10fb4.md) and [blocked checkpoint](../../checkpoints/M2-T07-proof-policy-gate-ad10fb4-blocked.md). They are historical, not proof of revision-2 behavior.
 - Authority: [Project U4](../../contexts/project.md), [Stack Context](../../contexts/stack.md), [M2-R03](../../contexts/implementation/milestones/M2-foundation.md), [D-03](../../contexts/implementation/decisions.md#d-03-sensitive-document-policy), [policy template](../../contexts/implementation/payment-proof-policy-template.md), and PA-M2-T07-01. Dependencies: T01 `H-M2-01` and accepted T06 `H-M2-06` byte boundary. M4-W01/W02 consume the technical contract; M4-W07, M5-W03 and M5-W05 own later production gates.

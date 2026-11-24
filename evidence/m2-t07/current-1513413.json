@@ -1,0 +1,278 @@
+{
+  "result": "PASS",
+  "version": "H-M2-07-TECH/2.0",
+  "profileDenials": [
+    {
+      "label": "unknown identity",
+      "reasons": [
+        "ENVIRONMENT_MISMATCH"
+      ]
+    },
+    {
+      "label": "environment override",
+      "reasons": [
+        "ENVIRONMENT_MISMATCH"
+      ]
+    },
+    {
+      "label": "short production duration",
+      "reasons": [
+        "PRODUCTION_DURATION",
+        "MISSING_pdpBasisNoticeContact",
+        "MISSING_scannerProviderTerms",
+        "MISSING_holdCriteria",
+        "MISSING_neonRpoRtoBackupRestoreOwner",
+        "MISSING_indonesianTenYearRetentionDetermination"
+      ]
+    },
+    {
+      "label": "controlled production clock",
+      "reasons": [
+        "PRODUCTION_ISOLATION",
+        "MISSING_pdpBasisNoticeContact",
+        "MISSING_scannerProviderTerms",
+        "MISSING_holdCriteria",
+        "MISSING_neonRpoRtoBackupRestoreOwner",
+        "MISSING_indonesianTenYearRetentionDetermination"
+      ]
+    },
+    {
+      "label": "disposable production adapter",
+      "reasons": [
+        "PRODUCTION_ADAPTER",
+        "MISSING_pdpBasisNoticeContact",
+        "MISSING_scannerProviderTerms",
+        "MISSING_holdCriteria",
+        "MISSING_neonRpoRtoBackupRestoreOwner",
+        "MISSING_indonesianTenYearRetentionDetermination"
+      ]
+    },
+    {
+      "label": "test rejects database",
+      "reasons": [
+        "NONPRODUCTION_ISOLATION"
+      ]
+    },
+    {
+      "label": "test rejects objectStore",
+      "reasons": [
+        "NONPRODUCTION_ISOLATION"
+      ]
+    },
+    {
+      "label": "test rejects credentials",
+      "reasons": [
+        "NONPRODUCTION_ISOLATION"
+      ]
+    },
+    {
+      "label": "test rejects data",
+      "reasons": [
+        "NONPRODUCTION_ISOLATION"
+      ]
+    },
+    {
+      "label": "unknown environment",
+      "reasons": [
+        "ENVIRONMENT_MISMATCH"
+      ]
+    },
+    {
+      "label": "missing pdpBasisNoticeContact",
+      "reasons": [
+        "MISSING_pdpBasisNoticeContact"
+      ]
+    },
+    {
+      "label": "missing scannerProviderTerms",
+      "reasons": [
+        "MISSING_scannerProviderTerms"
+      ]
+    },
+    {
+      "label": "missing holdCriteria",
+      "reasons": [
+        "MISSING_holdCriteria"
+      ]
+    },
+    {
+      "label": "missing neonRpoRtoBackupRestoreOwner",
+      "reasons": [
+        "MISSING_neonRpoRtoBackupRestoreOwner"
+      ]
+    },
+    {
+      "label": "missing indonesianTenYearRetentionDetermination",
+      "reasons": [
+        "MISSING_indonesianTenYearRetentionDetermination"
+      ]
+    }
+  ],
+  "activation": {
+    "pending": {
+      "technicalReady": true,
+      "policyApproved": false,
+      "operationalReady": false,
+      "activationAuthorized": false
+    },
+    "approvedWithoutOperations": {
+      "technicalReady": true,
+      "policyApproved": true,
+      "operationalReady": false,
+      "activationAuthorized": false
+    },
+    "operationsWithoutRelease": {
+      "technicalReady": true,
+      "policyApproved": true,
+      "operationalReady": true,
+      "activationAuthorized": false
+    },
+    "completeSynthetic": {
+      "technicalReady": true,
+      "policyApproved": true,
+      "operationalReady": true,
+      "activationAuthorized": true
+    }
+  },
+  "scenarios": [
+    {
+      "name": "five-minute-reviewed-and-upload",
+      "snapshots": [
+        {
+          "label": "before",
+          "deleted": [],
+          "bytes": 2,
+          "metadata": 2,
+          "audit": 3,
+          "history": 2,
+          "deletionRecords": 0
+        },
+        {
+          "label": "pre-expiry",
+          "deleted": [],
+          "bytes": 2,
+          "metadata": 2,
+          "audit": 3,
+          "history": 2,
+          "deletionRecords": 0
+        },
+        {
+          "label": "upload-expiry",
+          "deleted": [
+            "unreviewed"
+          ],
+          "bytes": 1,
+          "metadata": 1,
+          "audit": 2,
+          "history": 2,
+          "deletionRecords": 1
+        },
+        {
+          "label": "review-expiry",
+          "deleted": [
+            "reviewed"
+          ],
+          "bytes": 0,
+          "metadata": 0,
+          "audit": 0,
+          "history": 2,
+          "deletionRecords": 2
+        },
+        {
+          "label": "idempotent",
+          "deleted": [],
+          "bytes": 0,
+          "metadata": 0,
+          "audit": 0,
+          "history": 2,
+          "deletionRecords": 2
+        }
+      ]
+    },
+    {
+      "name": "authoritative-calendar-and-statutory",
+      "snapshots": [
+        {
+          "label": "before",
+          "deleted": [],
+          "bytes": 4,
+          "metadata": 4,
+          "audit": 5,
+          "history": 4,
+          "deletionRecords": 0
+        },
+        {
+          "label": "before-eight-month-boundary",
+          "deleted": [],
+          "bytes": 4,
+          "metadata": 4,
+          "audit": 5,
+          "history": 4,
+          "deletionRecords": 0
+        },
+        {
+          "label": "eight-month-boundary",
+          "deleted": [
+            "reviewed",
+            "unreviewed"
+          ],
+          "bytes": 2,
+          "metadata": 2,
+          "audit": 2,
+          "history": 4,
+          "deletionRecords": 2
+        },
+        {
+          "label": "before-ten-year-boundary",
+          "deleted": [],
+          "bytes": 2,
+          "metadata": 2,
+          "audit": 2,
+          "history": 4,
+          "deletionRecords": 2
+        },
+        {
+          "label": "ten-year-boundary",
+          "deleted": [
+            "statutory"
+          ],
+          "bytes": 1,
+          "metadata": 1,
+          "audit": 1,
+          "history": 4,
+          "deletionRecords": 3
+        }
+      ]
+    },
+    {
+      "name": "hold-and-scanner-fail-closed",
+      "snapshots": [
+        {
+          "label": "before",
+          "deleted": [],
+          "bytes": 5,
+          "metadata": 5,
+          "audit": 5,
+          "history": 5,
+          "deletionRecords": 0
+        },
+        {
+          "label": "after-expiry",
+          "deleted": [
+            "eligible"
+          ],
+          "bytes": 4,
+          "metadata": 4,
+          "audit": 4,
+          "history": 5,
+          "deletionRecords": 1
+        }
+      ]
+    }
+  ],
+  "emptyState": {
+    "initialRecords": 0,
+    "deleted": 0,
+    "byteRootExists": false
+  }
+}
