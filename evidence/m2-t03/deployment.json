@@ -1,0 +1,16 @@
+{
+  "codeCommit": "d52067955f833fdf803c96f868cb4b3f67a36218",
+  "deploymentId": "dpl_ExhMAi4Hs6pXHvJP79SHkskMHEeq",
+  "deploymentUrl": "bride-assistant-bqnpjkrs2-izharaditya-2800s-projects.vercel.app",
+  "target": "production",
+  "readyState": "READY",
+  "route": "api/system/database",
+  "routeRuntime": "nodejs24.x",
+  "routeRegions": [
+    "sin1"
+  ],
+  "alias": [
+    "project-tnrxa.vercel.app",
+    "bride-assistant-izharaditya-2800s-projects.vercel.app"
+  ]
+}

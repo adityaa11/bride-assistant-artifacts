@@ -1,6 +1,6 @@
 # M2-T03 — deployable environment and migration shell
 
-- State: `planned`; batch 3; work package `M2-W01`. Source code: `https://github.com/adityaa11/bride-assistant.git` at `d5fbececd2dd57598ba1d5630a9f85d86a4f5990` (ERD contract amendment; implementation baseline remains `79b3478995737dd73165afaba50369dcb5242a08`).
+- State: `awaiting_review`; batch 3; work package `M2-W01`. Source code: `https://github.com/adityaa11/bride-assistant.git` at `d5fbececd2dd57598ba1d5630a9f85d86a4f5990` (ERD contract amendment; implementation baseline remains `79b3478995737dd73165afaba50369dcb5242a08`). GO checkpoint: [M2-T03 at d520679](../../checkpoints/M2-T03-data-shell-d520679.md).
 - Authority: [M2-W01](../../contexts/implementation/milestones/M2-foundation.md), [D-02/05/06](../../contexts/implementation/decisions.md), [verification](../../contexts/implementation/verification.md). Dependencies: T01 `H-M2-01`, T02 `H-M2-02`. Successors: T04/T05/T06 via `H-M2-03`.
 - Activation: `active-in-this-ticket` for deployable server/database shell. Legacy: forbidden. SQL: intended migrations only for a minimal schema/migration ledger needed by auth; ephemeral test database/rollback is separate; no domain schema or production seed. Empty state: fresh database migrates with zero business records and remains empty.
 

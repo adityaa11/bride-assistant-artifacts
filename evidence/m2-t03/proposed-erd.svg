@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="420" viewBox="0 0 1080 420">
+<rect width="1080" height="420" fill="#f8fafc"/>
+<text x="48" y="52" font-family="Arial" font-size="25" font-weight="bold" fill="#102a43">M2-T03 proposed schema change</text>
+<text x="48" y="85" font-family="Arial" font-size="16" fill="#486581">Migration 0001: minimal ledger only · no domain or auth records</text>
+<rect x="48" y="122" width="410" height="230" rx="14" fill="white" stroke="#9fb3c8" stroke-width="2"/>
+<text x="72" y="162" font-family="Arial" font-size="21" font-weight="bold" fill="#102a43">Before · fresh public schema</text>
+<text x="72" y="211" font-family="Arial" font-size="17" fill="#486581">No tables</text>
+<text x="72" y="243" font-family="Arial" font-size="15" fill="#627d98">Zero business records</text>
+<path d="M480 235h95m-19-16 20 16-20 16" fill="none" stroke="#334e68" stroke-width="3"/>
+<rect x="597" y="122" width="435" height="230" rx="14" fill="white" stroke="#3e7bfa" stroke-width="2"/>
+<rect x="597" y="122" width="435" height="55" rx="14" fill="#d9e8ff"/>
+<text x="621" y="158" font-family="Arial" font-size="20" font-weight="bold" fill="#102a43">public.schema_migrations</text>
+<text x="621" y="211" font-family="Arial" font-size="17" fill="#102a43">PK  version                 text</text>
+<text x="621" y="251" font-family="Arial" font-size="17" fill="#102a43">     checksum          text, unique per version</text>
+<text x="621" y="291" font-family="Arial" font-size="17" fill="#102a43">     applied_at          timestamptz</text>
+<text x="621" y="330" font-family="Arial" font-size="14" fill="#627d98">No foreign keys · no relationships/cardinalities</text>
+<text x="48" y="392" font-family="Arial" font-size="14" fill="#627d98">Planning diagram; actual state will be rendered and compared with fresh database introspection.</text>
+</svg>
