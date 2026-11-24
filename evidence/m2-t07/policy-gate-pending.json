@@ -1,0 +1,31 @@
+{
+  "version": "0.1-pending",
+  "ticket": "M2-T07",
+  "codeCommit": "ad10fb47284517d0a77bdc39d228764f03b4c630",
+  "approved": false,
+  "productionProofHardeningEnabled": false,
+  "developmentRehearsal": {
+    "durationMinutes": 5,
+    "result": "PASS",
+    "evidence": "rehearsal-ad10fb4.md"
+  },
+  "approvedRetentionDesign": {
+    "duration": "P8M",
+    "reviewedOrigin": "final-proof-review",
+    "unreviewedOrigin": "upload",
+    "activation": "pending-production-policy-gate"
+  },
+  "pendingDecisions": {
+    "pdpBasisNoticeContact": null,
+    "scannerProviderTerms": null,
+    "holdCriteria": null,
+    "neonRpoRtoBackupRestoreOwner": null,
+    "indonesianTenYearRetentionDetermination": null
+  },
+  "consumers": {
+    "M4-W01": "private proof storage and retention controls",
+    "M4-W02": "proof review and audit controls",
+    "M4-W07": "policy and incident controls",
+    "M5-W03": "recovery ownership and restore controls"
+  }
+}

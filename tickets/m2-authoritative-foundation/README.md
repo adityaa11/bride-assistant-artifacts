@@ -16,7 +16,7 @@
 | 4 | [M2-T04 persistent auth and protected surfaces](M2-T04-persistent-auth.md) | approved | T03 | active-in-this-ticket | sequence. |
 | 5 | [M2-T05 authorization and input boundary](M2-T05-authorization-validation.md) | approved | T04 | active-in-this-ticket | sequence. |
 | 6 | [M2-T06 repository and document contracts](M2-T06-adapter-contracts.md) | approved | T03–T05 | preparation-only → M3/M4 | sequence. |
-| 2P | [M2-T07 proof-policy decision gate](M2-T07-proof-policy-gate.md) | planned | T01; decisions by accountable owner | not-applicable | parallel with T02–T06; gates M4 production hardening, not proof feature construction. |
+| 2P | [M2-T07 proof-policy decision gate](M2-T07-proof-policy-gate.md) | blocked | T01 PASS; accountable D-03 decisions pending | not-applicable | Five-minute rehearsal passed at `ad10fb4`; M4 production hardening remains gated. |
 
 T01–T06 are separate because they have different verification or authority boundaries: provider/account topology, dependency provenance, SQL lifecycle, identity/session, authorization/validation, and storage/repository contracts. T07 is a policy decision and expiry rehearsal, not an implementation substitute. No other M2 ticket is allocated. Each ticket has one owner and one review matrix; successors check only their own consumption of a predecessor handoff.
 

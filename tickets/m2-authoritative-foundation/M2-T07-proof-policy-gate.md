@@ -1,6 +1,6 @@
 # M2-T07 — proof retention rehearsal and production policy decision
 
-- State: `planned`; batch `2P`; work package `M2-R03`. Source code: `https://github.com/adityaa11/bride-assistant.git` at `79b3478995737dd73165afaba50369dcb5242a08`.
+- State: `blocked`; batch `2P`; [GO progress](../../checkpoints/M2-T07-proof-policy-gate-ad10fb4-blocked.md) at code commit `ad10fb47284517d0a77bdc39d228764f03b4c630` (five-minute rehearsal PASS; five accountable D-03 production decisions pending); work package `M2-R03`. Source code: `https://github.com/adityaa11/bride-assistant.git` at `79b3478995737dd73165afaba50369dcb5242a08`.
 - Authority: [Project U4](../../contexts/project.md), [M2-R03](../../contexts/implementation/milestones/M2-foundation.md), [D-03](../../contexts/implementation/decisions.md), [proof policy template](../../contexts/implementation/payment-proof-policy-template.md). Dependency: T01 `H-M2-01`; parallel with T02–T06. Successors: M4-W01/02/07 production hardening and M5-W03 via `H-M2-07`.
 - Activation: `not-applicable`; this is a bounded rehearsal/decision record, no production proof runtime. Legacy and SQL: not applicable; rehearsal data is disposable and never enters migration graph. Empty state: no proof exists initially; expiry run creates disposable proof bytes/audit metadata and returns to empty without deleting booking history.
 
