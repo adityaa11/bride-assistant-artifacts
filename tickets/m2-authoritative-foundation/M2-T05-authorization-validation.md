@@ -1,6 +1,6 @@
 # M2-T05 — server actor, ownership and input boundary
 
-- State: `planned`; batch 5; work package `M2-W03`. Source code: `https://github.com/adityaa11/bride-assistant.git` at `79b3478995737dd73165afaba50369dcb5242a08`.
+- State: `awaiting_review`; batch 5; work package `M2-W03`. Source code: `https://github.com/adityaa11/bride-assistant.git` at `79b3478995737dd73165afaba50369dcb5242a08`.
 - Authority: [Project role/privacy rules](../../contexts/project.md), [Stack authorization/Zod](../../contexts/stack.md), [M2-W03](../../contexts/implementation/milestones/M2-foundation.md), [architecture](../../contexts/implementation/architecture.md). Dependency: T04 `H-M2-04`. Successors: T06 and M3/M4 via `H-M2-05`.
 - Activation: `active-in-this-ticket` for role/session denial on existing protected workspace routes; ownership and payload contracts are preparation for T06/M3/M4 with disposable test-scoped records. Legacy: forbidden. SQL: `ephemeral-test-setup` only; no production migration. Empty state: anonymous access denies; an empty customer scope yields no record and never another customer's data.
 
@@ -33,3 +33,8 @@ Create one server-only session-to-actor, role and optional record-ownership deci
 - `SEC-M2-05` `implement-now`: server role/ownership and Zod untrusted input boundary; Project/Stack, ASVS authorization/input/API, OWASP broken access control/injection, NIST CSF Protect and SP 800-53 AC/SI. `SRB-M2-05` binds `RC-M2-05A/B/D` to direct negative integration evidence.
 - `SEC-M2-05P` `preserve-seam`: later admin delegation or resource-specific policy can attach to the explicit actor/resource boundary, without embedding identity in storage keys. `SRB-M2-05P` binds `RC-M2-05C`.
 - Validation: current-revision route tests plus pure decision tests; test records are ephemeral. Hard stop: if an accepted actor/owner source cannot be established, return to T04 or planning rather than infer it from client input.
+
+## GO checkpoint and migration confirmation
+
+- Code commit: `4cac47c1cc4a3b3d0998372d23f4ba4561cc2dc0`; [GO checkpoint](../../checkpoints/M2-T05-authorization-validation-4cac47c.md).
+- On 24 November 2026, after the rendered unchanged-schema preview and definitions, purpose and responsibilities of migrations `0001` and `0002` were shown, the user explicitly replied: “Confirm unchanged schema and proceed.” No production migration changed; disposable local migrations and tests followed that confirmation.

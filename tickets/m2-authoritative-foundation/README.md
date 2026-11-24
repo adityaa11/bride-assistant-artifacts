@@ -14,7 +14,7 @@
 | 2 | [M2-T02 exact runtime lock](M2-T02-runtime-lock.md) | approved | T01 interface evidence | active-in-this-ticket | T07 may run in parallel. |
 | 3 | [M2-T03 environment and migration shell](M2-T03-data-shell.md) | approved | T01, T02 | active-in-this-ticket | T07 may run in parallel. |
 | 4 | [M2-T04 persistent auth and protected surfaces](M2-T04-persistent-auth.md) | approved | T03 | active-in-this-ticket | sequence. |
-| 5 | [M2-T05 authorization and input boundary](M2-T05-authorization-validation.md) | planned | T04 | active-in-this-ticket | sequence. |
+| 5 | [M2-T05 authorization and input boundary](M2-T05-authorization-validation.md) | awaiting_review | T04 | active-in-this-ticket | sequence. |
 | 6 | [M2-T06 repository and document contracts](M2-T06-adapter-contracts.md) | planned | T03–T05 | preparation-only → M3/M4 | sequence. |
 | 2P | [M2-T07 proof-policy decision gate](M2-T07-proof-policy-gate.md) | planned | T01; decisions by accountable owner | not-applicable | parallel with T02–T06; gates M4 production hardening, not proof feature construction. |
 
