@@ -4,7 +4,7 @@
 
 **Source code repository / commit:** `https://github.com/adityaa11/bride-assistant.git` / `79b3478995737dd73165afaba50369dcb5242a08`.
 
-**Status:** `planned` · **Advances:** separate identity, protected data, durable implementation boundary.  
+**Status:** `complete` — technical foundation exit `PASS` on 24 November 2026 · **Advances:** separate identity, protected data, durable implementation boundary.
 **Outcome:** Approved production choices plus persistent auth, authorization, migration/test foundations, and adapters can replace fixtures. Without it, later UI is not authoritative.
 
 **Entry:** M1 and M1.1 exit gates passed. **Provisioning/verification gate:** configure confirmed Vercel application plus Neon PostgreSQL/Object Storage Singapore topology and D-02/R-02 before production-facing packages; D-03/R-03 before production proof hardening/release. **Excludes:** catalogue/booking implementation and final production proof controls. **Handoff:** protected adapters and environment model to M3/M4. **Risk:** incorrect region, connection, or recovery configuration; contain by withholding real data until M2 evidence passes.
@@ -21,4 +21,10 @@
 
 **Graph:** `M1-W07 → M1.1 exit → M2-R01 → M2-R02 → M2-W01 → M2-W02 → M2-W03 → M2-W04`; `M2-R01 + M2-W04 interface → M2-R03`. T07 follows accepted T06 byte-contract evidence; its technical CK enables M4 consumption, while D-03 approvals remain production gates.
 **Exit:** provider/version evidence, protected-boundary, migration and adapter-contract checks pass; T07 technical review is separately eligible with explicit pending policy decisions. Missing D-03 approvals block production proof activation, not the T01–T06 path.
+
+### M2 exit — 24 November 2026
+
+**Result:** `PASS`. All seven tickets in [BAP-M2-SET-01](../../../tickets/m2-authoritative-foundation/README.md) have independent CK `PASS`: [T01](../../../feedback/M2-T01-topology-local-profile-123e6b4-ck.md), [T02](../../../feedback/M2-T02-runtime-lock-ccf351b-ck.md), [T03](../../../feedback/M2-T03-data-shell-d520679-ck.md), [T04](../../../feedback/M2-T04-persistent-auth-af6409c-ck.md), [T05](../../../feedback/M2-T05-authorization-validation-4cac47c-ck.md), [T06](../../../feedback/M2-T06-adapter-contracts-d806c93-ck.md), and [T07](../../../feedback/M2-T07-proof-policy-1513413-ck.md). The reviewed T07 technical foundation is at code commit `15134132805a5dce25ebd88287f96646110530e2` and supplies [H-M2-07-TECH](../../../evidence/m2-t07/H-M2-07-TECH-v2.md).
+
+The M2 outcome and exit checks are satisfied within their ticket scopes: T01/T02 establish provider and version evidence, T03 the deployable migration shell, T04/T05 protected identity and authorization, T06 the repository and universal byte contracts, and T07 the shared proof-policy lifecycle. M3 may consume the approved foundation through the named handoffs. The five D-03 production decisions, M4 live proof/provider integration and controls, and M5 recovery and release activation retain their separate gates; this exit does not authorize production proof upload or deletion.
 
