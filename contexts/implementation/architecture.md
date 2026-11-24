@@ -1,5 +1,7 @@
 # Architecture Overview
 
+**PA-M2-T07-01 planning source binding:** https://github.com/adityaa11/bride-assistant.git at `ad10fb47284517d0a77bdc39d228764f03b4c630`.
+
 **Source code repository / commit:** `https://github.com/adityaa11/bride-assistant.git` / `79b3478995737dd73165afaba50369dcb5242a08`.
 
 ## Material boundaries
@@ -16,6 +18,10 @@
 | Production data | Neon PostgreSQL 18.7 in Singapore backs authoritative relational facts. `confirmed` | Vercel server-side work uses the Neon connection path; preview deployments may use isolated Neon database branches. |
 | UI transition | Typed UI-facing contracts/adapters isolate M1 fixtures from future backend read models. `proposed` | Feature components do not import fixture objects directly. |
 | Runtime baseline | Node.js 24.22.3, Next.js 16.4.6, React/React DOM 19.3.1, TypeScript 5.9.3, Better Auth 1.7.26, Zod 4.6.7, `pg` 8.23.1, `@types/node` 24.6.6, and PostgreSQL 18.7. `confirmed` | This is the approved starting baseline. Lockfiles pin exact tested patches; Node/PostgreSQL receive security-patch updates within their approved majors; the managed provider must offer PostgreSQL 18.7. |
+
+## Validated policy and environment boundary
+
+The project-wide [PA-M2-T07-01 principle](decisions/PA-M2-T07-01-approved.md) separates versioned policy authority/evidence, environment profile/adapter selection, bidirectional validation against a trusted deployment identity, and validated runtime values passed to shared domain behavior. Domain code does not branch on environment names or parse legal approval artifacts. Production rejects development durations, controlled clocks and disposable adapters; development/test reject production stores, credentials and real customer data. Unknown combinations fail closed. T07 implements only the proof-policy subset; M4/M5 bind production adapters, recovery and activation.
 
 ## Transition posture
 

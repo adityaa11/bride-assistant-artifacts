@@ -1,6 +1,8 @@
 # Implementation Context — Bride Assistant Planner / Ranur Bridal Care
 
-**Context ID:** `BAP-IMPLEMENTATION-CONTEXT` · **Revision:** `3.0` · **Date:** 23 November 2026
+**PA-M2-T07-01 planning source binding:** https://github.com/adityaa11/bride-assistant.git at `ad10fb47284517d0a77bdc39d228764f03b4c630`.
+
+**Context ID:** `BAP-IMPLEMENTATION-CONTEXT` · **Revision:** `3.1` · **Date:** 24 November 2026
 **Status:** `ready` · **Project state:** `hybrid` · **Ticket-generation readiness:** `M1.1 exit PASS with no refactor; M2 planning may begin behind its own gates; M3–M5 remain planned`
 **Source code repository / commit:** `https://github.com/adityaa11/bride-assistant.git` / `79b3478995737dd73165afaba50369dcb5242a08`.
 
@@ -23,6 +25,10 @@
 Ranur Bridal Care will receive one responsive web application with public discovery, a customer workspace, and a separate admin workspace. Customers can discover packages, sign in, submit one durable booking request, follow its official status, and optionally hand off payment proof; admin controls catalogue, official decisions, availability, and published content. The shared booking record—not WhatsApp—remains authoritative. A date is unavailable through deliberate admin closure or a `Booking Berhasil` booking; pending bookings alone do not reserve dates. Snapshots prevent later catalogue changes from rewriting history. Claims are documented or user-intent in [Project Context](project.md) and [Stack Context](stack.md).
 
 The system boundary is Next.js/React/TypeScript, Better Auth, PostgreSQL, Zod, `DocumentStore`, and `wa.me` handoff. Payment gateways, automated WhatsApp, native mobile, and browser-local production state are excluded. Server-enforced role/ownership, transactional availability, private proof bytes, and published-only public content are material quality constraints.
+
+## Production-aligned environment principle
+
+[PA-M2-T07-01](implementation/decisions/PA-M2-T07-01-approved.md) establishes a project-wide separation: versioned policy authority and approval evidence → environment profile and adapter selection → validation against policy and trusted deployment identity → validated runtime values consumed by shared domain behavior. Production requirements remain authoritative. Development/test may use synthetic data, controlled clocks, shortened intervals and disposable resources only through validated profiles. Production cannot activate test adapters or shortened controls; development/test cannot target production data, object stores or credentials. Unknown combinations fail closed. Each package owns only its named subset of this principle; T07 owns the proof-policy foundation, M4 owns live proof integration, and M5 owns recovery and release.
 
 ## Repository reconciliation
 
@@ -47,7 +53,7 @@ The system boundary is Next.js/React/TypeScript, Better Auth, PostgreSQL, Zod, `
 | --- | --- | --- | --- |
 | D-01 | superseded | [Decision register](implementation/decisions.md#d-01-vercel-application-and-documentstore-platform) | Historical; replaced by D-06 |
 | D-02 | confirmed | [Decision register](implementation/decisions.md#d-02-runtime-and-auth-data-integration) | M2–M5 / M2-R02 |
-| D-03 | deferred production hardening | [Decision register](implementation/decisions.md#d-03-sensitive-document-policy) | M4 proof capability stays enabled; final provider/legal/recovery seams await M2-R03 |
+| D-03 | confirmed technical foundation; five production approvals pending | [Decision register](implementation/decisions.md#d-03-sensitive-document-policy) and [PA-M2-T07-01](implementation/decisions/PA-M2-T07-01-approved.md) | T07 technical CK can precede approvals; M4/M5 activation remains gated |
 | D-04 | deferred | [Decision register](implementation/decisions.md#d-04-official-whatsapp-handoff) | M3–M4; [.env.example](../../.env.example) |
 | D-05 | confirmed | [Decision register](implementation/decisions.md#d-05-production-postgresql-provider-and-location) | M2–M5 / M2-R01 |
 | D-06 | confirmed | [Decision register](implementation/decisions.md#d-06-production-documentstore-provider-and-location) | M2–M5 / M2-R01, M4-W01 |
@@ -63,5 +69,5 @@ The system boundary is Next.js/React/TypeScript, Better Auth, PostgreSQL, Zod, `
 
 ## Readiness
 
-`ready`: The end product is coherently planned. M1's fixture/UI exit is `PASS` at `79b3478`, backed by T17-A7 CK `PASS`; M1-W07 records accepted deferrals for H-19 FRA-01/02/04, and M3-W07 owns the later admin-closure and successful-booking availability relation. M1.1-T01's audit is approved and W02 records no justified refactor; M1.1 exits `PASS` on the unchanged code baseline. Vercel application hosting plus Neon PostgreSQL/Object Storage and the development profile are confirmed; M2 planning can now consume the M1.1 handoff, with its own entry and verification gates still required. Proof formats, limits, retention rollout, authorization, audit, incident containment, and private-object delivery are confirmed. The payment-proof capability remains enabled in the product plan; deferred provider/legal/recovery choices are explicit production-hardening seams to resolve before release. The official WhatsApp number remains intentionally deferred and leaves the live handoff disabled.
+`ready`: The end product is coherently planned. M1's fixture/UI exit is `PASS` at `79b3478`, backed by T17-A7 CK `PASS`; M1-W07 records accepted deferrals for H-19 FRA-01/02/04, and M3-W07 owns the later admin-closure and successful-booking availability relation. M1.1-T01's audit is approved and W02 records no justified refactor; M1.1 exits `PASS` on the unchanged code baseline. Vercel application hosting plus Neon PostgreSQL/Object Storage and the development profile are confirmed; M2 planning can now consume the M1.1 handoff, with its own entry and verification gates still required. Proof formats, limits, retention rollout, authorization, audit, incident containment, and private-object delivery are confirmed. The payment-proof capability remains in the product plan. T07 technical foundation may be reviewed with explicit pending decisions; M4/M5 production policy, operations and activation remain gated until accountable approvals and provider evidence exist. The official WhatsApp number remains intentionally deferred and leaves the live handoff disabled.
 

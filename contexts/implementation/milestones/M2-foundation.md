@@ -1,5 +1,7 @@
 # M2 — Authoritative foundation and decision gate
 
+**PA-M2-T07-01 planning source binding:** https://github.com/adityaa11/bride-assistant.git at `ad10fb47284517d0a77bdc39d228764f03b4c630`.
+
 **Source code repository / commit:** `https://github.com/adityaa11/bride-assistant.git` / `79b3478995737dd73165afaba50369dcb5242a08`.
 
 **Status:** `planned` · **Advances:** separate identity, protected data, durable implementation boundary.  
@@ -15,8 +17,8 @@
 | M2-W02 | Persistent customer/admin auth and protected route/session boundary; excludes domain authorization detail. | M2-W01 `sequence` | Replaces M1 customer/admin placeholders. | Session/route-denial tests; handoff M2-W03 and M3-W05/06. | M1-W05/06 placeholders → M2-W02; invariant: customer/admin surfaces remain separate. |
 | M2-W03 | Server role/ownership utilities and Zod boundary convention; excludes catalogue rules. | M2-W02 `sequence` | Creates protected command/read seam. | Direct denial and invalid-payload tests; handoff M2-W04/M3/M4. | N/A. |
 | M2-W04 | Repository/adaptor contracts including the single `DocumentStore` byte boundary for every upload; excludes concrete private-byte adapter. | M2-W01–03 `sequence` | Replaces fixture adapters incrementally; preserves UI contracts and T18/H-18's opaque media metadata, with content-specific lifecycle above `DocumentStore`. | Fixture/backend contract tests for Portfolio, Testimonials, Events and proof; handoff M3/M4. | M1-W02 and M1-W07/T18 → M2-W04; invariant: feature components depend on contracts, not fixtures or storage providers. |
-| M2-R03 | Verify five-minute retention rollout, then approve proof/media consent, scanner, recovery, incident, and accounting/legal rules; defer only the unresolved production-hardening values. | M2-R01 `decision gate` | Determines proof-file and operational controls; the eight-month retention policy is recorded in D-03. | Five-minute expiry evidence plus approved remaining policy/control record; handoff M4-W01/02/07 production hardening. | N/A; D-03 preserves the proof capability while its remaining controls are bound before release. |
+| M2-R03 | Deliver one production-aligned proof-policy schema, validated environment profiles, shared lifecycle/retention/hold/scanner outcome contract, and disposable verification; retain the five D-03 decisions as later production gates. Excludes live provider adapters and SQL. | M2-R01 plus M2-W04 byte-contract interface | T07 owns technical behavior and H-M2-07-TECH; M4 consumes it for live proof integration. Eight-month eligible and applicable ten-year minimum are authoritative; unknown classification denies production deletion. | Current-revision five-minute local lifecycle and controlled-clock production-duration tests, bidirectional isolation and activation-denial evidence; handoff M4-W01/02/07, M5-W03/W05. | N/A; M4-W07/M5-W03 own approvals and operational evidence; M5-W05 owns activation. |
 
-**Graph:** `M1-W07 → M1.1 exit → M2-R01 → M2-R02 → M2-W01 → M2-W02 → M2-W03 → M2-W04`; `M2-R01 → M2-R03`. M2-R03 is parallel-safe with R02/W01 after R01; it is required for M4 production hardening, not the proof capability.
-**Exit:** provider/version evidence, protected-boundary, migration and adapter-contract checks pass; otherwise defer backend tickets, not policy.
+**Graph:** `M1-W07 → M1.1 exit → M2-R01 → M2-R02 → M2-W01 → M2-W02 → M2-W03 → M2-W04`; `M2-R01 + M2-W04 interface → M2-R03`. T07 follows accepted T06 byte-contract evidence; its technical CK enables M4 consumption, while D-03 approvals remain production gates.
+**Exit:** provider/version evidence, protected-boundary, migration and adapter-contract checks pass; T07 technical review is separately eligible with explicit pending policy decisions. Missing D-03 approvals block production proof activation, not the T01–T06 path.
 

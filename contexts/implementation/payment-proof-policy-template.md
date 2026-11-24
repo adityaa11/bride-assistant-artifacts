@@ -1,6 +1,8 @@
 # Payment-proof and media policy template
 
-**Status:** `retention policy confirmed — production safeguards pending review`  
+**PA-M2-T07-01 planning source binding:** https://github.com/adityaa11/bride-assistant.git at `ad10fb47284517d0a77bdc39d228764f03b4c630`.
+
+**Status:** `technical policy confirmed — production decisions and activation pending`
 **Purpose:** Provide the policy shape for private payment proof and customer-facing media. It permits JPEG, PNG, and PDF proof files; production upload remains gated on the unresolved safeguards below.
 
 ## 1. Scope and data classification
@@ -8,7 +10,7 @@
 - **In scope:** payment-proof files and metadata; portfolio/testimonial media and publication-permission evidence.
 - **Classification:** `private customer evidence` for payment proof; `publishable only after authorization` for media.
 - **System boundary:** local Docker development adapter; production Neon Object Storage in the selected region; PostgreSQL stores only metadata and business linkage.
-- **Development-data rule:** the local adapter and volumes are disposable; do not treat development storage as production storage or a production retention system.
+- **Development-data rule:** local adapters/volumes, controlled clocks and synthetic data are disposable. Validation rejects production databases, object stores, credentials or real customer data in development/test, and local adapters or shortened durations in production.
 
 ## 2. Processing purpose, basis, and notice
 
@@ -46,11 +48,15 @@
 
 | Required decision | Policy value | Verification evidence |
 | --- | --- | --- |
-| Retention verification | Before enabling the active policy, set proof-byte and proof-audit retention to five minutes; prove that expiry deletes the object and proof-specific history while preserving booking status history. | Automated expiry/deletion/audit tests pass. |
-| Active retention | Eight months from the final proof-review event, or from upload when no review occurs. | Expiry job/test demonstrates deletion or hold. |
-| Legal/business hold | `deferred: conditions and authority` | Hold prevents deletion and is audited. |
+| Retention verification | Exercise the same lifecycle behavior with a five-minute disposable development profile, then test actual production durations and start events under a controlled clock. Five minutes is never production retention. | Current-revision byte/metadata/audit/history observations and controlled-clock boundary tests pass. |
+| Active retention | Eight calendar months from final proof review, or upload when never reviewed, only for eligible operational proof. Applicable Indonesian statutory records retain at least ten years under an approved classification/start rule. Unknown applicability blocks production deletion. | Controlled-clock class/start-event tests plus approved legal/accounting disposition and live M4 evidence. |
+| Legal/business hold | `deferred: accountable criteria, authority, release and review rules`; active hold always prevents deletion in every profile. | Synthetic hold cases at T07; approved criteria and live audit at M4-W07. |
 | Deletion/sanitization | Delete the object and its proof-specific metadata/audit events, write `PAYMENT_PROOF_DELETED`, and document provider lifecycle/backup expiry. Do not delete the booking's status history. | Deletion record and recovery boundary are documented. |
-| Backup/recovery | `deferred: Neon account-backed RPO/RTO and restore responsibility` | Restore rehearsal proves controlled recovery without broadening access. |
+| Backup/recovery | `deferred: Neon account-backed database/object-storage RPO/RTO, backup terms and restore owner` | M5-W03 verifies provider/account terms and restore without broadening access. |
+
+## Policy authority and runtime configuration
+
+Versioned policy authority contains requirements, accountable decisions, dates and evidence; it is not a runtime settings file. Environment profiles contain runtime values and adapter selection. Validation checks those values against the applicable policy and trusted deployment identity before producing runtime configuration for the shared lifecycle behavior. Domain logic does not read approval documents or branch on environment names. Missing production decisions, unknown classification and incompatible adapters keep production proof capabilities disabled. T07 owns the technical contract and local verification; M4-W07 owns approved PDP/scanner/hold/statutory treatment, M5-W03 owns recovery proof, and M5-W05 authorizes activation. The five original D-03 decision obligations remain open until evidenced.
 
 ## 6. Incident, exceptions, and review
 

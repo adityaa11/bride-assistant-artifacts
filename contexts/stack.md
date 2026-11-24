@@ -1,7 +1,9 @@
 # Stack Context — Bride Assistant Planner / Ranur Bridal Care
 
+**PA-M2-T07-01 planning source binding:** https://github.com/adityaa11/bride-assistant.git at `ad10fb47284517d0a77bdc39d228764f03b4c630`.
+
 **Context ID:** `BAP-STACK-CONTEXT`  
-**Revision:** 1.3
+**Revision:** 1.4
 **Date:** 22 November 2026
 **Readiness:** `ready`  
 **Source:** [Project Context](project.md)  
@@ -13,6 +15,10 @@
 Bride Assistant Planner needs one responsive, web-only application for Ranur Bridal Care's public site, customer workspace, and admin workspace. It must replace prototype browser-local data with authoritative, server-protected business facts while preserving the existing HTML as UI reference rather than a production contract. It needs separate customer and admin identity, transactional booking and availability rules, historic package snapshots, optional private payment-proof handling, and published-content control. **[documented: Project Context S1, S2; user-intent: Project Context D2–D4]**
 
 Indonesia/SEA data residency is a user preference. The selected providers place the application on Vercel and authoritative PostgreSQL plus private object storage on Neon; the selected production locations are Singapore. Final account-level recovery, transfer, and data-processing terms still require verification before real customer data is introduced. **[user-intent: 19 Nov 2026; documented: B4–B7]**
+
+## Production-aligned environment principle
+
+Production requirements are authoritative across the project. Versioned policy authority records requirements, decisions, approvals and evidence; environment configuration selects runtime values and infrastructure adapters; boundary validation binds configuration to applicable policy and trusted deployment identity; shared domain behavior consumes only validated runtime configuration and ports. Development/test may use controlled clocks, synthetic data, shorter intervals and disposable adapters without changing business or security semantics. Production rejects development/test overrides and adapters; development/test reject production databases, object stores, credentials and real customer data. Unknown or incompatible combinations fail closed. This project-wide principle does not make T07 the owner of unrelated capabilities. [PA-M2-T07-01](implementation/decisions/PA-M2-T07-01-approved.md).
 
 ## Selected baseline
 
