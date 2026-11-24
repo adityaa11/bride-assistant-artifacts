@@ -1,6 +1,6 @@
 # M2-T06 — repository and universal DocumentStore contracts
 
-- State: `planned`; batch 6; work package `M2-W04`. Source code: `https://github.com/adityaa11/bride-assistant.git` at `79b3478995737dd73165afaba50369dcb5242a08`.
+- State: `awaiting_review`; batch 6; work package `M2-W04`. Source code: `https://github.com/adityaa11/bride-assistant.git` at `79b3478995737dd73165afaba50369dcb5242a08`.
 - Authority: [Project uploaded-media rule](../../contexts/project.md), [Stack DocumentStore](../../contexts/stack.md), [M2-W04](../../contexts/implementation/milestones/M2-foundation.md), [architecture](../../contexts/implementation/architecture.md), [M1.1 W02](../../evidence/M1.1-W02-disposition-79b3478.md). Dependencies: T03 `H-M2-03`, T04 `H-M2-04`, T05 `H-M2-05`. Successors: M3 catalogue/booking repositories and M4-W01/W05/06 via `H-M2-06`.
 - Activation: `preparation-only`; named M3/M4 tickets activate authoritative business repositories and Neon Object Storage. Existing T18 local fixture path stays review-only. Legacy: forbidden for production; fixture routes explicitly remain non-authoritative. SQL: no intended domain migration; ephemeral contract fixtures only. Empty state: no rows/objects yields empty read/`null`, never a fixture fallback or hidden record.
 
@@ -33,3 +33,7 @@ Define protected repository/adaptor contracts for future authoritative reads/com
 - `SEC-M2-06` `implement-now`: one governed byte boundary, opaque metadata and actor-first repository contract; Project/Stack D-C03, ASVS data protection/file/API, OWASP access control/injection, NIST CSF Protect and SP 800-53 AC/SC/SI. `SRB-M2-06` binds `RC-M2-06A/B/D` to contract and dependency evidence.
 - `SEC-M2-07` `preserve-seam`: private proof read, signed URL issuance, content permission/publication and scanner/retention policy remain M4/T07 gates. `SRB-M2-07` binds `RC-M2-06C` and source path review; no policy is inferred from an opaque key.
 - Validation: current-revision contract and fixture-route checks; existing M1 visual baselines may be cited only if unchanged, while current fixture route observations are required for changed routes. Hard stop: if a universal byte contract cannot preserve the fixture interface and accepted Stack semantics, return to planning rather than add a second store.
+
+## GO checkpoint
+
+- [M2-T06 implementation checkpoint](../../checkpoints/M2-T06-adapter-contracts-d806c93.md) at code commit `d806c9357a2ffb8404ad4aac0a66821449ce0a7e` (GO conversation confirmed unchanged-schema ERD proposal before work).
