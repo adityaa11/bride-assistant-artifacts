@@ -1,4 +1,4 @@
-# M3-T01 — catalogue, package and promotion persistence
+# M3-T01 — service, action, bundle, package and promotion persistence
 
 - State: planned; batch 1; milestone/work package: M3 / M3-W01.
 - Code repository / exact source commit: `https://github.com/adityaa11/bride-assistant.git` / `15134132805a5dce25ebd88287f96646110530e2`.
@@ -12,15 +12,15 @@
 
 ## Outcome and exact scope
 
-catalogue, package and promotion persistence. This ticket owns M3-W01; excludes proof upload/review, cancellation/reschedule, full publishing, automated WhatsApp, and production activation of later M4/M5 controls unless specifically named below. It is one reviewable authority boundary; the M3 set index explains why it is separate.
+service, action, bundle, package and promotion persistence. This ticket owns M3-W01; excludes proof upload/review, cancellation/reschedule, full publishing, automated WhatsApp, and production activation of later M4/M5 controls unless specifically named below. It is one reviewable authority boundary; the M3 set index explains why it is separate.
 
 ## Entrypoint
 
-The M3-T02/T03 server composition later supplies a T05 authorized actor and validated catalogue input to operation-specific PostgreSQL repositories; the migration runner applies proposed catalogue schema to a fresh disposable database. Invalid IDs, relationships or prices yield typed invalid/conflict results.
+The M3-T02/T03 server composition later supplies a T05 authorized actor and validated service/action, bundle, package or promotion input to operation-specific PostgreSQL repositories; the migration runner applies proposed service/action, bundle and package schema to a fresh disposable database. Invalid IDs, relationships or prices yield typed invalid/conflict results.
 
 ## Endpoint
 
-Durable catalogue tables and repository read/write contracts for action, bundle, package, price and promotion applicability. Empty reads return empty collections; missing IDs return NOT_FOUND. No production catalogue UI is activated here.
+Durable service/action, bundle, package and promotion tables and repository read/write contracts for action, bundle, package, price and promotion applicability. Empty reads return empty collections; missing IDs return NOT_FOUND. No production Services & Actions / Master Packages UI is activated here.
 
 ## Handoff
 
@@ -28,7 +28,7 @@ H-M3-01: action/bundle/package/promotion IDs, published/active flags, price and 
 
 ## Expected use path
 
-`EUP-M3-T01`: M3-T02/T03 server caller → T05 authorization/validation → M3-T01 catalogue repository → PostgreSQL result → admin/public consumer; this ticket proves repository behavior locally and successor tickets prove production composition. GO must report the actual composition-to-effect path and CK must inspect it; a unit-only caller is insufficient.
+`EUP-M3-T01`: M3-T02/T03 server caller → T05 authorization/validation → M3-T01 service/package repository → PostgreSQL result → admin/public consumer; this ticket proves repository behavior locally and successor tickets prove production composition. GO must report the actual composition-to-effect path and CK must inspect it; a unit-only caller is insufficient.
 
 ## True path and legacy
 
@@ -36,11 +36,11 @@ The true path is the one above. Production fixture/scenario/localStorage paths f
 
 ## SQL migration hygiene
 
-M3-SQL-01 intended migration: proposed catalogue tables and joins in [migration proposal](migration-proposal.md); no production seed. Tests create records inside disposable Docker database/transactions and remove the volume or roll back. ERD confirmation is required before migration or migration-dependent implementation. Every SQL-dependent GO/CFC must include a rendered actual ERD, migration-file/version links and comparison against a fresh migrated database; CK inspects that evidence. The [planning proposal](migration-proposal.md) and [rendered ERD](proposed-erd.svg) are for review, not migration authorization.
+M3-SQL-01 intended migration: proposed service/action, bundle, package and promotion tables and joins in [migration proposal](migration-proposal.md); no production seed. Tests create records inside disposable Docker database/transactions and remove the volume or roll back. ERD confirmation is required before migration or migration-dependent implementation. Every SQL-dependent GO/CFC must include a rendered actual ERD, migration-file/version links and comparison against a fresh migrated database; CK inspects that evidence. The [planning proposal](migration-proposal.md) and [rendered ERD](proposed-erd.svg) are for review, not migration authorization.
 
 ## Empty and initial state
 
-`EMPTY-M3-T01`: New database has zero catalogue rows; no sample packages or promotions appear. First authorized admin create yields an ID and makes only explicitly published/active records eligible to M3-T03. Prove first-use and absence with isolated disposable records, never a durable test seed.
+`EMPTY-M3-T01`: New database has zero service/action, bundle, package or promotion rows; no sample packages or promotions appear. First authorized admin create yields an ID and makes only explicitly published/active records eligible to M3-T03. Prove first-use and absence with isolated disposable records, never a durable test seed.
 
 ## Required invariants and non-goals
 
@@ -54,7 +54,7 @@ Use the set's `RD-M3-01` T05 actor/input decision and `RD-M3-02` protected repos
 
 ## Acceptance criteria
 
-- `AC-M3-T01-A` (Project catalogue invariant; M3-W01): Service and Action share one typed catalogue-item table; bundle/package relationships expand without double-counting an item; invalid types, references and prices are rejected. Bound to `RC-M3-T01A`.
+- `AC-M3-T01-A` (Project Service/Action and Package invariant; M3-W01): Service and Action share one typed Service/Action table; bundle/package relationships expand without double-counting an item; invalid types, references and prices are rejected. Bound to `RC-M3-T01A`.
 - `AC-M3-T01-B` (Project promotion rule; M3-W01): Promotion type/value/window and package applicability persist with valid constraints; no draft or inactive offer is implicitly eligible. Bound to `RC-M3-T01B`.
 - `AC-M3-T01-C` (AGENTS.md SQL contract; M2-T03): Fresh/empty migration and repository behavior match the proposed rendered ERD; actual GO ERD is checked against a freshly migrated database. Bound to `RC-M3-T01C`.
 
@@ -62,7 +62,7 @@ Use the set's `RD-M3-01` T05 actor/input decision and `RD-M3-02` protected repos
 
 | Row | Authority | Required behavior | Harness, observations and evidence | Forbidden substitute | Direct regression |
 | --- | --- | --- | --- | --- | --- |
-| `RC-M3-T01A` | Project catalogue invariant; M3-W01 | PASS iff Service and Action share one typed catalogue-item table; bundle/package relationships expand without double-counting an item; invalid types, references and prices are rejected. | Fresh migrated database, Service/Action type filter, duplicate-expansion and invalid-type/FK/price tests; inspect rows and computed result. Record command, database/route observations and result in the GO checkpoint. | Fixture seed or application-only uniqueness. | M1 catalogue fixture remains review-only. |
+| `RC-M3-T01A` | Project Service/Action and Package invariant; M3-W01 | PASS iff Service and Action share one typed Service/Action table; bundle/package relationships expand without double-counting an item; invalid types, references and prices are rejected. | Fresh migrated database, Service/Action type filter, duplicate-expansion and invalid-type/FK/price tests; inspect rows and computed result. Record command, database/route observations and result in the GO checkpoint. | Fixture seed or application-only uniqueness. | M1 Services & Actions fixture remains review-only. |
 | `RC-M3-T01B` | Project promotion rule; M3-W01 | PASS iff Promotion type/value/window and package applicability persist with valid constraints; no draft or inactive offer is implicitly eligible. | Local repository integration for percentage/rupiah, package join and time bounds. Record command, database/route observations and result in the GO checkpoint. | Global promotion without applicability or test-only seed migration. | M1 promotion fixture behavior remains isolated. |
 | `RC-M3-T01C` | AGENTS.md SQL contract; M2-T03 | PASS iff Fresh/empty migration and repository behavior match the proposed rendered ERD; actual GO ERD is checked against a freshly migrated database. | Docker migrate/inspect, schema diff, rendered actual SVG/PNG in checkpoint, migration inventory and empty read. Record command, database/route observations and result in the GO checkpoint. | Mermaid source or file path alone; unconfirmed migration. | Existing auth schema and migration ledger. |
 

@@ -1,6 +1,6 @@
 # M3 authoritative booking core — ticket set
 
-- Set ID: `BAP-M3-SET-01`; revision `1.1` (typed Service/Action correction); state `planned, ready for ticket review`; selected milestone M3, work packages W01–W07.
+- Set ID: `BAP-M3-SET-01`; revision `1.2` (UI-faithful terminology); state `planned, ready for ticket review`; selected milestone M3, work packages W01–W07.
 - Code repository / exact planning source commit: `https://github.com/adityaa11/bride-assistant.git` / `15134132805a5dce25ebd88287f96646110530e2`.
 - Authority: [Project](../../contexts/project.md), [Stack](../../contexts/stack.md), [Implementation Context](../../contexts/implementation.md), [M3](../../contexts/implementation/milestones/M3-booking-core.md), [decisions](../../contexts/implementation/decisions.md), [verification](../../contexts/implementation/verification.md), and [M2 exit](../../contexts/implementation/milestones/M2-foundation.md#m2-exit--24-november-2026).
 - Direct accepted handoffs: [H-M2-05](../../evidence/m2-t05/H-M2-05-authorization-v1.md) actor/input decision, [H-M2-06](../../evidence/m2-t06/H-M2-06-contract-v1.md) repository result and byte boundary, M2-T03 migration shell, and M1 fixture visual baselines. The linked accepted handoffs define the predecessor contracts.
@@ -9,29 +9,29 @@
 
 ## UI-to-table mapping and revision
 
-The admin `Services & Actions` page uses one `catalog_item` table: `type=Service` or `type=Action`. Its Bundles tab uses `catalog_bundle` plus `bundle_item`. The `Master Packages` page uses `master_package` plus `package_item` and `package_bundle`. Promotions use `promotion` and `promotion_package`. Revision 1.1 corrects the prior unconfirmed action-only schema proposal; the first commit `c350015` remains history. No migration was created or run. The revised ERD and definition require fresh explicit confirmation before SQL-dependent work.
+The admin `Services & Actions` page uses one `service_action` table: `type=Service` or `type=Action`. Its Bundles tab uses `bundle` plus `bundle_service_action`. The `Master Packages` page uses `master_package` plus `package_service_action` and `package_bundle`. Promotions use `promotion` and `promotion_package`. Revision 1.2 renames the proposed tables and tickets to the UI terms, following the typed Service/Action correction in revision 1.1. Commits `c350015` and `cedc9d0` remain history. No migration was created or run. The revised ERD and definition require fresh explicit confirmation before SQL-dependent work.
 
 ## Registry and dependency order
 
 | Batch | Ticket / owner outcome | State | Dependencies | Activation | Parallel-safe relationship |
 | --- | --- | --- | --- | --- | --- |
-| 1 | [M3-T01 catalogue model](M3-T01-catalogue-model.md) — W01 | planned | M2-T03/T06 | preparation-only → T02/T03/T04 | First schema gate |
-| 2 | [M3-T02 admin catalogue commands](M3-T02-admin-catalogue-commands.md) — W02 | planned | T01, M2-T05 | active | Parallel with T03/T04 after T01 |
-| 2 | [M3-T03 public catalogue reads](M3-T03-public-catalogue-reads.md) — W03 | planned | T01 | active | Parallel with T02/T04 |
+| 1 | [M3-T01 Services & Actions / Master Packages model](M3-T01-services-actions-model.md) — W01 | planned | M2-T03/T06 | preparation-only → T02/T03/T04 | First schema gate |
+| 2 | [M3-T02 admin service/package commands](M3-T02-admin-services-actions-commands.md) — W02 | planned | T01, M2-T05 | active | Parallel with T03/T04 after T01 |
+| 2 | [M3-T03 public package reads](M3-T03-public-package-reads.md) — W03 | planned | T01 | active | Parallel with T02/T04 |
 | 2 | [M3-T04 booking model](M3-T04-booking-model.md) — W04 | planned | T01, M2-T05/T06 | preparation-only → T05/T06 | Parallel with T02/T03 after T01 |
 | 3 | [M3-T05 customer booking flow](M3-T05-customer-booking-flow.md) — W05 | planned | T03/T04, M2-T05 | active | Parallel with T06 after T04/T03 |
 | 3 | [M3-T06 admin booking decisions](M3-T06-admin-booking-decisions.md) — W06 | planned | T04, M2-T05 | active | Parallel with T05 after T04 |
 | 4 | [M3-T07 transactional availability](M3-T07-transactional-availability.md) — W07 | planned | T05/T06 | active | Final M3 integration |
 
-Seven tickets are justified by independent catalogue schema, privileged catalogue writes, public read projection, booking aggregate schema, customer-owned submission/read, privileged official decisions, and cross-surface transactional date integrity. Each has a distinct authority or persistence boundary and a direct consumer. No ticket exists merely to repeat a predecessor or bookkeeping step.
+Seven tickets are justified by independent service/action, bundle and package schema, privileged service/package writes, public read projection, booking aggregate schema, customer-owned submission/read, privileged official decisions, and cross-surface transactional date integrity. Each has a distinct authority or persistence boundary and a direct consumer. No ticket exists merely to repeat a predecessor or bookkeeping step.
 
 ## Entry → endpoint → handoff graph
 
-`M2 migration/repository/actor foundation → T01 catalogue relational model (H-M3-01) → T02 admin future-selection writes (H-M3-02), T03 published reads (H-M3-03), T04 booking model (H-M3-04) → T05 durable customer request/own read (H-M3-05), T06 admin core decisions (H-M3-06) → T07 transactional closure/successful-date protection (H-M3-07) → M4 exceptions and M5 release evidence`.
+`M2 migration/repository/actor foundation → T01 Services & Actions / Master Packages relational model (H-M3-01) → T02 admin future-selection writes (H-M3-02), T03 published reads (H-M3-03), T04 booking model (H-M3-04) → T05 durable customer request/own read (H-M3-05), T06 admin core decisions (H-M3-06) → T07 transactional closure/successful-date protection (H-M3-07) → M4 exceptions and M5 release evidence`.
 
 Activation registry: T01 is preparation-only because the accepted M3 graph explicitly sequences its model before T02/T03/T04; T04 is preparation-only because T05/T06 activate it. T02/T03/T05/T06/T07 must prove the real protected route-to-observable-effect path and retire production fixture/localStorage decisions. M1 declared review routes remain fixture-only. No production fallback is allowed.
 
-ExpectedUsePath registry: `EUP-M3-T01` catalogue repository to T02/T03/T04; `EUP-M3-T02` admin route to durable catalogue; `EUP-M3-T03` public/customer route to published projection; `EUP-M3-T04` booking repository to T05/T06; `EUP-M3-T05` customer route to committed record and own Booking Saya; `EUP-M3-T06` admin route to same record/status history; `EUP-M3-T07` customer/admin routes and booking status transaction to date-only projection. Each ticket names its caller, input, output, consumer and required actual-use proof.
+ExpectedUsePath registry: `EUP-M3-T01` service/package repository to T02/T03/T04; `EUP-M3-T02` admin route to durable Service/Action and Package data; `EUP-M3-T03` public/customer route to published projection; `EUP-M3-T04` booking repository to T05/T06; `EUP-M3-T05` customer route to committed record and own Booking Saya; `EUP-M3-T06` admin route to same record/status history; `EUP-M3-T07` customer/admin routes and booking status transaction to date-only projection. Each ticket names its caller, input, output, consumer and required actual-use proof.
 
 ## Reuse decisions
 

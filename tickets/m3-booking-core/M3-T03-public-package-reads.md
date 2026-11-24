@@ -16,11 +16,11 @@ published package and eligible promotion reads. This ticket owns M3-W03; exclude
 
 ## Entrypoint
 
-Public and customer package routes call server read facades with validated query/date context; anonymous public reads receive only published/active projection. Customer session is required only for customer-owned actions, not public catalogue facts.
+Public and customer package routes call server read facades with validated query/date context; anonymous public reads receive only published/active projection. Customer session is required only for customer-owned actions, not public package facts.
 
 ## Endpoint
 
-Typed package cards/detail and eligible package-specific offers render from PostgreSQL with no admin-only fields. Empty catalogue produces an empty discovery state and no selectable package.
+Typed package cards/detail and eligible package-specific offers render from PostgreSQL with no admin-only fields. Empty Services & Actions and Master Packages data produces an empty discovery state and no selectable package.
 
 ## Handoff
 
@@ -28,7 +28,7 @@ H-M3-03: package ID, display name/description/duration, current price, expanded 
 
 ## Expected use path
 
-`EUP-M3-T03`: Public/customer route → read facade → T01 repository published/active projection → typed view model → current package/booking selection UI; production route no longer reads scenario catalogue. GO must report the actual composition-to-effect path and CK must inspect it; a unit-only caller is insufficient.
+`EUP-M3-T03`: Public/customer route → read facade → T01 repository published/active projection → typed view model → current package/booking selection UI; production route no longer reads scenario service/package data. GO must report the actual composition-to-effect path and CK must inspect it; a unit-only caller is insufficient.
 
 ## True path and legacy
 
@@ -55,7 +55,7 @@ Use the set's `RD-M3-01` T05 actor/input decision and `RD-M3-02` protected repos
 ## Acceptance criteria
 
 - `AC-M3-T03-A` (Project public-content and promotion rules; M3-W03): Only active/published packages and currently eligible package-specific promotions appear; drafts and admin fields do not leak. Bound to `RC-M3-T03A`.
-- `AC-M3-T03-B` (Project catalogue/booking rule; M3-W03): Rendered price/composition matches authoritative read; selection passes IDs for server revalidation and empty catalogue offers no invalid booking. Bound to `RC-M3-T03B`.
+- `AC-M3-T03-B` (Project package/booking rule; M3-W03): Rendered price/composition matches authoritative read; selection passes IDs for server revalidation and no published packages offers no invalid booking. Bound to `RC-M3-T03B`.
 - `AC-M3-T03-C` (M1 UI reference; Project Soft Rose Atelier): Changed discovery/selection UI preserves visual hierarchy, responsive behavior and accessible states. Bound to `RC-M3-T03C`.
 
 ## Review Contract
@@ -63,7 +63,7 @@ Use the set's `RD-M3-01` T05 actor/input decision and `RD-M3-02` protected repos
 | Row | Authority | Required behavior | Harness, observations and evidence | Forbidden substitute | Direct regression |
 | --- | --- | --- | --- | --- | --- |
 | `RC-M3-T03A` | Project public-content and promotion rules; M3-W03 | PASS iff Only active/published packages and currently eligible package-specific promotions appear; drafts and admin fields do not leak. | Route-level and DB integration for draft, inactive, expired, wrong-package and valid offers; inspect rendered payload. Record command, database/route observations and result in the GO checkpoint. | Fixture filter alone or client-side hiding. | Admin T02 write state. |
-| `RC-M3-T03B` | Project catalogue/booking rule; M3-W03 | PASS iff Rendered price/composition matches authoritative read; selection passes IDs for server revalidation and empty catalogue offers no invalid booking. | Browser and server read comparison, zero-row case, reload; T05 handoff contract check. Record command, database/route observations and result in the GO checkpoint. | Trusting client price or hidden seed. | M1 public/customer visual contract. |
+| `RC-M3-T03B` | Project package/booking rule; M3-W03 | PASS iff Rendered price/composition matches authoritative read; selection passes IDs for server revalidation and no published packages offers no invalid booking. | Browser and server read comparison, zero-row case, reload; T05 handoff contract check. Record command, database/route observations and result in the GO checkpoint. | Trusting client price or hidden seed. | M1 public/customer visual contract. |
 | `RC-M3-T03C` | M1 UI reference; Project Soft Rose Atelier | PASS iff Changed discovery/selection UI preserves visual hierarchy, responsive behavior and accessible states. | New desktop/mobile captures for changed pages and keyboard/focus/empty/error review; stable M1 baseline citation for unchanged shell. Record command, database/route observations and result in the GO checkpoint. | Build-only visual claim. | Public and customer shell. |
 
 ## Security readiness
