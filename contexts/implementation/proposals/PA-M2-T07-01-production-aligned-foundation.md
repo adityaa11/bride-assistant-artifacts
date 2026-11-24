@@ -1,7 +1,7 @@
 # Proposal PA-M2-T07-01 — production-aligned configurable proof foundation
 
-**Status:** proposed, not approved or effective. **Submitted:** 24 November 2026, Asia/Bangkok.  
-**Code repository:** https://github.com/adityaa11/bride-assistant.git at `ad10fb47284517d0a77bdc39d228764f03b4c630`.  
+**Status:** proposed, not approved or effective. **Submitted:** 24 November 2026, Asia/Bangkok.
+**Code repository:** https://github.com/adityaa11/bride-assistant.git at `ad10fb47284517d0a77bdc39d228764f03b4c630`.
 **Artifact history preserved:** [five-minute rehearsal](../../../evidence/m2-t07/rehearsal-ad10fb4.md), [blocked GO checkpoint](../../../checkpoints/M2-T07-proof-policy-gate-ad10fb4-blocked.md), and the exact `ad10fb4` code commit remain historical evidence. No existing CK result is superseded because T07 has not entered CK.
 
 ## Planning decision requested
