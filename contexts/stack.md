@@ -3,12 +3,12 @@
 **PA-M2-T07-01 planning source binding:** https://github.com/adityaa11/bride-assistant.git at `ad10fb47284517d0a77bdc39d228764f03b4c630`.
 
 **Context ID:** `BAP-STACK-CONTEXT`  
-**Revision:** 1.4
-**Date:** 22 November 2026
+**Revision:** 1.5
+**Date:** 24 November 2026
 **Readiness:** `ready`  
 **Source:** [Project Context](project.md)  
 **Scope:** Technology selections and their rationale only. This is not an implementation design, delivery plan, schema, API specification, or deployment recipe.
-**Source code repository / commit:** `https://github.com/adityaa11/bride-assistant.git` / `387dde9aae69fe37795935b798e324e0fa315e3d` (planning baseline).
+**Source code repository / commit:** `https://github.com/adityaa11/bride-assistant.git` / `15134132805a5dce25ebd88287f96646110530e2` (M2 technical exit baseline).
 
 ## Decision frame
 
@@ -48,12 +48,14 @@ Production requirements are authoritative across the project. Versioned policy a
 
 | Decision | Status | Boundary for later work |
 | --- | --- | --- |
-| Account-level production assurance | deferred | Before real customer data, verify the provisioned Singapore locations, recovery/backup terms, transfer terms, and account limits for Vercel and Neon. |
-| `DocumentStore` adapter details | deferred | Fixture/development storage uses a disposable local `DocumentStore` implementation; production uses the Neon Object Storage S3-compatible adapter. Feature logic remains storage-vendor agnostic. |
-| ORM/database driver and Better Auth adapter | deferred | The approved runtime baseline uses `pg`; any ORM and the exact Better Auth adapter remain a later integration choice. |
-| Package versions and deployment configuration | deferred | Validate against current official documentation during implementation. |
-| File validation, malware scanning, retention/deletion, backups, and recovery | deferred | Must be resolved for the applicable production media/proof path before it goes live, alongside Project Context privacy/consent/retention item `U4`. |
+| Account-level production assurance | partially verified; remaining decisions deferred | M2-T01/T03 verified the named Singapore topology and deployed database shell. M5-W03 owns account-backed recovery targets and restore ownership; transfer terms and account limits still need review before real customer data. |
+| `DocumentStore` adapter details | local contract verified; production adapter deferred | M2-T06 approved the common put/read contract and disposable local adapter. M4-W01 must implement and verify the Neon Object Storage adapter and deletion port; M4-W05/W06 own content association and publication. |
+| ORM/database driver and Better Auth adapter | `pg` and Better Auth PostgreSQL integration verified; ORM deferred | M2-T03 established the server PostgreSQL client and M2-T04 connected Better Auth through `pg.Pool` with persisted sessions. No ORM was selected; a later ORM choice requires a separate need and review. |
+| Package versions and deployment configuration | M2 runtime lock verified; later deployment checks remain | M2-T02 locked and clean-installed the approved Node 24, Next.js, React, TypeScript, Better Auth, Zod, and `pg` baseline. M2-T03 verified a deployed database shell; later changed deployments and provider adapters require their own scoped checks. |
+| File validation, malware scanning, retention/deletion, backups, and recovery | technical proof foundation verified; production controls deferred | M2-T07 approved profile validation and the shared proof lifecycle, retention, hold, scanner-outcome, and environment-isolation contract using disposable data. M4 must prove live integration and obtain four D-03 policy/control decisions; M5-W03 owns the fifth recovery decision and restore evidence before M5-W05 activation. Project Context `U4` remains open for production use. |
 | Email, analytics, observability, notifications, and calendar UI library | deferred | No project-level operational or notification requirement yet establishes a baseline choice. |
+
+These statuses reconcile the [M2 exit](implementation/milestones/M2-foundation.md#m2-exit--24-november-2026) with the approved [runtime lock](../feedback/M2-T02-runtime-lock-ccf351b-ck.md), [deployed data shell](../feedback/M2-T03-data-shell-d520679-ck.md), [persistent auth](../feedback/M2-T04-persistent-auth-af6409c-ck.md), [byte contracts](../feedback/M2-T06-adapter-contracts-d806c93-ck.md), and [proof-policy foundation](../feedback/M2-T07-proof-policy-1513413-ck.md). Their technical approval does not resolve D-03 production authority.
 
 ## Implementation simulation
 
@@ -62,10 +64,10 @@ This is a capability simulation, not an implementation plan.
 | Selected choice | Future implementation would need it for | Conceptual role | Evidence to validate | Limitation or replacement point |
 | --- | --- | --- | --- | --- |
 | TypeScript + React + Next.js | Render the public website and responsive customer/admin workspaces | One web delivery surface, with server-side capability available for protected operations | Responsive behavior and parity with the approved UI reference | Native mobile remains a later product decision. |
-| Better Auth + PostgreSQL | Persist customer/admin identities and support protected sessions | Authentication data sits alongside a relational application data estate | Separate sign-in, session handling, and role-bound access work against the selected database | Specific Better Auth adapter and database driver are deferred. |
+| Better Auth + PostgreSQL | Persist customer/admin identities and support protected sessions | Authentication data sits alongside a relational application data estate | Separate sign-in, session handling, and role-bound access work against the selected database | M2 verified Better Auth persistence through the `pg` PostgreSQL client; domain data integration remains for M3/M4. |
 | PostgreSQL | Preserve one official booking record, status transitions, blocked dates, snapshots, and history | Transactional system of record for relational business facts | Concurrent booking/approval tests preserve the lifecycle and availability invariant | Schema and concurrency implementation details remain for Implementation Context. |
 | Zod | Reject malformed or incomplete form input, requests, and document metadata before business or storage processing | Runtime validation boundary shared where appropriate between web surfaces and server operations | Valid and invalid payload tests cover booking, admin, status, promotion, and document-metadata inputs | Zod does not replace database constraints, authorization, file-byte validation, or malware scanning. |
-| `DocumentStore` | Accept and later retrieve all original uploaded media and payment-proof bytes | Stable two-operation byte boundary: `put` returns safe metadata and `read` uses opaque keys; content record lifecycle composes above it | Hash, size, media type, immutability, and authorization tests; storage implementation does not leak into feature logic | Concrete adapter and lifecycle policies remain deferred. |
+| `DocumentStore` | Accept and later retrieve all original uploaded media and payment-proof bytes | Stable two-operation byte boundary: `put` returns safe metadata and `read` uses opaque keys; content record lifecycle composes above it | Hash, size, media type, immutability, and authorization tests; storage implementation does not leak into feature logic | The disposable local adapter and shared proof lifecycle are verified; the Neon production adapter and live policy controls remain for M4/M5. |
 | Neon Object Storage | Hold private document bytes and public media without placing bytes in relational records | S3-compatible implementation behind `DocumentStore`, with private buckets and short-lived presigned access after application authorization | Provisioned Singapore region, private-bucket access, signed upload/download, and backup/recovery evidence | File-policy and account-level recovery terms remain pre-go-live gates. |
 | Server-side authorization | Enforce customer ownership and admin authority before state or byte access | The application validates role and record ownership; opaque storage keys are not permissions | Cross-customer denial tests and admin workflow tests | Detailed policy model is an Implementation Context decision. |
 

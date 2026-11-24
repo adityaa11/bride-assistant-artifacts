@@ -7,7 +7,7 @@ Source code repository / planning baseline: `https://github.com/adityaa11/bride-
 | Artifact | Status | Purpose |
 | --- | --- | --- |
 | [Project Context](project.md) v3.2 | ready | Durable product definition, admin date-closure and uploaded-media boundaries, governance, and acceptance basis for Bride Assistant Planner / Ranur Bridal Care. |
-| [Stack Context](stack.md) v1.4 | ready | Selected technology baseline, universal `DocumentStore` upload boundary, Neon Object Storage production adapter, and production-aligned environment configurability. |
+| [Stack Context](stack.md) v1.5 | ready | Selected technology baseline reconciled with M2 technical exit, universal `DocumentStore` upload boundary, pending Neon production adapter, and production-aligned environment configurability. |
 | [Implementation Context](implementation.md) v3.1 | ready | M1/M1.1/M2 exits recorded; M3–M5 package and gate routing, including PA-M2-T07-01's technical/policy/operational/activation split. Production payment-proof activation remains deferred. |
 
 ## Canonical use
