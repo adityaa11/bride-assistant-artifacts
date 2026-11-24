@@ -54,7 +54,7 @@ Use the set's `RD-M3-01` T05 actor/input decision and `RD-M3-02` protected repos
 
 ## Acceptance criteria
 
-- `AC-M3-T02-A` (Project admin authority; M2 H-M2-05): Only an authenticated admin can create, change, retire and publish catalogue/package/promotion records; malformed values and customer requests fail before writes. Bound to `RC-M3-T02A`.
+- `AC-M3-T02-A` (Project admin authority; M2 H-M2-05): Only an authenticated admin can create, change, retire and publish typed Service/Action items, bundles, packages and promotions; malformed values and customer requests fail before writes. Bound to `RC-M3-T02A`.
 - `AC-M3-T02-B` (Project historic integrity; M3-W02): Admin catalogue and promotion commands change future selections only and have no booking-snapshot write path. Bound to `RC-M3-T02B`.
 - `AC-M3-T02-C` (M1 UI contract; Project visual direction): Admin UI uses durable results and handles empty/loading/error/success without fixture fallback; responsive shell and focus remain usable. Bound to `RC-M3-T02C`.
 
@@ -62,7 +62,7 @@ Use the set's `RD-M3-01` T05 actor/input decision and `RD-M3-02` protected repos
 
 | Row | Authority | Required behavior | Harness, observations and evidence | Forbidden substitute | Direct regression |
 | --- | --- | --- | --- | --- | --- |
-| `RC-M3-T02A` | Project admin authority; M2 H-M2-05 | PASS iff Only an authenticated admin can create, change, retire and publish catalogue/package/promotion records; malformed values and customer requests fail before writes. | Real protected-route/action integration with allowed admin, customer, anonymous and invalid-payload cases; DB before/after. Record command, database/route observations and result in the GO checkpoint. | Client role, route shape or fixture write as authority. | M2 auth/role route denials. |
+| `RC-M3-T02A` | Project admin authority; M2 H-M2-05 | PASS iff Only an authenticated admin can create, change, retire and publish typed Service/Action items, bundles, packages and promotions; malformed values and customer requests fail before writes. | Real protected-route/action integration with allowed admin, customer, anonymous and invalid-payload cases; DB before/after. Record command, database/route observations and result in the GO checkpoint. | Client role, route shape or fixture write as authority. | M2 auth/role route denials. |
 | `RC-M3-T02B` | Project historic integrity; M3-W02 | PASS iff Admin catalogue and promotion commands change future selections only and have no booking-snapshot write path. | Inspect command dependency/call path and local DB before/after catalogue edit; T04/T05 later prove stored snapshot regression. Record command, database/route observations and result in the GO checkpoint. | Retroactive booking update or command-side history rewrite. | T01 expansion/applicability. |
 | `RC-M3-T02C` | M1 UI contract; Project visual direction | PASS iff Admin UI uses durable results and handles empty/loading/error/success without fixture fallback; responsive shell and focus remain usable. | Current-revision browser captures for changed catalogue/package/promotion routes at desktop and mobile; keyboard/error state; inspect data after reload. Record command, database/route observations and result in the GO checkpoint. | Old scenario action or stale local state presented as saved. | M1 admin shell visual baseline. |
 

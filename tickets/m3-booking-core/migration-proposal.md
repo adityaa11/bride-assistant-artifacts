@@ -11,19 +11,19 @@
 
 ## M3-SQL-01 — proposed catalogue model (M3-T01)
 
-**Definition.** Add these proposed `public` tables, UUID IDs except FK to text auth IDs, with created/updated timestamps and appropriate checks:
+**Definition.** The admin UI has one Individual items list with a Service/Action type filter, a Bundles tab, and a separate Master Packages page. One `catalog_item` table holds both Service and Action rows, distinguished by a required type CHECK; there is no separate service table. Add these proposed `public` tables, UUID IDs except FK to text auth IDs, with created/updated timestamps and appropriate checks:
 
-- `catalog_action(id PK, name, description, active)`.
-- `catalog_bundle(id PK, name, description, active)`; `bundle_action(bundle_id FK → catalog_bundle.id, action_id FK → catalog_action.id, PK(bundle_id, action_id))`.
-- `master_package(id PK, name, description, duration_minutes, base_price, published, active)`; `package_action(package_id FK → master_package.id, action_id FK → catalog_action.id, PK(package_id, action_id))`; `package_bundle(package_id FK → master_package.id, bundle_id FK → catalog_bundle.id, PK(package_id, bundle_id))`.
+- `catalog_item(id PK, type, name, description, active)`.
+- `catalog_bundle(id PK, name, description, active)`; `bundle_item(bundle_id FK → catalog_bundle.id, item_id FK → catalog_item.id, PK(bundle_id, item_id))`.
+- `master_package(id PK, name, description, duration_minutes, base_price, published, active)`; `package_item(package_id FK → master_package.id, item_id FK → catalog_item.id, PK(package_id, item_id))`; `package_bundle(package_id FK → master_package.id, bundle_id FK → catalog_bundle.id, PK(package_id, bundle_id))`.
 - `promotion(id PK, name, discount_type, discount_value, starts_at, ends_at, published, active)`; `promotion_package(promotion_id FK → promotion.id, package_id FK → master_package.id, PK(promotion_id, package_id))`.
-- Constrain positive duration/nonnegative price, discount type to percentage or rupiah, percentage range, positive rupiah amount, valid time interval, and nonempty names. Composite PKs reject duplicate join rows. Deactivate/retire referenced catalogue records instead of cascading away booked facts. Expansion uses unique action IDs across direct and bundled membership; later business code must revalidate eligibility and calculate a selected price on the server.
+- Constrain catalog_item.type to Service or Action, positive duration/nonnegative price, discount type to percentage or rupiah, percentage range, positive rupiah amount, valid time interval, and nonempty names. Composite PKs reject duplicate join rows. Deactivate/retire referenced catalogue records instead of cascading away booked facts. Expansion uses unique item IDs across direct and bundled membership; later business code must revalidate eligibility and calculate a selected price on the server.
 
-**Purpose.** Give admin future-selection CRUD and public package/promotion reads a durable common model, including package-specific time-bound discounts and no duplicate action expansion.
+**Purpose.** Map the UI faithfully: one typed Service/Action record, reusable bundles of those records, and packages composed of individual records and/or bundles. Give admin future-selection CRUD and public package/promotion reads a durable common model, including package-specific time-bound discounts and no duplicate item expansion.
 
 **Responsibilities and boundaries.** Own catalogue identity, membership, current price and applicability constraints. It does not own booking snapshots, historical prices, public content/media publication, or a test seed. A promotion's active/published flags and interval govern future selection; they do not rewrite bookings. T02/T03 activate the model and T04 references its stable IDs.
 
-**Relationships/cardinalities.** One bundle has zero-to-many `bundle_action` rows, each joins one action; one package has zero-to-many direct action and bundle membership rows; one promotion applies to zero-to-many packages via `promotion_package`; each join row belongs to exactly one parent on each side. The SVG labels PK/FK and the `1 : 0..N` edges.
+**Relationships/cardinalities.** One bundle has zero-to-many `bundle_item` rows, each joins one typed service/action item; one package has zero-to-many direct item and bundle membership rows; one promotion applies to zero-to-many packages via `promotion_package`; each join row belongs to exactly one parent on each side. The SVG labels PK/FK and the `1 : 0..N` edges.
 
 ## M3-SQL-04 — proposed booking aggregate (M3-T04)
 
@@ -47,4 +47,4 @@
 
 ## Ephemeral setup and migration inventory
 
-No production-data migration or seed is proposed. Test factories create isolated actions/packages/promotions/bookings/closures in disposable Docker databases or rollback transactions; teardown removes all data and the local volume. GO lists every actual migration file, schema/data effect, rollback or forward strategy, fresh migration result and actual rendered ERD. Provider checks are limited to a ticket's explicit provider-specific criterion, changed provider path or named deployment/release gate.
+No production-data migration or seed is proposed. Test factories create isolated service/action items, bundles, packages and promotions/bookings/closures in disposable Docker databases or rollback transactions; teardown removes all data and the local volume. GO lists every actual migration file, schema/data effect, rollback or forward strategy, fresh migration result and actual rendered ERD. Provider checks are limited to a ticket's explicit provider-specific criterion, changed provider path or named deployment/release gate.

@@ -1,11 +1,15 @@
 # M3 authoritative booking core — ticket set
 
-- Set ID: `BAP-M3-SET-01`; revision `1.0`; state `planned, ready for ticket review`; selected milestone M3, work packages W01–W07.
+- Set ID: `BAP-M3-SET-01`; revision `1.1` (typed Service/Action correction); state `planned, ready for ticket review`; selected milestone M3, work packages W01–W07.
 - Code repository / exact planning source commit: `https://github.com/adityaa11/bride-assistant.git` / `15134132805a5dce25ebd88287f96646110530e2`.
 - Authority: [Project](../../contexts/project.md), [Stack](../../contexts/stack.md), [Implementation Context](../../contexts/implementation.md), [M3](../../contexts/implementation/milestones/M3-booking-core.md), [decisions](../../contexts/implementation/decisions.md), [verification](../../contexts/implementation/verification.md), and [M2 exit](../../contexts/implementation/milestones/M2-foundation.md#m2-exit--24-november-2026).
 - Direct accepted handoffs: [H-M2-05](../../evidence/m2-t05/H-M2-05-authorization-v1.md) actor/input decision, [H-M2-06](../../evidence/m2-t06/H-M2-06-contract-v1.md) repository result and byte boundary, M2-T03 migration shell, and M1 fixture visual baselines. The linked accepted handoffs define the predecessor contracts.
 - Pre-write artifact inventory: `checkpoints/.gitkeep`, `evidence/.gitkeep`, `feedback/.gitkeep`, `tickets/.gitkeep` were untracked; staged index empty and no tracked modifications. Reserved paths are this index, seven M3-T01–T07 files, `migration-proposal.md` and `proposed-erd.svg`. Only these new paths are owned by this set.
 - Ticket approval and the SQL proposal confirmation are separate decisions. This set creates no migration or runtime code. The SQL proposal is shown in a [rendered ERD](proposed-erd.svg) and [definition/purpose/responsibility record](migration-proposal.md). Explicit user confirmation is required before writing/running a migration or migration-dependent implementation, including T01/T04/T07. Any material schema revision requires a new preview and confirmation.
+
+## UI-to-table mapping and revision
+
+The admin `Services & Actions` page uses one `catalog_item` table: `type=Service` or `type=Action`. Its Bundles tab uses `catalog_bundle` plus `bundle_item`. The `Master Packages` page uses `master_package` plus `package_item` and `package_bundle`. Promotions use `promotion` and `promotion_package`. Revision 1.1 corrects the prior unconfirmed action-only schema proposal; the first commit `c350015` remains history. No migration was created or run. The revised ERD and definition require fresh explicit confirmation before SQL-dependent work.
 
 ## Registry and dependency order
 
@@ -36,7 +40,7 @@ ExpectedUsePath registry: `EUP-M3-T01` catalogue repository to T02/T03/T04; `EUP
 | `RD-M3-01` | `shared/server/authorization.ts` T05 actor/input decision and typed denial | `reuse-existing`; M2-T05 owns, T02/T05/T06/T07 consume. Server session, role and trusted owner precede repository access; invalid input yields typed denial. Do not infer role from URL or client. |
 | `RD-M3-02` | `shared/server/repository-contracts.ts` T06 authorized input and typed NOT_FOUND/CONFLICT/STORAGE_FAILURE | `reuse-existing`; M2-T06 owns, T01/T04 implement operation-specific repositories, T02/T03/T05/T06/T07 consume. Keep domain transaction behavior in the owning repository; no speculative generic business repository. |
 | `RD-M3-03` | Public editorial, customer booking/Booking Saya and admin workspaces; M1 reference and current components | `keep-local`; T02/T03/T05/T06/T07 own their audience presentation. Different identity, information and interaction boundaries prohibit one generic shell. Shared existing frame/calendar primitives may be reused where semantics match. |
-| `RD-M3-04` | Catalogue expansion and promotion eligibility used by admin, public reads and submission | `extract-shared` within T01 repository/domain contract: input package/promotion IDs and effective time, output expanded unique actions, current price and eligible offer or typed invalid/conflict. T02/T03/T05 consume one server rule; no client-price authority. |
+| `RD-M3-04` | Typed Service/Action item expansion and promotion eligibility used by admin, public reads and submission | `extract-shared` within T01 repository/domain contract: input package/promotion IDs and effective time, output expanded unique service/action items, current price and eligible offer or typed invalid/conflict. T02/T03/T05 consume one server rule; no client-price authority. |
 | `RD-M3-05` | Date conflict decision across customer submission, admin success and admin closure | `extract-shared` in T07 transactional domain service: input trusted actor, date, operation and transaction context; output available/conflict or typed denial with no identity leak. T05/T06/T07 use one commit-time invariant. Prior T05/T06 path must be integrated/retired when T07 activates. |
 
 ## Scoped readiness
