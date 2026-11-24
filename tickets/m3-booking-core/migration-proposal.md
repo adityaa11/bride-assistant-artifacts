@@ -1,0 +1,50 @@
+# M3 proposed SQL migration review — confirmation pending
+
+- Planning source: code repository `https://github.com/adityaa11/bride-assistant.git`, exact commit `15134132805a5dce25ebd88287f96646110530e2`.
+- Status: **proposal only; no SQL file written or run by this ticket-set operation**. The [rendered proposed ERD](proposed-erd.svg) is the reviewer-visible preview. It shows the current auth/ledger baseline and cumulative after-states for M3-SQL-01, M3-SQL-04 and M3-SQL-07. Proposed version labels are placeholders, not migration files.
+- Confirmation rule: show this explanation and rendered diagram to the user, then obtain explicit confirmation of each migration proposal before writing/changing/running it or any dependent implementation. Ticket approval or a previous migration confirmation does not count. A material change requires revised preview and fresh confirmation. Record the confirmation in the affected ticket/checkpoint.
+- Local verification: fresh disposable Docker PostgreSQL 18.7 database, migration graph inspection and actual-schema comparison. At GO/CFC, commit a rendered actual SVG/PNG into Atlas evidence, embed it in checkpoint and user handoff, and link exact migration file/version. CK inspects the image and DB comparison.
+
+## Current state (before M3)
+
+`0001_schema_migrations.sql` owns `public.schema_migrations(version PK, checksum, applied_at)`. `0002_better_auth_identity.sql` owns `auth.user(id PK)`, `auth.session(id PK, userId FK → user)`, `auth.account(id PK, userId FK → user)`, and `auth.verification(id PK)`. M3 does not change these tables; new booking/customer and actor FKs reference `auth.user(id)`. No live prototype data import or production seed is planned.
+
+## M3-SQL-01 — proposed catalogue model (M3-T01)
+
+**Definition.** Add these proposed `public` tables, UUID IDs except FK to text auth IDs, with created/updated timestamps and appropriate checks:
+
+- `catalog_action(id PK, name, description, active)`.
+- `catalog_bundle(id PK, name, description, active)`; `bundle_action(bundle_id FK → catalog_bundle.id, action_id FK → catalog_action.id, PK(bundle_id, action_id))`.
+- `master_package(id PK, name, description, duration_minutes, base_price, published, active)`; `package_action(package_id FK → master_package.id, action_id FK → catalog_action.id, PK(package_id, action_id))`; `package_bundle(package_id FK → master_package.id, bundle_id FK → catalog_bundle.id, PK(package_id, bundle_id))`.
+- `promotion(id PK, name, discount_type, discount_value, starts_at, ends_at, published, active)`; `promotion_package(promotion_id FK → promotion.id, package_id FK → master_package.id, PK(promotion_id, package_id))`.
+- Constrain positive duration/nonnegative price, discount type to percentage or rupiah, percentage range, positive rupiah amount, valid time interval, and nonempty names. Composite PKs reject duplicate join rows. Deactivate/retire referenced catalogue records instead of cascading away booked facts. Expansion uses unique action IDs across direct and bundled membership; later business code must revalidate eligibility and calculate a selected price on the server.
+
+**Purpose.** Give admin future-selection CRUD and public package/promotion reads a durable common model, including package-specific time-bound discounts and no duplicate action expansion.
+
+**Responsibilities and boundaries.** Own catalogue identity, membership, current price and applicability constraints. It does not own booking snapshots, historical prices, public content/media publication, or a test seed. A promotion's active/published flags and interval govern future selection; they do not rewrite bookings. T02/T03 activate the model and T04 references its stable IDs.
+
+**Relationships/cardinalities.** One bundle has zero-to-many `bundle_action` rows, each joins one action; one package has zero-to-many direct action and bundle membership rows; one promotion applies to zero-to-many packages via `promotion_package`; each join row belongs to exactly one parent on each side. The SVG labels PK/FK and the `1 : 0..N` edges.
+
+## M3-SQL-04 — proposed booking aggregate (M3-T04)
+
+**Definition.** After SQL-01, add `booking(id UUID PK, customer_id text FK → auth.user.id, package_id UUID FK → master_package.id, promotion_id UUID nullable FK → promotion.id, wedding_date date, wedding_location text, status text, package_snapshot jsonb, promotion_snapshot jsonb nullable, final_price numeric, created_at, updated_at)`. Use a CHECK over the Project Context's canonical core and M4 exception status labels, with M3 commands limited to the three core states. Add `booking_status_history(id UUID PK, booking_id UUID FK → booking.id, actor_id text FK → auth.user.id, from_status nullable, to_status, occurred_at)` and ordered index `(booking_id, occurred_at, id)`. Initial booking plus `Menunggu Konfirmasi` history entry are atomic. Snapshot fields hold submitted package name, price, duration, description and expanded composition plus applied promotion type/value and final price. Enforce nonnegative final price, required package snapshot structure, and snapshot immutability after insert (database trigger or equally strong schema-backed mechanism to be detailed in the confirmed migration). History is append-only by permissions/trigger and never cascade-deleted by routine catalogue changes. Delete policy for customer/bookings is outside M3; do not cascade user deletion into booking history.
+
+**Purpose.** Preserve one shared record and historical terms while allowing the admin to change current catalogue for later bookings.
+
+**Responsibilities and boundaries.** Own booking identity, customer relationship, submission facts, official current status and ordered status changes. It does not own proof bytes, proof audit, cancellation/reschedule data, WhatsApp state or date closure. Package/promotion FKs identify source records; snapshots, not live joins, supply historic display. T05/T06 activate customer/admin paths.
+
+**Relationships/cardinalities.** One auth user owns zero-to-many bookings; one package is selected by zero-to-many bookings; a booking has zero or one promotion; one booking has one-to-many status history rows after creation; each history row has one actor user. The SVG labels all FK fields and cardinalities.
+
+## M3-SQL-07 — proposed date protection (M3-T07)
+
+**Definition.** After SQL-04, add `admin_closed_date(date date PK, closed_by text FK → auth.user.id, created_at timestamptz)`. Add a partial unique index on `booking(wedding_date)` where `status = 'Booking Berhasil'`. Customer submission, admin successful transition and admin closure/open must use one transaction-level date lock/conflict decision so a closure and success cannot both commit for the same date. The partial unique index independently rejects two successful bookings on a date. An open command removes only an admin closure; it does not change a successful booking. Pending statuses do not enter the partial index and never reserve the date. The lock/decision is runtime logic bound to these tables and is required by T07, not a test-only migration branch.
+
+**Purpose.** Make date availability authoritative across customer/admin surfaces under concurrency, while preserving the confirmed rule that only deliberate admin closure or `Booking Berhasil` blocks selection.
+
+**Responsibilities and boundaries.** Own admin closure identity/date and database protection against duplicate successful bookings. The transaction owns cross-table closure/success conflict ordering. Customer reads project only date/unavailable facts; they never expose booking/customer identity. M4 reschedule/cancellation must consume this invariant when releasing or moving a reservation; M3 does not implement those exceptions.
+
+**Relationships/cardinalities.** One admin user can close zero-to-many dates; each closed date has exactly one closing admin. The date conflict between `admin_closed_date.date` and successful `booking.wedding_date` is an exclusion invariant, shown as a dashed relation in the SVG, not a FK.
+
+## Ephemeral setup and migration inventory
+
+No production-data migration or seed is proposed. Test factories create isolated actions/packages/promotions/bookings/closures in disposable Docker databases or rollback transactions; teardown removes all data and the local volume. GO lists every actual migration file, schema/data effect, rollback or forward strategy, fresh migration result and actual rendered ERD. Provider checks are limited to a ticket's explicit provider-specific criterion, changed provider path or named deployment/release gate.

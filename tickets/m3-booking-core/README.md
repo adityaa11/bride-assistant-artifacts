@@ -1,0 +1,50 @@
+# M3 authoritative booking core — ticket set
+
+- Set ID: `BAP-M3-SET-01`; revision `1.0`; state `planned, ready for ticket review`; selected milestone M3, work packages W01–W07.
+- Code repository / exact planning source commit: `https://github.com/adityaa11/bride-assistant.git` / `15134132805a5dce25ebd88287f96646110530e2`.
+- Authority: [Project](../../contexts/project.md), [Stack](../../contexts/stack.md), [Implementation Context](../../contexts/implementation.md), [M3](../../contexts/implementation/milestones/M3-booking-core.md), [decisions](../../contexts/implementation/decisions.md), [verification](../../contexts/implementation/verification.md), and [M2 exit](../../contexts/implementation/milestones/M2-foundation.md#m2-exit--24-november-2026).
+- Direct accepted handoffs: [H-M2-05](../../evidence/m2-t05/H-M2-05-authorization-v1.md) actor/input decision, [H-M2-06](../../evidence/m2-t06/H-M2-06-contract-v1.md) repository result and byte boundary, M2-T03 migration shell, and M1 fixture visual baselines. The linked accepted handoffs define the predecessor contracts.
+- Pre-write artifact inventory: `checkpoints/.gitkeep`, `evidence/.gitkeep`, `feedback/.gitkeep`, `tickets/.gitkeep` were untracked; staged index empty and no tracked modifications. Reserved paths are this index, seven M3-T01–T07 files, `migration-proposal.md` and `proposed-erd.svg`. Only these new paths are owned by this set.
+- Ticket approval and the SQL proposal confirmation are separate decisions. This set creates no migration or runtime code. The SQL proposal is shown in a [rendered ERD](proposed-erd.svg) and [definition/purpose/responsibility record](migration-proposal.md). Explicit user confirmation is required before writing/running a migration or migration-dependent implementation, including T01/T04/T07. Any material schema revision requires a new preview and confirmation.
+
+## Registry and dependency order
+
+| Batch | Ticket / owner outcome | State | Dependencies | Activation | Parallel-safe relationship |
+| --- | --- | --- | --- | --- | --- |
+| 1 | [M3-T01 catalogue model](M3-T01-catalogue-model.md) — W01 | planned | M2-T03/T06 | preparation-only → T02/T03/T04 | First schema gate |
+| 2 | [M3-T02 admin catalogue commands](M3-T02-admin-catalogue-commands.md) — W02 | planned | T01, M2-T05 | active | Parallel with T03/T04 after T01 |
+| 2 | [M3-T03 public catalogue reads](M3-T03-public-catalogue-reads.md) — W03 | planned | T01 | active | Parallel with T02/T04 |
+| 2 | [M3-T04 booking model](M3-T04-booking-model.md) — W04 | planned | T01, M2-T05/T06 | preparation-only → T05/T06 | Parallel with T02/T03 after T01 |
+| 3 | [M3-T05 customer booking flow](M3-T05-customer-booking-flow.md) — W05 | planned | T03/T04, M2-T05 | active | Parallel with T06 after T04/T03 |
+| 3 | [M3-T06 admin booking decisions](M3-T06-admin-booking-decisions.md) — W06 | planned | T04, M2-T05 | active | Parallel with T05 after T04 |
+| 4 | [M3-T07 transactional availability](M3-T07-transactional-availability.md) — W07 | planned | T05/T06 | active | Final M3 integration |
+
+Seven tickets are justified by independent catalogue schema, privileged catalogue writes, public read projection, booking aggregate schema, customer-owned submission/read, privileged official decisions, and cross-surface transactional date integrity. Each has a distinct authority or persistence boundary and a direct consumer. No ticket exists merely to repeat a predecessor or bookkeeping step.
+
+## Entry → endpoint → handoff graph
+
+`M2 migration/repository/actor foundation → T01 catalogue relational model (H-M3-01) → T02 admin future-selection writes (H-M3-02), T03 published reads (H-M3-03), T04 booking model (H-M3-04) → T05 durable customer request/own read (H-M3-05), T06 admin core decisions (H-M3-06) → T07 transactional closure/successful-date protection (H-M3-07) → M4 exceptions and M5 release evidence`.
+
+Activation registry: T01 is preparation-only because the accepted M3 graph explicitly sequences its model before T02/T03/T04; T04 is preparation-only because T05/T06 activate it. T02/T03/T05/T06/T07 must prove the real protected route-to-observable-effect path and retire production fixture/localStorage decisions. M1 declared review routes remain fixture-only. No production fallback is allowed.
+
+ExpectedUsePath registry: `EUP-M3-T01` catalogue repository to T02/T03/T04; `EUP-M3-T02` admin route to durable catalogue; `EUP-M3-T03` public/customer route to published projection; `EUP-M3-T04` booking repository to T05/T06; `EUP-M3-T05` customer route to committed record and own Booking Saya; `EUP-M3-T06` admin route to same record/status history; `EUP-M3-T07` customer/admin routes and booking status transaction to date-only projection. Each ticket names its caller, input, output, consumer and required actual-use proof.
+
+## Reuse decisions
+
+| ID | Capability/evidence | Decision, owner, consumers and boundary |
+| --- | --- | --- |
+| `RD-M3-01` | `shared/server/authorization.ts` T05 actor/input decision and typed denial | `reuse-existing`; M2-T05 owns, T02/T05/T06/T07 consume. Server session, role and trusted owner precede repository access; invalid input yields typed denial. Do not infer role from URL or client. |
+| `RD-M3-02` | `shared/server/repository-contracts.ts` T06 authorized input and typed NOT_FOUND/CONFLICT/STORAGE_FAILURE | `reuse-existing`; M2-T06 owns, T01/T04 implement operation-specific repositories, T02/T03/T05/T06/T07 consume. Keep domain transaction behavior in the owning repository; no speculative generic business repository. |
+| `RD-M3-03` | Public editorial, customer booking/Booking Saya and admin workspaces; M1 reference and current components | `keep-local`; T02/T03/T05/T06/T07 own their audience presentation. Different identity, information and interaction boundaries prohibit one generic shell. Shared existing frame/calendar primitives may be reused where semantics match. |
+| `RD-M3-04` | Catalogue expansion and promotion eligibility used by admin, public reads and submission | `extract-shared` within T01 repository/domain contract: input package/promotion IDs and effective time, output expanded unique actions, current price and eligible offer or typed invalid/conflict. T02/T03/T05 consume one server rule; no client-price authority. |
+| `RD-M3-05` | Date conflict decision across customer submission, admin success and admin closure | `extract-shared` in T07 transactional domain service: input trusted actor, date, operation and transaction context; output available/conflict or typed denial with no identity leak. T05/T06/T07 use one commit-time invariant. Prior T05/T06 path must be integrated/retired when T07 activates. |
+
+## Scoped readiness
+
+SecurityReadiness status `applicable`, no `planning-review-required` finding. `SEC-M3-01` relational constraints/input, `SEC-M3-02` admin write authorization, `SEC-M3-03` published-only projection, `SEC-M3-04` snapshot/history integrity, `SEC-M3-05` owner privacy, `SEC-M3-06` privileged transition/audit, and `SEC-M3-07` transactional date/privacy are implement-now under Project/M3/M2 authority. `SRB-M3-01`–`07` bind each to its ticket's Review Contract. OWASP ASVS 5.0.0, Top 10:2025, NIST CSF 2.0 and SP 800-53 Release 5.2.0 supply scoped lenses, not extra product scope. M4 proof upload/policy and M5 recovery/activation are preserve-seam or deferred-policy. No scanner, legal classification, recovery target or temporary booking hold is chosen here.
+
+Frontend-awareness: established Soft Rose Atelier language, State 2 / Mode A for T02/T03/T05/T06/T07; backend-only T01/T04 have no UI decision. Preserve M1 reference-derived public, customer and admin hierarchy, shared admin frame, responsive transformations, keyboard/focus and state feedback. Changed routes require current-revision rendered review; unchanged M1 comparisons may cite committed baselines. Browser code must respect existing CSP and not introduce unsafe sinks or unreviewed origins.
+
+## Gates and next action
+
+T01 is next after explicit GO and **separate confirmation of M3-SQL-01's rendered ERD and explanation**. T04 and T07 require their own migration confirmation before implementation even if T01 was confirmed. Use the disposable local Docker PostgreSQL profile and local DocumentStore adapter for relevant tests. Reuse approved M2 Vercel/Neon baseline; no per-ticket redeployment/probe unless the provider path changes or an explicit acceptance row needs provider behavior Docker cannot prove. CK for migration work must inspect the actual rendered ERD against a fresh migrated database. D-04 keeps the live WhatsApp link disabled but does not block saving a booking. D-03's five production decisions gate M4/M5, not M3 core.
