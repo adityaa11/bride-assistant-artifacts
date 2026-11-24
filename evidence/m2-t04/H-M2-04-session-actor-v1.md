@@ -1,0 +1,8 @@
+# H-M2-04 — persisted session to actor
+
+- Ticket: [M2-T04](../../tickets/m2-authoritative-foundation/M2-T04-persistent-auth.md).
+- Code repository: `https://github.com/adityaa11/bride-assistant.git`; exact commit `af6409c41d06710d7dd14ab027c3af947ae3968f`.
+- Entrypoint: `shared/server/actor.ts:sessionActor()` reads request headers and asks Better Auth for the persisted session. It returns `{ subjectId, role: "customer" | "admin", sessionId, expiresAt }` or `null`. The role is read from the server-owned `auth.user.role` column, never a form field, cookie role, query parameter, or browser storage. T05 consumes this actor result for record ownership and input-boundary decisions; T04 does not decide record ownership.
+- The active browser path is `/daftar` or `/masuk`, and separately `/admin/masuk`, through `shared/live-auth.tsx` → `/api/auth/[...all]` → `shared/server/auth.ts` → `shared/server/database.mjs:authDatabasePool` → `auth` PostgreSQL tables → server layout checks. The two audience layouts deny anonymous and wrong-role sessions. `shared/sign-out-button.tsx` invokes Better Auth sign-out.
+- `scripts/m2-provision-admin.mjs` is an operator-only CLI requiring `ADMIN_PROVISION_EMAIL` and validated database environment; it promotes an existing credential identity. There is no public admin registration or seed. First use on an empty database supports customer registration only.
+- `BETTER_AUTH_SECRET` (at least 32 characters), `BETTER_AUTH_URL`, and T03's database environment are server configuration. Production deployment of this new code and schema is not claimed here. No domain ownership, catalogue/booking mutation, OAuth, magic link, Expo, or SSO is introduced.

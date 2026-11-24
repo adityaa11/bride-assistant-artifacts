@@ -1,0 +1,672 @@
+{
+  "tables": [
+    {
+      "table_schema": "auth",
+      "table_name": "account"
+    },
+    {
+      "table_schema": "auth",
+      "table_name": "session"
+    },
+    {
+      "table_schema": "auth",
+      "table_name": "user"
+    },
+    {
+      "table_schema": "auth",
+      "table_name": "verification"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "schema_migrations"
+    }
+  ],
+  "columns": [
+    {
+      "table_schema": "auth",
+      "table_name": "account",
+      "column_name": "id",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_schema": "auth",
+      "table_name": "account",
+      "column_name": "accountId",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_schema": "auth",
+      "table_name": "account",
+      "column_name": "providerId",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_schema": "auth",
+      "table_name": "account",
+      "column_name": "userId",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_schema": "auth",
+      "table_name": "account",
+      "column_name": "accessToken",
+      "data_type": "text",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_schema": "auth",
+      "table_name": "account",
+      "column_name": "refreshToken",
+      "data_type": "text",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_schema": "auth",
+      "table_name": "account",
+      "column_name": "idToken",
+      "data_type": "text",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_schema": "auth",
+      "table_name": "account",
+      "column_name": "accessTokenExpiresAt",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_schema": "auth",
+      "table_name": "account",
+      "column_name": "refreshTokenExpiresAt",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_schema": "auth",
+      "table_name": "account",
+      "column_name": "scope",
+      "data_type": "text",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_schema": "auth",
+      "table_name": "account",
+      "column_name": "password",
+      "data_type": "text",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_schema": "auth",
+      "table_name": "account",
+      "column_name": "createdAt",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO",
+      "column_default": "CURRENT_TIMESTAMP"
+    },
+    {
+      "table_schema": "auth",
+      "table_name": "account",
+      "column_name": "updatedAt",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO",
+      "column_default": "CURRENT_TIMESTAMP"
+    },
+    {
+      "table_schema": "auth",
+      "table_name": "session",
+      "column_name": "id",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_schema": "auth",
+      "table_name": "session",
+      "column_name": "expiresAt",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_schema": "auth",
+      "table_name": "session",
+      "column_name": "token",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_schema": "auth",
+      "table_name": "session",
+      "column_name": "createdAt",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO",
+      "column_default": "CURRENT_TIMESTAMP"
+    },
+    {
+      "table_schema": "auth",
+      "table_name": "session",
+      "column_name": "updatedAt",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO",
+      "column_default": "CURRENT_TIMESTAMP"
+    },
+    {
+      "table_schema": "auth",
+      "table_name": "session",
+      "column_name": "ipAddress",
+      "data_type": "text",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_schema": "auth",
+      "table_name": "session",
+      "column_name": "userAgent",
+      "data_type": "text",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_schema": "auth",
+      "table_name": "session",
+      "column_name": "userId",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_schema": "auth",
+      "table_name": "user",
+      "column_name": "id",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_schema": "auth",
+      "table_name": "user",
+      "column_name": "name",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_schema": "auth",
+      "table_name": "user",
+      "column_name": "email",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_schema": "auth",
+      "table_name": "user",
+      "column_name": "emailVerified",
+      "data_type": "boolean",
+      "is_nullable": "NO",
+      "column_default": "false"
+    },
+    {
+      "table_schema": "auth",
+      "table_name": "user",
+      "column_name": "image",
+      "data_type": "text",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_schema": "auth",
+      "table_name": "user",
+      "column_name": "createdAt",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO",
+      "column_default": "CURRENT_TIMESTAMP"
+    },
+    {
+      "table_schema": "auth",
+      "table_name": "user",
+      "column_name": "updatedAt",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO",
+      "column_default": "CURRENT_TIMESTAMP"
+    },
+    {
+      "table_schema": "auth",
+      "table_name": "user",
+      "column_name": "role",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": "'customer'::text"
+    },
+    {
+      "table_schema": "auth",
+      "table_name": "verification",
+      "column_name": "id",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_schema": "auth",
+      "table_name": "verification",
+      "column_name": "identifier",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_schema": "auth",
+      "table_name": "verification",
+      "column_name": "value",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_schema": "auth",
+      "table_name": "verification",
+      "column_name": "expiresAt",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_schema": "auth",
+      "table_name": "verification",
+      "column_name": "createdAt",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO",
+      "column_default": "CURRENT_TIMESTAMP"
+    },
+    {
+      "table_schema": "auth",
+      "table_name": "verification",
+      "column_name": "updatedAt",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO",
+      "column_default": "CURRENT_TIMESTAMP"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "schema_migrations",
+      "column_name": "version",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_schema": "public",
+      "table_name": "schema_migrations",
+      "column_name": "checksum",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_schema": "public",
+      "table_name": "schema_migrations",
+      "column_name": "applied_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO",
+      "column_default": "now()"
+    }
+  ],
+  "constraints": [
+    {
+      "schema_name": "auth",
+      "table_name": "account",
+      "name": "account_userId_fkey",
+      "type": "f",
+      "definition": "FOREIGN KEY (\"userId\") REFERENCES auth.\"user\"(id) ON DELETE CASCADE"
+    },
+    {
+      "schema_name": "auth",
+      "table_name": "account",
+      "name": "account_accountId_not_null",
+      "type": "n",
+      "definition": "NOT NULL \"accountId\""
+    },
+    {
+      "schema_name": "auth",
+      "table_name": "account",
+      "name": "account_createdAt_not_null",
+      "type": "n",
+      "definition": "NOT NULL \"createdAt\""
+    },
+    {
+      "schema_name": "auth",
+      "table_name": "account",
+      "name": "account_id_not_null",
+      "type": "n",
+      "definition": "NOT NULL id"
+    },
+    {
+      "schema_name": "auth",
+      "table_name": "account",
+      "name": "account_providerId_not_null",
+      "type": "n",
+      "definition": "NOT NULL \"providerId\""
+    },
+    {
+      "schema_name": "auth",
+      "table_name": "account",
+      "name": "account_updatedAt_not_null",
+      "type": "n",
+      "definition": "NOT NULL \"updatedAt\""
+    },
+    {
+      "schema_name": "auth",
+      "table_name": "account",
+      "name": "account_userId_not_null",
+      "type": "n",
+      "definition": "NOT NULL \"userId\""
+    },
+    {
+      "schema_name": "auth",
+      "table_name": "account",
+      "name": "account_pkey",
+      "type": "p",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "schema_name": "auth",
+      "table_name": "session",
+      "name": "session_userId_fkey",
+      "type": "f",
+      "definition": "FOREIGN KEY (\"userId\") REFERENCES auth.\"user\"(id) ON DELETE CASCADE"
+    },
+    {
+      "schema_name": "auth",
+      "table_name": "session",
+      "name": "session_createdAt_not_null",
+      "type": "n",
+      "definition": "NOT NULL \"createdAt\""
+    },
+    {
+      "schema_name": "auth",
+      "table_name": "session",
+      "name": "session_expiresAt_not_null",
+      "type": "n",
+      "definition": "NOT NULL \"expiresAt\""
+    },
+    {
+      "schema_name": "auth",
+      "table_name": "session",
+      "name": "session_id_not_null",
+      "type": "n",
+      "definition": "NOT NULL id"
+    },
+    {
+      "schema_name": "auth",
+      "table_name": "session",
+      "name": "session_token_not_null",
+      "type": "n",
+      "definition": "NOT NULL token"
+    },
+    {
+      "schema_name": "auth",
+      "table_name": "session",
+      "name": "session_updatedAt_not_null",
+      "type": "n",
+      "definition": "NOT NULL \"updatedAt\""
+    },
+    {
+      "schema_name": "auth",
+      "table_name": "session",
+      "name": "session_userId_not_null",
+      "type": "n",
+      "definition": "NOT NULL \"userId\""
+    },
+    {
+      "schema_name": "auth",
+      "table_name": "session",
+      "name": "session_pkey",
+      "type": "p",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "schema_name": "auth",
+      "table_name": "session",
+      "name": "session_token_key",
+      "type": "u",
+      "definition": "UNIQUE (token)"
+    },
+    {
+      "schema_name": "auth",
+      "table_name": "user",
+      "name": "user_role_check",
+      "type": "c",
+      "definition": "CHECK ((role = ANY (ARRAY['customer'::text, 'admin'::text])))"
+    },
+    {
+      "schema_name": "auth",
+      "table_name": "user",
+      "name": "user_createdAt_not_null",
+      "type": "n",
+      "definition": "NOT NULL \"createdAt\""
+    },
+    {
+      "schema_name": "auth",
+      "table_name": "user",
+      "name": "user_emailVerified_not_null",
+      "type": "n",
+      "definition": "NOT NULL \"emailVerified\""
+    },
+    {
+      "schema_name": "auth",
+      "table_name": "user",
+      "name": "user_email_not_null",
+      "type": "n",
+      "definition": "NOT NULL email"
+    },
+    {
+      "schema_name": "auth",
+      "table_name": "user",
+      "name": "user_id_not_null",
+      "type": "n",
+      "definition": "NOT NULL id"
+    },
+    {
+      "schema_name": "auth",
+      "table_name": "user",
+      "name": "user_name_not_null",
+      "type": "n",
+      "definition": "NOT NULL name"
+    },
+    {
+      "schema_name": "auth",
+      "table_name": "user",
+      "name": "user_role_not_null",
+      "type": "n",
+      "definition": "NOT NULL role"
+    },
+    {
+      "schema_name": "auth",
+      "table_name": "user",
+      "name": "user_updatedAt_not_null",
+      "type": "n",
+      "definition": "NOT NULL \"updatedAt\""
+    },
+    {
+      "schema_name": "auth",
+      "table_name": "user",
+      "name": "user_pkey",
+      "type": "p",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "schema_name": "auth",
+      "table_name": "user",
+      "name": "user_email_key",
+      "type": "u",
+      "definition": "UNIQUE (email)"
+    },
+    {
+      "schema_name": "auth",
+      "table_name": "verification",
+      "name": "verification_createdAt_not_null",
+      "type": "n",
+      "definition": "NOT NULL \"createdAt\""
+    },
+    {
+      "schema_name": "auth",
+      "table_name": "verification",
+      "name": "verification_expiresAt_not_null",
+      "type": "n",
+      "definition": "NOT NULL \"expiresAt\""
+    },
+    {
+      "schema_name": "auth",
+      "table_name": "verification",
+      "name": "verification_id_not_null",
+      "type": "n",
+      "definition": "NOT NULL id"
+    },
+    {
+      "schema_name": "auth",
+      "table_name": "verification",
+      "name": "verification_identifier_not_null",
+      "type": "n",
+      "definition": "NOT NULL identifier"
+    },
+    {
+      "schema_name": "auth",
+      "table_name": "verification",
+      "name": "verification_updatedAt_not_null",
+      "type": "n",
+      "definition": "NOT NULL \"updatedAt\""
+    },
+    {
+      "schema_name": "auth",
+      "table_name": "verification",
+      "name": "verification_value_not_null",
+      "type": "n",
+      "definition": "NOT NULL value"
+    },
+    {
+      "schema_name": "auth",
+      "table_name": "verification",
+      "name": "verification_pkey",
+      "type": "p",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "schema_migrations",
+      "name": "schema_migrations_applied_at_not_null",
+      "type": "n",
+      "definition": "NOT NULL applied_at"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "schema_migrations",
+      "name": "schema_migrations_checksum_not_null",
+      "type": "n",
+      "definition": "NOT NULL checksum"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "schema_migrations",
+      "name": "schema_migrations_version_not_null",
+      "type": "n",
+      "definition": "NOT NULL version"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "schema_migrations",
+      "name": "schema_migrations_pkey",
+      "type": "p",
+      "definition": "PRIMARY KEY (version)"
+    }
+  ],
+  "indexes": [
+    {
+      "schemaname": "auth",
+      "tablename": "account",
+      "indexname": "account_pkey",
+      "indexdef": "CREATE UNIQUE INDEX account_pkey ON auth.account USING btree (id)"
+    },
+    {
+      "schemaname": "auth",
+      "tablename": "account",
+      "indexname": "account_provider_identity_idx",
+      "indexdef": "CREATE UNIQUE INDEX account_provider_identity_idx ON auth.account USING btree (\"providerId\", \"accountId\")"
+    },
+    {
+      "schemaname": "auth",
+      "tablename": "account",
+      "indexname": "account_user_id_idx",
+      "indexdef": "CREATE INDEX account_user_id_idx ON auth.account USING btree (\"userId\")"
+    },
+    {
+      "schemaname": "auth",
+      "tablename": "session",
+      "indexname": "session_pkey",
+      "indexdef": "CREATE UNIQUE INDEX session_pkey ON auth.session USING btree (id)"
+    },
+    {
+      "schemaname": "auth",
+      "tablename": "session",
+      "indexname": "session_token_key",
+      "indexdef": "CREATE UNIQUE INDEX session_token_key ON auth.session USING btree (token)"
+    },
+    {
+      "schemaname": "auth",
+      "tablename": "session",
+      "indexname": "session_user_id_idx",
+      "indexdef": "CREATE INDEX session_user_id_idx ON auth.session USING btree (\"userId\")"
+    },
+    {
+      "schemaname": "auth",
+      "tablename": "user",
+      "indexname": "user_email_key",
+      "indexdef": "CREATE UNIQUE INDEX user_email_key ON auth.\"user\" USING btree (email)"
+    },
+    {
+      "schemaname": "auth",
+      "tablename": "user",
+      "indexname": "user_pkey",
+      "indexdef": "CREATE UNIQUE INDEX user_pkey ON auth.\"user\" USING btree (id)"
+    },
+    {
+      "schemaname": "auth",
+      "tablename": "verification",
+      "indexname": "verification_identifier_idx",
+      "indexdef": "CREATE INDEX verification_identifier_idx ON auth.verification USING btree (identifier)"
+    },
+    {
+      "schemaname": "auth",
+      "tablename": "verification",
+      "indexname": "verification_pkey",
+      "indexdef": "CREATE UNIQUE INDEX verification_pkey ON auth.verification USING btree (id)"
+    },
+    {
+      "schemaname": "public",
+      "tablename": "schema_migrations",
+      "indexname": "schema_migrations_pkey",
+      "indexdef": "CREATE UNIQUE INDEX schema_migrations_pkey ON public.schema_migrations USING btree (version)"
+    }
+  ],
+  "counts": {
+    "user": 0,
+    "session": 0,
+    "account": 0,
+    "verification": 0
+  }
+}
