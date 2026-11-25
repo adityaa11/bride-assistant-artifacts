@@ -16,7 +16,7 @@ authorized admin Services & Actions, Master Packages and Promotions commands. Th
 
 ## Entrypoint
 
-Admin Services & Actions, Master Packages and Promotions routes and actions use T04 admin session, T05 authorizeRequest({requiredRole:'admin', payload, schema}), and T01 repositories. Inputs are untrusted form values; role, IDs and publication state are server-validated.
+Admin Services & Actions, Master Packages and Promotions routes and actions use T04 admin session, T05 authorizeRequest({requiredRole:'admin', payload, schema}), and T01 repositories. Inputs are untrusted form values; role, IDs and publication state are server-validated. The Service/Action selector reads the two T01 catalogue type rows, submits catalogue_type_id, and rejects unknown IDs; M3 has no type-management UI.
 
 ## Endpoint
 
@@ -24,7 +24,7 @@ Create/update/retire commands persist future-facing service, action, bundle, pac
 
 ## Handoff
 
-H-M3-02: persisted admin-managed Service/Action, Bundle, Master Package and Promotion records, stable IDs, revisions/updated times and published/active eligibility; M3-T03 reads public projection and M3-T05 snapshots selected facts. Failed writes produce no mutation; retries must not duplicate a command. The producer records exact schema/type, required fields, source identity, retry/idempotency behavior and consumer integration evidence in its GO checkpoint.
+H-M3-02: persisted admin-managed Service/Action, Bundle, Master Package and Promotion records, stable catalogue_type_id and item IDs, revisions/updated times and published/active eligibility; M3-T03 reads public projection and M3-T05 snapshots selected facts. Failed writes produce no mutation; retries must not duplicate a command. The producer records exact schema/type, required fields, source identity, retry/idempotency behavior and consumer integration evidence in its GO checkpoint.
 
 ## Expected use path
 
@@ -40,7 +40,7 @@ No intended migration beyond confirmed T01 schema. Ephemeral Docker records are 
 
 ## Empty and initial state
 
-`EMPTY-M3-T02`: Empty Services & Actions and Master Packages data shows an honest admin empty state with a create action; first create appears on reload. Missing edit target is typed NOT_FOUND, never a default record. Prove first-use and absence with isolated disposable records, never a durable test seed.
+`EMPTY-M3-T02`: Empty catalogue and Master Packages data shows an honest admin empty state with a create action; the Service/Action selector still shows the two system-owned catalogue types. First create appears on reload. Missing edit target is typed NOT_FOUND, never a default record. Prove first-use and absence with isolated disposable records, never a durable test seed.
 
 ## Required invariants and non-goals
 
@@ -54,7 +54,7 @@ Use the set's `RD-M3-01` T05 actor/input decision and `RD-M3-02` protected repos
 
 ## Acceptance criteria
 
-- `AC-M3-T02-A` (Project admin authority; M2 H-M2-05): Only an authenticated admin can create, change, retire and publish typed Service/Action items, bundles, packages and promotions; malformed values and customer requests fail before writes. Bound to `RC-M3-T02A`.
+- `AC-M3-T02-A` (Project admin authority; M2 H-M2-05): Only an authenticated admin can create, change, retire and publish typed Service/Action items, bundles, packages and promotions; the selector reads T01 catalogue types, persists catalogue_type_id, and rejects unknown IDs, malformed values and customer requests before writes. Bound to `RC-M3-T02A`.
 - `AC-M3-T02-B` (Project historic integrity; M3-W02): Admin service/action, bundle, package and promotion commands change future selections only and have no booking-snapshot write path. Bound to `RC-M3-T02B`.
 - `AC-M3-T02-C` (M1 UI contract; Project visual direction): Admin UI uses durable results and handles empty/loading/error/success without fixture fallback; responsive shell and focus remain usable. Bound to `RC-M3-T02C`.
 
@@ -62,7 +62,7 @@ Use the set's `RD-M3-01` T05 actor/input decision and `RD-M3-02` protected repos
 
 | Row | Authority | Required behavior | Harness, observations and evidence | Forbidden substitute | Direct regression |
 | --- | --- | --- | --- | --- | --- |
-| `RC-M3-T02A` | Project admin authority; M2 H-M2-05 | PASS iff Only an authenticated admin can create, change, retire and publish typed Service/Action items, bundles, packages and promotions; malformed values and customer requests fail before writes. | Real protected-route/action integration with allowed admin, customer, anonymous and invalid-payload cases; DB before/after. Record command, database/route observations and result in the GO checkpoint. | Client role, route shape or fixture write as authority. | M2 auth/role route denials. |
+| `RC-M3-T02A` | Project admin authority; M2 H-M2-05 | PASS iff Only an authenticated admin can create, change, retire and publish typed Service/Action items, bundles, packages and promotions; the selector reads T01 catalogue types, persists catalogue_type_id, and rejects unknown IDs, malformed values and customer requests before writes. | Real protected-route/action integration with allowed admin, customer, anonymous and unknown catalogue_type_id cases; inspect selector values, submitted FK and DB before/after. Record command, database/route observations and result in the GO checkpoint. | Client role, route shape or fixture write as authority. | M2 auth/role route denials. |
 | `RC-M3-T02B` | Project historic integrity; M3-W02 | PASS iff Admin service/action, bundle, package and promotion commands change future selections only and have no booking-snapshot write path. | Inspect command dependency/call path and local DB before/after service/package edit; T04/T05 later prove stored snapshot regression. Record command, database/route observations and result in the GO checkpoint. | Retroactive booking update or command-side history rewrite. | T01 expansion/applicability. |
 | `RC-M3-T02C` | M1 UI contract; Project visual direction | PASS iff Admin UI uses durable results and handles empty/loading/error/success without fixture fallback; responsive shell and focus remain usable. | Current-revision browser captures for changed Services & Actions, Master Packages and Promotions routes at desktop and mobile; keyboard/error state; inspect data after reload. Record command, database/route observations and result in the GO checkpoint. | Old scenario action or stale local state presented as saved. | M1 admin shell visual baseline. |
 
