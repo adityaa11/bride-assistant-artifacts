@@ -1,6 +1,6 @@
 # M3 authoritative booking core — ticket set
 
-- Set ID: `BAP-M3-SET-01`; revision `1.2` (UI-faithful terminology); state `planned, ready for ticket review`; selected milestone M3, work packages W01–W07.
+- Set ID: `BAP-M3-SET-01`; revision `1.3` (catalogue enum); state `planned, ready for ticket review`; selected milestone M3, work packages W01–W07.
 - Code repository / exact planning source commit: `https://github.com/adityaa11/bride-assistant.git` / `15134132805a5dce25ebd88287f96646110530e2`.
 - Authority: [Project](../../contexts/project.md), [Stack](../../contexts/stack.md), [Implementation Context](../../contexts/implementation.md), [M3](../../contexts/implementation/milestones/M3-booking-core.md), [decisions](../../contexts/implementation/decisions.md), [verification](../../contexts/implementation/verification.md), and [M2 exit](../../contexts/implementation/milestones/M2-foundation.md#m2-exit--24-november-2026).
 - Direct accepted handoffs: [H-M2-05](../../evidence/m2-t05/H-M2-05-authorization-v1.md) actor/input decision, [H-M2-06](../../evidence/m2-t06/H-M2-06-contract-v1.md) repository result and byte boundary, M2-T03 migration shell, and M1 fixture visual baselines. The linked accepted handoffs define the predecessor contracts.
@@ -9,7 +9,7 @@
 
 ## UI-to-table mapping and revision
 
-The admin `Services & Actions` page uses one `service_action` table: `type=Service` or `type=Action`. Its Bundles tab uses `bundle` plus `bundle_service_action`. The `Master Packages` page uses `master_package` plus `package_service_action` and `package_bundle`. Promotions use `promotion` and `promotion_package`. Revision 1.2 renames the proposed tables and tickets to the UI terms, following the typed Service/Action correction in revision 1.1. Commits `c350015` and `cedc9d0` remain history. No migration was created or run. The revised ERD and definition require fresh explicit confirmation before SQL-dependent work.
+The admin `Services & Actions` page uses one `catalogue` table with `type public.catalogue_type NOT NULL`; the PostgreSQL enum has exactly `Service` and `Action` labels. Its Bundles tab uses `bundle` plus `bundle_catalogue`. The `Master Packages` page uses `master_package` plus `package_catalogue` and `package_bundle`. Promotions use `promotion` and `promotion_package`. Revision 1.3 restores the original `catalogue` table name while retaining the typed Service/Action UI; the type is now a PostgreSQL enum. Earlier revisions and commits `c350015` and `cedc9d0` remain history. No migration was created or run. The revised ERD and definition require fresh explicit confirmation before SQL-dependent work.
 
 ## Registry and dependency order
 
