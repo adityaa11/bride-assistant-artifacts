@@ -51,7 +51,7 @@ Apply set decisions `RD-M3-01` T05 actor/input, `RD-M3-02` protected repository 
 
 ## Acceptance criteria
 
-- `AC-M3-T05-A` (Project booking flow; M3-W05): Valid submission persists one canonical record before WhatsApp preparation; invalid package/promo/date/fields fail without partial record. Review row `RC-M3-T05A`.
+- `AC-M3-T05-A` (Project booking flow; M3-W05): Valid submission revalidates the selected package and optional promotion, computes final_price on the server, and persists the actual price and applied-promotion snapshot before WhatsApp preparation; invalid package/promo/date/fields fail without partial record. Review row `RC-M3-T05A`.
 - `AC-M3-T05-B` (Project privacy/shared record; M2 H-M2-05): Booking Saya shows only the owner’s durable records/status/snapshot; cross-customer and anonymous reads are denied. Review row `RC-M3-T05B`.
 - `AC-M3-T05-C` (M1 UI reference; M3-W05): Customer booking/Booking Saya UI preserves reference hierarchy and exposes loading/error/success/empty states accessibly. Review row `RC-M3-T05C`.
 
@@ -59,7 +59,7 @@ Apply set decisions `RD-M3-01` T05 actor/input, `RD-M3-02` protected repository 
 
 | Row | Authority | Required behavior | Harness, observations and evidence | Forbidden substitute | Direct regression |
 | --- | --- | --- | --- | --- | --- |
-| `RC-M3-T05A` | Project booking flow; M3-W05 | PASS iff Valid submission persists one canonical record before WhatsApp preparation; invalid package/promo/date/fields fail without partial record. | End-to-end route + DB read, no-number case, invalid selection and retry observation. GO records route/DB observations; CK independently checks them. | wa.me or localStorage as record. | T03 eligibility and T04 atomic create. |
+| `RC-M3-T05A` | Project booking flow; M3-W05 | PASS iff Valid submission revalidates the selected package and optional promotion, computes final_price on the server, and persists the actual price and applied-promotion snapshot before WhatsApp preparation; invalid package/promo/date/fields fail without partial record. | End-to-end route + DB read for no promotion and applicable promotion, unchanged package base price, no-number case, invalid selection and retry observation. GO records route/DB observations; CK independently checks them. | wa.me or localStorage as record. | T03 eligibility and T04 atomic create. |
 | `RC-M3-T05B` | Project privacy/shared record; M2 H-M2-05 | PASS iff Booking Saya shows only the owner’s durable records/status/snapshot; cross-customer and anonymous reads are denied. | Two-customer and anonymous route tests, list/detail payload inspection, reload and empty state. GO records route/DB observations; CK independently checks them. | Client-side filtering or ID obscurity. | M2 session/role denials. |
 | `RC-M3-T05C` | M1 UI reference; M3-W05 | PASS iff Customer booking/Booking Saya UI preserves reference hierarchy and exposes loading/error/success/empty states accessibly. | Current desktop/mobile captures and keyboard/focus/state checks on changed screens. GO records route/DB observations; CK independently checks them. | Fixture status masquerading as saved result. | M1 customer visual baseline. |
 
