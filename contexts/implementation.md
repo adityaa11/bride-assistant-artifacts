@@ -47,7 +47,7 @@ The system boundary is Next.js/React/TypeScript, Better Auth, PostgreSQL, Zod, `
 | M1.1 | complete | [Architecture audit and bounded refactor](implementation/milestones/M1.1-architecture-audit-refactor.md) | M1 | T01 audit approved; W02 no-refactor decision; conditional W03 skipped; exit PASS at `79b3478`. |
 | M2 | complete | [Foundation](implementation/milestones/M2-foundation.md) | M1.1 | T01–T07 CK `PASS`; technical exit recorded, with M4/M5 production gates retained. |
 | M2.1 | implemented; CK pending | [First-admin bootstrap](implementation/milestones/M2.1-first-admin-bootstrap.md) | M2-T03/T04/T05 | Reviewing the one-time bootstrap, 0003 ERD, and admin sign-in handoff. |
-| M3 | planned | [Booking core](implementation/milestones/M3-booking-core.md) | M2; M2.1 for W02 admin activation | Building catalogue, booking, or availability. |
+| M3 | planned | [Booking core](implementation/milestones/M3-booking-core.md) | M2; M2.1 for W02/W06 admin activation | Building catalogue, booking, or availability. |
 | M4 | planned | [Evidence & publishing](implementation/milestones/M4-evidence-publishing.md) | M3; D-03/D-04 | Building proof, exceptions, or published content. |
 | M5 | planned | [Release readiness](implementation/milestones/M5-release.md) | M3, M4 | Preparing a release. |
 

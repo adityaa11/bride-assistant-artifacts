@@ -12,11 +12,11 @@
 | --- | --- | --- | --- | --- |
 | 1 | [M2.1-T01 first-admin bootstrap](M2.1-T01-first-admin-bootstrap.md) | awaiting_review | M2-T03/T04/T05 approved; user-confirmed 0003 proposal | active-in-this-ticket |
 
-One ticket owns the single operational outcome: a trusted operator creates exactly one first administrator who can sign in to the existing admin workspace. The migration marker, CLI coordinator, Better Auth credential, and sign-in proof form one atomic review boundary. M2-T04 remains approved for ordinary persistent auth; this ticket owns only the new bootstrap capability. M3-T02 consumes the approved admin entry handoff after M2.1 CK PASS.
+One ticket owns the single operational outcome: a trusted operator creates exactly one first administrator who can sign in to the existing admin workspace. The migration marker, CLI coordinator, Better Auth credential, and sign-in proof form one atomic review boundary. M2-T04 remains approved for ordinary persistent auth; this ticket owns only the new bootstrap capability. M3-T02 and M3-T06 consume the approved admin entry handoff after M2.1 CK PASS.
 
 ## Entrypoint, endpoint, handoff and reuse
 
-`trusted interactive terminal → npm run admin -- bootstrap → scripts/admin-command.mjs → scripts/admin-bootstrap-core.mjs → app.admin_bootstrap_state + Better Auth auth.user/auth.account → /admin/masuk → /admin`. A reserved failed attempt may use `npm run admin -- reconcile --attempt-id ...`; it may only verify and seal that attempt. `H-M2.1-01` is the sealed marker plus a Better Auth admin credential and working admin sign-in; M3-T02 consumes the protected admin session, not a bootstrap bypass.
+`trusted interactive terminal → npm run admin -- bootstrap → scripts/admin-command.mjs → scripts/admin-bootstrap-core.mjs → app.admin_bootstrap_state + Better Auth auth.user/auth.account → /admin/masuk → /admin`. A reserved failed attempt may use `npm run admin -- reconcile --attempt-id ...`; it may only verify and seal that attempt. `H-M2.1-01` is the sealed marker plus a Better Auth admin credential and working admin sign-in; M3-T02 and M3-T06 consume the protected admin session, not a bootstrap bypass.
 
 `RD-M2.1-01 reuse-existing`: Better Auth sign-up/credential verification and M2 server database/session conventions remain the identity and access path. The bootstrap coordinator owns only the first-admin reservation, promotion of the newly created ID, and sealing. `RD-M2.1-02 keep-local`: the CLI's hidden interactive password prompt has a different trust boundary from customer registration and admin sign-in; no shared browser registration form or public endpoint is introduced.
 
