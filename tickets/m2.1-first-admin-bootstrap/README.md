@@ -1,16 +1,16 @@
 # M2.1 first-admin bootstrap — ticket set
 
-- Set ID: `BAP-M2.1-SET-01`; revision `1.0`; status `one committed ticket awaiting independent CK`; milestone `M2.1`, work package `M2.1-W01`.
+- Set ID: `BAP-M2.1-SET-01`; revision `1.1`; status `one committed ticket approved by CK`; milestone `M2.1`, work package `M2.1-W01`.
 - Code repository / exact review target: `https://github.com/adityaa11/bride-assistant.git` / `fcaae2455308f10f2e46a0092fa097135b56994d`.
 - Authority: user request for a proper first-admin registration CLI and explicit 0003 migration confirmation; [Project](../../contexts/project.md) separate admin access, [Stack](../../contexts/stack.md) Better Auth/PostgreSQL, [Implementation Context](../../contexts/implementation.md), [M2.1](../../contexts/implementation/milestones/M2.1-first-admin-bootstrap.md), and accepted M2-T03/T04/T05 migration, identity and authorization handoffs.
-- Provenance: the code commit and [original checkpoint](../../checkpoints/admin-bootstrap-fcaae24.md) preceded this ticket. This retrospective review contract was requested on 25 November 2026. It does not claim a pre-implementation ticket freeze or prior CK PASS.
+- Provenance: the code commit and [original checkpoint](../../checkpoints/admin-bootstrap-fcaae24.md) preceded this ticket. This retrospective review contract was requested on 25 November 2026. It does not claim a pre-implementation ticket freeze; independent CK later recorded `PASS` for M2.1-T01.
 - Pre-write inventory: untracked `checkpoints/.gitkeep`, `evidence/.gitkeep`, `feedback/.gitkeep`, `tickets/.gitkeep`; staged index empty; no tracked modifications. Reserved new paths: this README, the ticket, and a checkpoint addendum. Historical evidence and checkpoints stay unchanged.
 
 ## Registry and dependency
 
 | Batch | Ticket | State | Dependency | Activation |
 | --- | --- | --- | --- | --- |
-| 1 | [M2.1-T01 first-admin bootstrap](M2.1-T01-first-admin-bootstrap.md) | awaiting_review | M2-T03/T04/T05 approved; user-confirmed 0003 proposal | active-in-this-ticket |
+| 1 | [M2.1-T01 first-admin bootstrap](M2.1-T01-first-admin-bootstrap.md) | approved | M2-T03/T04/T05 approved; user-confirmed 0003 proposal | active-in-this-ticket |
 
 One ticket owns the single operational outcome: a trusted operator creates exactly one first administrator who can sign in to the existing admin workspace. The migration marker, CLI coordinator, Better Auth credential, and sign-in proof form one atomic review boundary. M2-T04 remains approved for ordinary persistent auth; this ticket owns only the new bootstrap capability. M3-T02 and M3-T06 consume the approved admin entry handoff after M2.1 CK PASS.
 
@@ -24,4 +24,4 @@ SecurityReadiness `applicable`: `SEC-M2.1-01` first-admin exclusivity and fail-c
 
 ## Review target and next action
 
-The [checkpoint addendum](../../checkpoints/M2.1-T01-first-admin-bootstrap-fcaae24.md) binds the frozen ticket to code commit `fcaae24` and immutable original evidence. CK must inspect the rendered actual ERD against `0003` and fresh migrated database, then trace the CLI-to-sign-in path and each ticket row. CK may return PASS or ticket-bound changes required; no result is predeclared. Local disposable Docker evidence is the verification basis; no production/provider deployment claim is made. Invoke `ck M2.1-T01` against the named checkpoint.
+The [checkpoint addendum](../../checkpoints/M2.1-T01-first-admin-bootstrap-fcaae24.md) binds the frozen ticket to code commit `fcaae24` and immutable original evidence. The [CK review](../../feedback/M2.1-T01-first-admin-bootstrap-fcaae24-ck.md) independently inspected the rendered actual ERD, fresh migrated database, CLI-to-sign-in path, reconciliation boundaries, and each ticket row, recording `PASS`. Local disposable Docker evidence remains the verification basis; no production/provider deployment claim is made.
