@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="620" viewBox="0 0 1120 620" role="img" aria-labelledby="title desc">
+  <title id="title">Proposed first administrator bootstrap schema</title>
+  <desc id="desc">Before and after schema. Existing auth user and account tables stay unchanged. A new app admin bootstrap state table has a nullable foreign key to auth user. Each user may be referenced by zero or one bootstrap marker, and the marker has zero or one user until sealed, then exactly one.</desc>
+  <rect width="1120" height="620" fill="#f8fafc"/>
+  <text x="36" y="44" font-family="Arial,sans-serif" font-size="26" font-weight="700" fill="#0f172a">First administrator bootstrap — actual ERD</text>
+  <text x="36" y="76" font-family="Arial,sans-serif" font-size="15" fill="#475569">Migration 0003 · verified on fresh PostgreSQL 18.7 · identity tables retained</text>
+  <rect x="35" y="106" width="480" height="460" rx="14" fill="#fff" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="58" y="140" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="#0f172a">Before</text>
+  <rect x="60" y="168" width="196" height="152" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+  <text x="75" y="195" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#1e3a8a">auth.user</text>
+  <text x="75" y="223" font-family="Arial,sans-serif" font-size="14" fill="#1e293b">PK  id : text</text>
+  <text x="75" y="249" font-family="Arial,sans-serif" font-size="14" fill="#1e293b">email : text UNIQUE</text>
+  <text x="75" y="275" font-family="Arial,sans-serif" font-size="14" fill="#1e293b">role : customer | admin</text>
+  <rect x="296" y="168" width="196" height="152" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+  <text x="311" y="195" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#1e3a8a">auth.account</text>
+  <text x="311" y="223" font-family="Arial,sans-serif" font-size="14" fill="#1e293b">PK  id : text</text>
+  <text x="311" y="249" font-family="Arial,sans-serif" font-size="14" fill="#1e293b">FK  userId → user.id</text>
+  <text x="311" y="275" font-family="Arial,sans-serif" font-size="14" fill="#1e293b">credential password</text>
+  <line x1="256" y1="337" x2="296" y2="337" stroke="#334155" stroke-width="2"/>
+  <text x="59" y="362" font-family="Arial,sans-serif" font-size="13" fill="#475569">user 1 → 0..many accounts</text>
+  <text x="59" y="397" font-family="Arial,sans-serif" font-size="14" fill="#334155">No durable first-admin reservation.</text>
+  <text x="59" y="425" font-family="Arial,sans-serif" font-size="14" fill="#334155">Existing operator script promotes a customer.</text>
+  <rect x="545" y="106" width="540" height="460" rx="14" fill="#fff" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="568" y="140" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="#0f172a">After</text>
+  <rect x="570" y="168" width="218" height="152" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+  <text x="585" y="195" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#1e3a8a">auth.user</text>
+  <text x="585" y="223" font-family="Arial,sans-serif" font-size="14" fill="#1e293b">PK  id : text</text>
+  <text x="585" y="249" font-family="Arial,sans-serif" font-size="14" fill="#1e293b">email : text UNIQUE</text>
+  <text x="585" y="275" font-family="Arial,sans-serif" font-size="14" fill="#1e293b">role : customer | admin</text>
+  <rect x="828" y="168" width="230" height="152" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+  <text x="843" y="195" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#1e3a8a">auth.account</text>
+  <text x="843" y="223" font-family="Arial,sans-serif" font-size="14" fill="#1e293b">PK  id : text</text>
+  <text x="843" y="249" font-family="Arial,sans-serif" font-size="14" fill="#1e293b">FK  userId → user.id</text>
+  <text x="843" y="275" font-family="Arial,sans-serif" font-size="14" fill="#1e293b">credential password</text>
+  <line x1="788" y1="337" x2="828" y2="337" stroke="#334155" stroke-width="2"/>
+  <text x="570" y="360" font-family="Arial,sans-serif" font-size="13" fill="#475569">user 1 → 0..many accounts</text>
+  <rect x="570" y="386" width="488" height="146" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+  <text x="585" y="412" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#166534">app.admin_bootstrap_state  (migration 0003)</text>
+  <text x="585" y="437" font-family="Arial,sans-serif" font-size="14" fill="#1e293b">PK  bootstrap_key : text  (fixed single value)</text>
+  <text x="585" y="461" font-family="Arial,sans-serif" font-size="14" fill="#1e293b">state : UNINITIALIZED | RESERVED | SEALED</text>
+  <text x="585" y="485" font-family="Arial,sans-serif" font-size="14" fill="#1e293b">attempt_id UNIQUE · attempt_email · timestamps</text>
+  <text x="585" y="509" font-family="Arial,sans-serif" font-size="14" fill="#1e293b">FK  initial_user_id → auth.user.id  (nullable, UNIQUE)</text>
+  <path d="M 679 320 L 679 386" stroke="#16a34a" stroke-width="2" fill="none"/>
+  <text x="808" y="379" font-family="Arial,sans-serif" font-size="12" fill="#166534">user 0..1 ↔ marker 0..1; sealed marker → 1 user</text>
+  <text x="36" y="596" font-family="Arial,sans-serif" font-size="13" fill="#475569">Scope: auth.session and auth.verification are unchanged and have no new relationship to the marker.</text>
+</svg>
