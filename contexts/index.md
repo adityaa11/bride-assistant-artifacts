@@ -8,7 +8,7 @@ Source code repository / planning baseline: `https://github.com/adityaa11/bride-
 | --- | --- | --- |
 | [Project Context](project.md) v3.3 | ready | Durable product definition, automatic non-overlapping booking promotions, admin date-closure and uploaded-media boundaries, governance, and acceptance basis for Bride Assistant Planner / Ranur Bridal Care. |
 | [Stack Context](stack.md) v1.5 | ready | Selected technology baseline reconciled with M2 technical exit, universal `DocumentStore` upload boundary, pending Neon production adapter, and production-aligned environment configurability. |
-| [Implementation Context](implementation.md) v3.2 | ready | M1/M1.1/M2 exits recorded; M3 automatic promotion and committed first-admin bootstrap baseline; M3–M5 package and gate routing, including PA-M2-T07-01's technical/policy/operational/activation split. Production payment-proof activation remains deferred. |
+| [Implementation Context](implementation.md) v3.3 | ready | M1/M1.1/M2 exits recorded; M2.1 first-admin bootstrap review and M3 automatic promotion baseline; M3–M5 package and gate routing, including PA-M2-T07-01's technical/policy/operational/activation split. Production payment-proof activation remains deferred. |
 
 ## Canonical use
 

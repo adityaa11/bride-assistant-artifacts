@@ -2,16 +2,16 @@
 
 **PA-M2-T07-01 planning source binding:** https://github.com/adityaa11/bride-assistant.git at `ad10fb47284517d0a77bdc39d228764f03b4c630`.
 
-**Context ID:** `BAP-IMPLEMENTATION-CONTEXT` · **Revision:** `3.2` · **Date:** 25 November 2026
-**Status:** `ready` · **Project state:** `hybrid` · **Ticket-generation readiness:** `M1.1 and M2 exit PASS; M3 is next, with M4/M5 production gates retained`
+**Context ID:** `BAP-IMPLEMENTATION-CONTEXT` · **Revision:** `3.3` · **Date:** 25 November 2026
+**Status:** `ready` · **Project state:** `hybrid` · **Ticket-generation readiness:** `M1.1 and M2 exit PASS; M2.1 implemented/CK pending; M3 planned, with M4/M5 production gates retained`
 **Source code repository / commit:** `https://github.com/adityaa11/bride-assistant.git` / `fcaae2455308f10f2e46a0092fa097135b56994d`.
 
-M3-W01–W05 now carry Project D8: reject same-package promotion date overlaps at admin creation/edit, then automatically apply the one eligible published/active promotion using the booking creation date in Asia/Jakarta and persist its price snapshot. The committed `0003` first-admin bootstrap is the M3 schema baseline; its local [checkpoint](../checkpoints/admin-bootstrap-fcaae24.md) awaits CK. M3 SQL proposals still need their own explicit ERD confirmation.
+M3-W01–W05 now carry Project D8: reject same-package promotion date overlaps at admin creation/edit, then automatically apply the one eligible published/active promotion using the booking creation date in Asia/Jakarta and persist its price snapshot. The committed `0003` first-admin bootstrap is the M3 schema baseline and now has a bounded [M2.1 milestone](implementation/milestones/M2.1-first-admin-bootstrap.md); its local [checkpoint](../checkpoints/admin-bootstrap-fcaae24.md) awaits CK. M3 SQL proposals still need their own explicit ERD confirmation.
 
 ## Read first
 
 1. This routing index, then [milestone map](implementation/milestones.md).
-2. For the next executable work, read [M3](implementation/milestones/M3-booking-core.md), the [M2 exit](implementation/milestones/M2-foundation.md#m2-exit--24-november-2026), the [M1.1 exit](implementation/milestones/M1.1-architecture-audit-refactor.md#w02-reconciliation-and-m11-exit--23-november-2026), [architecture](implementation/architecture.md), [decisions](implementation/decisions.md), and [verification](implementation/verification.md).
+2. For the current review, read [M2.1](implementation/milestones/M2.1-first-admin-bootstrap.md) and [M3](implementation/milestones/M3-booking-core.md), the [M2 exit](implementation/milestones/M2-foundation.md#m2-exit--24-november-2026), the [M1.1 exit](implementation/milestones/M1.1-architecture-audit-refactor.md#w02-reconciliation-and-m11-exit--23-november-2026), [architecture](implementation/architecture.md), [decisions](implementation/decisions.md), and [verification](implementation/verification.md).
 3. M1.1 has no refactor ticket after its [W02 decision](../evidence/M1.1-W02-disposition-79b3478.md). M2 tickets T01–T07 have CK `PASS`; generate M3+ tickets only when their decision gates and direct predecessor evidence are satisfied.
 
 ## Current execution
@@ -20,7 +20,8 @@ M3-W01–W05 now carry Project D8: reject same-package promotion date overlaps a
 | --- | --- | --- | --- |
 | M1.1 — Architecture audit and bounded refactor | Complete; W03 skipped after W02 no-refactor decision | None | T01 CK PASS and [W02/exit record](implementation/milestones/M1.1-architecture-audit-refactor.md#w02-reconciliation-and-m11-exit--23-november-2026) at `79b3478`. |
 | M2 — Authoritative foundation | Complete; technical exit `PASS` | None for M2 exit | [T01–T07 CK approvals and exit record](implementation/milestones/M2-foundation.md#m2-exit--24-november-2026). |
-| M3–M5 | M3 planning is next; M4/M5 remain planned | D-03/D-04 as applicable | M2 handoffs and their direct milestone gates and production-hardening evidence. |
+| M2.1 — First-admin bootstrap | Implemented; CK pending | None for local review | M2-T03/T04/T05 approvals; confirmed 0003 proposal; committed local checkpoint and actual ERD. |
+| M3–M5 | M3 planning is next; M4/M5 remain planned | D-03/D-04 as applicable | M2 handoffs; M2.1 CK before relying on bootstrap for admin commands; direct milestone gates and production-hardening evidence. |
 
 ## Target-product baseline
 
@@ -45,7 +46,8 @@ The system boundary is Next.js/React/TypeScript, Better Auth, PostgreSQL, Zod, `
 | M1 | complete | [Fixture UI](implementation/milestones/M1-fixture-ui.md) | — | Reviewed fixture/UI baseline and exit evidence. |
 | M1.1 | complete | [Architecture audit and bounded refactor](implementation/milestones/M1.1-architecture-audit-refactor.md) | M1 | T01 audit approved; W02 no-refactor decision; conditional W03 skipped; exit PASS at `79b3478`. |
 | M2 | complete | [Foundation](implementation/milestones/M2-foundation.md) | M1.1 | T01–T07 CK `PASS`; technical exit recorded, with M4/M5 production gates retained. |
-| M3 | planned | [Booking core](implementation/milestones/M3-booking-core.md) | M2 | Building catalogue, booking, or availability. |
+| M2.1 | implemented; CK pending | [First-admin bootstrap](implementation/milestones/M2.1-first-admin-bootstrap.md) | M2-T03/T04/T05 | Reviewing the one-time bootstrap, 0003 ERD, and admin sign-in handoff. |
+| M3 | planned | [Booking core](implementation/milestones/M3-booking-core.md) | M2; M2.1 for W02 admin activation | Building catalogue, booking, or availability. |
 | M4 | planned | [Evidence & publishing](implementation/milestones/M4-evidence-publishing.md) | M3; D-03/D-04 | Building proof, exceptions, or published content. |
 | M5 | planned | [Release readiness](implementation/milestones/M5-release.md) | M3, M4 | Preparing a release. |
 
