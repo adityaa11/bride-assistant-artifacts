@@ -1,7 +1,7 @@
 # M3-T02 — authorized admin Services & Actions, Master Packages and Promotions commands
 
 - State: planned; batch 2; milestone/work package: M3 / M3-W02.
-- Code repository / exact source commit: `https://github.com/adityaa11/bride-assistant.git` / `15134132805a5dce25ebd88287f96646110530e2`.
+- Code repository / exact source commit: `https://github.com/adityaa11/bride-assistant.git` / `fcaae2455308f10f2e46a0092fa097135b56994d`.
 - Authority: [Project Context](../../contexts/project.md), [Stack Context](../../contexts/stack.md), [Implementation Context](../../contexts/implementation.md), [M3 milestone](../../contexts/implementation/milestones/M3-booking-core.md), [architecture](../../contexts/implementation/architecture.md), [decisions](../../contexts/implementation/decisions.md), [verification](../../contexts/implementation/verification.md), and [M2 exit](../../contexts/implementation/milestones/M2-foundation.md#m2-exit--24-november-2026).
 - Local verification: disposable Docker PostgreSQL 18.7 and isolated rollback/factory data; local `DocumentStore` only if bytes are involved. Reuse M2-T01/T03 provider evidence unless this ticket changes a provider path or explicitly requires a remote behavior check.
 - Dependencies and accepted outputs: M3-T01 H-M3-01; M2-T05 H-M2-05.
@@ -16,7 +16,7 @@ authorized admin Services & Actions, Master Packages and Promotions commands. Th
 
 ## Entrypoint
 
-Admin Services & Actions, Master Packages and Promotions routes and actions use T04 admin session, T05 authorizeRequest({requiredRole:'admin', payload, schema}), and T01 repositories. Inputs are untrusted form values; role, IDs and publication state are server-validated. The Service/Action selector reads the two T01 catalogue type rows, submits catalogue_type_id, and rejects unknown IDs; M3 has no type-management UI.
+Admin Services & Actions, Master Packages and Promotions routes and actions use the committed first-admin bootstrap sign-in path, T04 admin session, T05 authorizeRequest({requiredRole:'admin', payload, schema}), and T01 repositories. Inputs are untrusted form values; role, IDs and publication state are server-validated. The Service/Action selector reads the two T01 catalogue type rows, submits catalogue_type_id, and rejects unknown IDs; M3 has no type-management UI.
 
 ## Endpoint
 
@@ -24,7 +24,7 @@ Create/update/retire commands persist future-facing service, action, bundle, pac
 
 ## Handoff
 
-H-M3-02: persisted admin-managed Service/Action, Bundle, Master Package and Promotion records, stable catalogue_type_id and item IDs, revisions/updated times and published/active eligibility; M3-T03 reads public projection and M3-T05 snapshots selected facts. Failed writes produce no mutation; retries must not duplicate a command. The producer records exact schema/type, required fields, source identity, retry/idempotency behavior and consumer integration evidence in its GO checkpoint.
+H-M3-02: persisted admin-managed Service/Action, Bundle, Master Package and Promotion records, stable catalogue_type_id and item IDs, promotion title/description/date range/package links, revisions/updated times and published/active eligibility; M3-T03 reads public projection and M3-T05 snapshots selected facts. Failed writes produce no mutation; retries must not duplicate a command. The producer records exact schema/type, required fields, source identity, retry/idempotency behavior and consumer integration evidence in its GO checkpoint.
 
 ## Expected use path
 
@@ -57,6 +57,7 @@ Use the set's `RD-M3-01` T05 actor/input decision and `RD-M3-02` protected repos
 - `AC-M3-T02-A` (Project admin authority; M2 H-M2-05): Only an authenticated admin can create, change, retire and publish typed Service/Action items, bundles, packages and promotions; the selector reads T01 catalogue types, persists catalogue_type_id, and rejects unknown IDs, malformed values and customer requests before writes. Bound to `RC-M3-T02A`.
 - `AC-M3-T02-B` (Project historic integrity; M3-W02): Admin service/action, bundle, package and promotion commands change future selections only, promotion commands leave master_package.base_price unchanged, and no command has a booking-snapshot write path. Bound to `RC-M3-T02B`.
 - `AC-M3-T02-C` (M1 UI contract; Project visual direction): Admin UI uses durable results and handles empty/loading/error/success without fixture fallback; responsive shell and focus remain usable. Bound to `RC-M3-T02C`.
+- `AC-M3-T02-D` (Project D8; M3-W02): Promotion create/edit rejects an overlapping inclusive date range for any shared package, including concurrent requests and changes to package membership; lock affected package rows in stable ID order and check overlaps within the same transaction, so a rejected command writes nothing. Bound to `RC-M3-T02D`.
 
 ## Review Contract
 
@@ -65,10 +66,11 @@ Use the set's `RD-M3-01` T05 actor/input decision and `RD-M3-02` protected repos
 | `RC-M3-T02A` | Project admin authority; M2 H-M2-05 | PASS iff Only an authenticated admin can create, change, retire and publish typed Service/Action items, bundles, packages and promotions; the selector reads T01 catalogue types, persists catalogue_type_id, and rejects unknown IDs, malformed values and customer requests before writes. | Real protected-route/action integration with allowed admin, customer, anonymous and unknown catalogue_type_id cases; inspect selector values, submitted FK and DB before/after. Record command, database/route observations and result in the GO checkpoint. | Client role, route shape or fixture write as authority. | M2 auth/role route denials. |
 | `RC-M3-T02B` | Project historic integrity; M3-W02 | PASS iff Admin service/action, bundle, package and promotion commands change future selections only, promotion commands leave master_package.base_price unchanged, and no command has a booking-snapshot write path. | Inspect command dependency/call path and local DB before/after package and promotion edits, including unchanged base_price; T04/T05 later prove stored snapshot regression. Record command, database/route observations and result in the GO checkpoint. | Retroactive booking update or command-side history rewrite. | T01 expansion/applicability. |
 | `RC-M3-T02C` | M1 UI contract; Project visual direction | PASS iff Admin UI uses durable results and handles empty/loading/error/success without fixture fallback; responsive shell and focus remain usable. | Current-revision browser captures for changed Services & Actions, Master Packages and Promotions routes at desktop and mobile; keyboard/error state; inspect data after reload. Record command, database/route observations and result in the GO checkpoint. | Old scenario action or stale local state presented as saved. | M1 admin shell visual baseline. |
+| `RC-M3-T02D` | Project D8; M3-W02 | PASS iff create/edit, including package-link changes, atomically rejects any inclusive date overlap with another promotion for a shared package; same-package adjacent non-overlapping ranges and different-package ranges succeed. | Disposable PostgreSQL integration for boundary dates, same/different package, update and two concurrent creates; inspect conflict result and absence of partial rows/links. Record transaction-lock behavior and DB state. | Browser-only validation, a non-transactional precheck, or silently choosing one overlapping promotion. | T01 promotion dates and package FKs. |
 
 ## Security readiness
 
-SEC-M3-02 implement-now: admin role and input authorization before mutation; no draft publication through client flags alone (Project, M2 H-M2-05; ASVS access/input, OWASP broken access control, NIST AC/SI). SRB-M3-02 binds A/B to route and DB negatives. Preserve seam: M4 owns content publication, not this ticket. The scoped baseline is OWASP ASVS 5.0.0 / Top 10:2025 and NIST CSF 2.0 / SP 800-53 Release 5.2.0. Status: applicable; no planning-review-required finding. D-03 production proof policy is deferred to M4/M5; D-04 live WhatsApp number is deferred and disables the link, without blocking a durable booking.
+SEC-M3-02 implement-now: admin role and input authorization before mutation; no draft publication through client flags alone (Project, M2 H-M2-05; ASVS access/input, OWASP broken access control, NIST AC/SI). SRB-M3-02 binds A/B/D to route and DB negatives, including concurrent promotion overlap. Preserve seam: M4 owns content publication, not this ticket. The scoped baseline is OWASP ASVS 5.0.0 / Top 10:2025 and NIST CSF 2.0 / SP 800-53 Release 5.2.0. Status: applicable; no planning-review-required finding. D-03 production proof policy is deferred to M4/M5; D-04 live WhatsApp number is deferred and disables the link, without blocking a durable booking.
 
 ## UI readiness
 

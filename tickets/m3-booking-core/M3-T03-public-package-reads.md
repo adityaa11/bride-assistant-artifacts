@@ -1,7 +1,7 @@
 # M3-T03 — published package and eligible promotion reads
 
 - State: planned; batch 2 parallel with T02/T04 after T01; milestone/work package: M3 / M3-W03.
-- Code repository / exact source commit: `https://github.com/adityaa11/bride-assistant.git` / `15134132805a5dce25ebd88287f96646110530e2`.
+- Code repository / exact source commit: `https://github.com/adityaa11/bride-assistant.git` / `fcaae2455308f10f2e46a0092fa097135b56994d`.
 - Authority: [Project Context](../../contexts/project.md), [Stack Context](../../contexts/stack.md), [Implementation Context](../../contexts/implementation.md), [M3 milestone](../../contexts/implementation/milestones/M3-booking-core.md), [architecture](../../contexts/implementation/architecture.md), [decisions](../../contexts/implementation/decisions.md), [verification](../../contexts/implementation/verification.md), and [M2 exit](../../contexts/implementation/milestones/M2-foundation.md#m2-exit--24-november-2026).
 - Local verification: disposable Docker PostgreSQL 18.7 and isolated rollback/factory data; local `DocumentStore` only if bytes are involved. Reuse M2-T01/T03 provider evidence unless this ticket changes a provider path or explicitly requires a remote behavior check.
 - Dependencies and accepted outputs: M3-T01 H-M3-01.
@@ -24,7 +24,7 @@ Typed package cards/detail and eligible package-specific offers render from Post
 
 ## Handoff
 
-H-M3-03: package ID, display name/description/duration, unchanged base price, expanded composition and separately eligible promotion ID/type/value/effective interval; M3-T05 validates the selected IDs again server-side at submission rather than trusting rendered price. The producer records exact schema/type, required fields, source identity, retry/idempotency behavior and consumer integration evidence in its GO checkpoint.
+H-M3-03: package ID, display name/description/duration, unchanged base price, expanded composition and separately displayed eligible promotion title/type/value/inclusive dates; M3-T05 receives the package ID only and recomputes the matching promotion from its own trusted creation timestamp. The producer records exact schema/type, required fields, source identity, retry/idempotency behavior and consumer integration evidence in its GO checkpoint.
 
 ## Expected use path
 
@@ -55,7 +55,7 @@ Use the set's `RD-M3-01` T05 actor/input decision and `RD-M3-02` protected repos
 ## Acceptance criteria
 
 - `AC-M3-T03-A` (Project public-content and promotion rules; M3-W03): Only active/published packages and currently eligible package-specific promotions appear; drafts and admin fields do not leak. Bound to `RC-M3-T03A`.
-- `AC-M3-T03-B` (Project package/booking rule; M3-W03): Rendered base price/composition matches authoritative read, eligible promotions remain separate, selection passes IDs for server revalidation, and no published packages offers no invalid booking. Bound to `RC-M3-T03B`.
+- `AC-M3-T03-B` (Project package/booking rule; M3-W03): Rendered base price/composition matches authoritative read, eligible promotions remain separate, selection passes only the package ID for server revalidation, and no published packages offers no invalid booking. Bound to `RC-M3-T03B`.
 - `AC-M3-T03-C` (M1 UI reference; Project Soft Rose Atelier): Changed discovery/selection UI preserves visual hierarchy, responsive behavior and accessible states. Bound to `RC-M3-T03C`.
 
 ## Review Contract
@@ -63,7 +63,7 @@ Use the set's `RD-M3-01` T05 actor/input decision and `RD-M3-02` protected repos
 | Row | Authority | Required behavior | Harness, observations and evidence | Forbidden substitute | Direct regression |
 | --- | --- | --- | --- | --- | --- |
 | `RC-M3-T03A` | Project public-content and promotion rules; M3-W03 | PASS iff Only active/published packages and currently eligible package-specific promotions appear; drafts and admin fields do not leak. | Route-level and DB integration for draft, inactive, expired, wrong-package and valid offers; inspect rendered payload. Record command, database/route observations and result in the GO checkpoint. | Fixture filter alone or client-side hiding. | Admin T02 write state. |
-| `RC-M3-T03B` | Project package/booking rule; M3-W03 | PASS iff Rendered base price/composition matches authoritative read, eligible promotions remain separate, selection passes IDs for server revalidation, and no published packages offers no invalid booking. | Browser and server read comparison, zero-row case, reload; T05 handoff contract check. Record command, database/route observations and result in the GO checkpoint. | Trusting client price or hidden seed. | M1 public/customer visual contract. |
+| `RC-M3-T03B` | Project package/booking rule; M3-W03 | PASS iff Rendered base price/composition matches authoritative read, eligible promotions remain separate, selection passes only the package ID for server revalidation, and no published packages offers no invalid booking. | Browser and server read comparison, zero-row case, reload; T05 handoff contract check. Record command, database/route observations and result in the GO checkpoint. | Trusting client price or hidden seed. | M1 public/customer visual contract. |
 | `RC-M3-T03C` | M1 UI reference; Project Soft Rose Atelier | PASS iff Changed discovery/selection UI preserves visual hierarchy, responsive behavior and accessible states. | New desktop/mobile captures for changed pages and keyboard/focus/empty/error review; stable M1 baseline citation for unchanged shell. Record command, database/route observations and result in the GO checkpoint. | Build-only visual claim. | Public and customer shell. |
 
 ## Security readiness

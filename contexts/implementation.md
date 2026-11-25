@@ -2,9 +2,11 @@
 
 **PA-M2-T07-01 planning source binding:** https://github.com/adityaa11/bride-assistant.git at `ad10fb47284517d0a77bdc39d228764f03b4c630`.
 
-**Context ID:** `BAP-IMPLEMENTATION-CONTEXT` · **Revision:** `3.1` · **Date:** 24 November 2026
+**Context ID:** `BAP-IMPLEMENTATION-CONTEXT` · **Revision:** `3.2` · **Date:** 25 November 2026
 **Status:** `ready` · **Project state:** `hybrid` · **Ticket-generation readiness:** `M1.1 and M2 exit PASS; M3 is next, with M4/M5 production gates retained`
-**Source code repository / commit:** `https://github.com/adityaa11/bride-assistant.git` / `79b3478995737dd73165afaba50369dcb5242a08`.
+**Source code repository / commit:** `https://github.com/adityaa11/bride-assistant.git` / `fcaae2455308f10f2e46a0092fa097135b56994d`.
+
+M3-W01–W05 now carry Project D8: reject same-package promotion date overlaps at admin creation/edit, then automatically apply the one eligible published/active promotion using the booking creation date in Asia/Jakarta and persist its price snapshot. The committed `0003` first-admin bootstrap is the M3 schema baseline; its local [checkpoint](../checkpoints/admin-bootstrap-fcaae24.md) awaits CK. M3 SQL proposals still need their own explicit ERD confirmation.
 
 ## Read first
 

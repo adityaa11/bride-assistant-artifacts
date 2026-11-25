@@ -1,7 +1,7 @@
 # M3-T04 — booking aggregate, immutable snapshots and history
 
 - State: planned; batch 2 parallel with T02/T03 after T01; milestone/work package: M3 / M3-W04.
-- Code repository / exact source commit: `https://github.com/adityaa11/bride-assistant.git` / `15134132805a5dce25ebd88287f96646110530e2`.
+- Code repository / exact source commit: `https://github.com/adityaa11/bride-assistant.git` / `fcaae2455308f10f2e46a0092fa097135b56994d`.
 - Authority: [Project Context](../../contexts/project.md), [Stack Context](../../contexts/stack.md), [Implementation Context](../../contexts/implementation.md), [M3 milestone](../../contexts/implementation/milestones/M3-booking-core.md), [architecture](../../contexts/implementation/architecture.md), [decisions](../../contexts/implementation/decisions.md), [verification](../../contexts/implementation/verification.md), and [M2 exit](../../contexts/implementation/milestones/M2-foundation.md#m2-exit--24-november-2026).
 - Local verification: disposable Docker PostgreSQL 18.7 and isolated rollback/factory data; local `DocumentStore` only if bytes are involved. Reuse M2-T01/T03 provider evidence unless this ticket changes a provider path or explicitly requires a remote behavior check.
 - Dependencies and accepted outputs: M3-T01 H-M3-01; M2-T05 H-M2-05 and M2-T06 H-M2-06.
@@ -20,7 +20,7 @@ M3-T05/T06 later invoke a booking repository with T05 authorized actor, validate
 
 ## Endpoint
 
-One booking ID owns customer ID, submitted package base-price snapshot, optional applied-promotion snapshot, actual final_price and append-only status history. New record starts Menunggu Konfirmasi; malformed/absent references return typed conflict/absence without partial state.
+One booking ID owns customer ID, its trusted created_at timestamp, submitted package base-price snapshot, automatically applied promotion snapshot when one matches, actual final_price and append-only status history. New record starts Menunggu Konfirmasi; malformed/absent references return typed conflict/absence without partial state.
 
 ## Handoff
 
@@ -54,7 +54,7 @@ Use the set's `RD-M3-01` T05 actor/input decision and `RD-M3-02` protected repos
 
 ## Acceptance criteria
 
-- `AC-M3-T04-A` (Project snapshot/shared-record rule; M3-W04): One durable booking contains immutable package base-price facts, an optional applied-promotion snapshot, the actual final_price and one cross-surface identity; later package/promotion edits do not alter them. Bound to `RC-M3-T04A`.
+- `AC-M3-T04-A` (Project snapshot/shared-record rule; M3-W04): One durable booking contains immutable package base-price facts, the automatically applied promotion snapshot or null, the actual final_price and one cross-surface identity; later package/promotion edits do not alter them. Bound to `RC-M3-T04A`.
 - `AC-M3-T04-B` (Project lifecycle; M3-W04): Initial status/history is canonical, ordered and append-only; invalid partial create rolls back. Bound to `RC-M3-T04B`.
 - `AC-M3-T04-C` (AGENTS.md; M2-T03): Empty/missing cases and actual schema match the confirmed ERD; no test seed enters migration graph. Bound to `RC-M3-T04C`.
 
@@ -62,7 +62,7 @@ Use the set's `RD-M3-01` T05 actor/input decision and `RD-M3-02` protected repos
 
 | Row | Authority | Required behavior | Harness, observations and evidence | Forbidden substitute | Direct regression |
 | --- | --- | --- | --- | --- | --- |
-| `RC-M3-T04A` | Project snapshot/shared-record rule; M3-W04 | PASS iff One durable booking contains immutable package base-price facts, an optional applied-promotion snapshot, the actual final_price and one cross-surface identity; later package/promotion edits do not alter them. | Fresh DB create/read with and without an applicable promotion, inspect base price versus final_price, then edit package/promotion and compare snapshots/FKs. Record command, database/route observations and result in the GO checkpoint. | Live-join-only historical values. | T01 service/package identities. |
+| `RC-M3-T04A` | Project snapshot/shared-record rule; M3-W04 | PASS iff One durable booking contains immutable package base-price facts, the automatically applied promotion snapshot or null, the actual final_price and one cross-surface identity; later package/promotion edits do not alter them. | Fresh DB create/read with and without an applicable promotion, inspect base price versus final_price, then edit package/promotion and compare snapshots/FKs. Record command, database/route observations and result in the GO checkpoint. | Live-join-only historical values. | T01 service/package identities. |
 | `RC-M3-T04B` | Project lifecycle; M3-W04 | PASS iff Initial status/history is canonical, ordered and append-only; invalid partial create rolls back. | Transactional create failure/retry and history ordering tests; inspect persisted rows. Record command, database/route observations and result in the GO checkpoint. | Separate customer/admin records or mutable history. | M2 repository error semantics. |
 | `RC-M3-T04C` | AGENTS.md; M2-T03 | PASS iff Empty/missing cases and actual schema match the confirmed ERD; no test seed enters migration graph. | Docker migrate/inspect, rendered actual ERD in GO/CK, migration inventory and empty query. Record command, database/route observations and result in the GO checkpoint. | Unconfirmed migration or Mermaid-only ERD. | Auth/ledger schema. |
 

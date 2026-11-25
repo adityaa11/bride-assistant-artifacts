@@ -1,7 +1,7 @@
 # M3-T01 — service, action, bundle, package and promotion persistence
 
 - State: planned; batch 1; milestone/work package: M3 / M3-W01.
-- Code repository / exact source commit: `https://github.com/adityaa11/bride-assistant.git` / `15134132805a5dce25ebd88287f96646110530e2`.
+- Code repository / exact source commit: `https://github.com/adityaa11/bride-assistant.git` / `fcaae2455308f10f2e46a0092fa097135b56994d`.
 - Authority: [Project Context](../../contexts/project.md), [Stack Context](../../contexts/stack.md), [Implementation Context](../../contexts/implementation.md), [M3 milestone](../../contexts/implementation/milestones/M3-booking-core.md), [architecture](../../contexts/implementation/architecture.md), [decisions](../../contexts/implementation/decisions.md), [verification](../../contexts/implementation/verification.md), and [M2 exit](../../contexts/implementation/milestones/M2-foundation.md#m2-exit--24-november-2026).
 - Local verification: disposable Docker PostgreSQL 18.7 and isolated rollback/factory data; local `DocumentStore` only if bytes are involved. Reuse M2-T01/T03 provider evidence unless this ticket changes a provider path or explicitly requires a remote behavior check.
 - Dependencies and accepted outputs: M2-T03 H-M2-03 and M2-T06 H-M2-06.
@@ -55,7 +55,7 @@ Use the set's `RD-M3-01` T05 actor/input decision and `RD-M3-02` protected repos
 ## Acceptance criteria
 
 - `AC-M3-T01-A` (Project Service/Action and Package invariant; M3-W01): Service and Action share one `catalogue` table with required `catalogue_type_id` FK to the system-owned `catalogue_types` rows; bundle/package relationships expand without double-counting an item; invalid types, references and prices are rejected. Bound to `RC-M3-T01A`.
-- `AC-M3-T01-B` (Project promotion rule; M3-W01): Promotion type/value/window and package applicability persist with valid constraints; no draft or inactive offer is implicitly eligible, and promotion writes do not change `master_package.base_price`. Bound to `RC-M3-T01B`.
+- `AC-M3-T01-B` (Project promotion rule; M3-W01): Promotion UI title/description, type/value, inclusive start/end dates and package applicability persist with valid constraints; no draft or inactive offer is eligible, and promotion writes do not change `master_package.base_price`. Bound to `RC-M3-T01B`.
 - `AC-M3-T01-C` (AGENTS.md SQL contract; M2-T03): Fresh/empty migration and repository behavior match the proposed rendered ERD; actual GO ERD is checked against a freshly migrated database. Bound to `RC-M3-T01C`.
 
 ## Review Contract
@@ -63,7 +63,7 @@ Use the set's `RD-M3-01` T05 actor/input decision and `RD-M3-02` protected repos
 | Row | Authority | Required behavior | Harness, observations and evidence | Forbidden substitute | Direct regression |
 | --- | --- | --- | --- | --- | --- |
 | `RC-M3-T01A` | Project Service/Action and Package invariant; M3-W01 | PASS iff Service and Action share one `catalogue` table with required `catalogue_type_id` FK to the system-owned `catalogue_types` rows; bundle/package relationships expand without double-counting an item; invalid types, references and prices are rejected. | Fresh migrated database, `catalogue_types` two-row reference-data and FK introspection, Service/Action type filter, duplicate-expansion and invalid-type/FK/price tests; inspect rows and computed result. Record command, database/route observations and result in the GO checkpoint. | Fixture seed or application-only uniqueness. | M1 Services & Actions fixture remains review-only. |
-| `RC-M3-T01B` | Project promotion rule; M3-W01 | PASS iff Promotion type/value/window and package applicability persist with valid constraints; no draft or inactive offer is implicitly eligible, and promotion writes do not change `master_package.base_price`. | Local repository integration for percentage/rupiah, package join and time bounds; inspect unchanged package base price after promotion writes. Record command, database/route observations and result in the GO checkpoint. | Global promotion without applicability or test-only seed migration. | M1 promotion fixture behavior remains isolated. |
+| `RC-M3-T01B` | Project promotion rule; M3-W01 | PASS iff Promotion UI title/description, type/value, inclusive start/end dates and package applicability persist with valid constraints; no draft or inactive offer is eligible, and promotion writes do not change `master_package.base_price`. | Local repository integration for percentage/rupiah, package join, inclusive Asia/Jakarta date bounds and invalid date order; inspect unchanged package base price after promotion writes. Record command, database/route observations and result in the GO checkpoint. | Global promotion without applicability or test-only seed migration. | M1 promotion fixture behavior remains isolated. |
 | `RC-M3-T01C` | AGENTS.md SQL contract; M2-T03 | PASS iff Fresh/empty migration and repository behavior match the proposed rendered ERD; actual GO ERD is checked against a freshly migrated database. | Docker migrate/inspect, schema diff, rendered actual SVG/PNG in checkpoint, migration inventory and empty read. Record command, database/route observations and result in the GO checkpoint. | Mermaid source or file path alone; unconfirmed migration. | Existing auth schema and migration ledger. |
 
 ## Security readiness
