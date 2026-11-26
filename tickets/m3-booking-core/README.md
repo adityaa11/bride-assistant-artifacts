@@ -18,7 +18,7 @@ A promotion stores UI title/description, type/value, inclusive `starts_on`/`ends
 | Batch | Ticket / owner outcome | State | Dependencies | Activation | Parallel-safe relationship |
 | --- | --- | --- | --- | --- | --- |
 | 1 | [M3-T01 Services & Actions / Master Packages model](M3-T01-services-actions-model.md) — W01 | planned | M2-T03/T06 | preparation-only → T02/T03/T04 | First schema gate |
-| 2 | [M3-T02 admin service/package commands](M3-T02-admin-services-actions-commands.md) — W02 | planned | T01, M2-T05, M2.1-T01 CK | active | Parallel with T03/T04 after T01 |
+| 2 | [M3-T02 admin service/package commands](M3-T02-admin-services-actions-commands.md) — W02 | approved ([CK PASS](../../feedback/M3-T02-admin-commands-5902338-ck.md)) | T01, M2-T05, M2.1-T01 CK | active | Parallel with T03/T04 after T01 |
 | 2 | [M3-T03 public package reads](M3-T03-public-package-reads.md) — W03 | planned | T01 | active | Parallel with T02/T04 |
 | 2 | [M3-T04 booking model](M3-T04-booking-model.md) — W04 | planned | T01, M2-T05/T06 | preparation-only → T05/T06 | Parallel with T02/T03 after T01 |
 | 3 | [M3-T05 customer booking flow](M3-T05-customer-booking-flow.md) — W05 | planned | T02/T03/T04, M2-T05 | preparation-only → T07 | Booking handoff; date-sensitive production activation waits for T07 |
