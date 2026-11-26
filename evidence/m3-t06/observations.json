@@ -1,0 +1,66 @@
+{
+  "migrations": [
+    "0001",
+    "0002",
+    "0003",
+    "0004",
+    "0005"
+  ],
+  "sameRecord": {
+    "bookingId": "3ca1fe1e-1ba6-4314-8855-b6340b1711a6",
+    "sharedSnapshot": true,
+    "customerHistory": 1
+  },
+  "transitions": {
+    "first": [
+      200,
+      409
+    ],
+    "before": {
+      "status": "Menunggu Pembayaran",
+      "events": 2
+    },
+    "failedIntegration": {
+      "ok": false,
+      "code": "CONFLICT"
+    },
+    "after": {
+      "status": "Booking Berhasil",
+      "events": 3
+    },
+    "actorId": "hMULNpaNSh4YSmTozt1ytDP1IXtjzt7W",
+    "orderedHistory": [
+      {
+        "from_status": null,
+        "to_status": "Menunggu Konfirmasi",
+        "actor_id": "P5noYsPJmQvL21V1EYvL4BRbKIsC7BeD",
+        "occurred_at": "2026-11-26T13:09:14.085Z"
+      },
+      {
+        "from_status": "Menunggu Konfirmasi",
+        "to_status": "Menunggu Pembayaran",
+        "actor_id": "hMULNpaNSh4YSmTozt1ytDP1IXtjzt7W",
+        "occurred_at": "2026-11-26T13:09:14.773Z"
+      },
+      {
+        "from_status": "Menunggu Pembayaran",
+        "to_status": "Booking Berhasil",
+        "actor_id": "hMULNpaNSh4YSmTozt1ytDP1IXtjzt7W",
+        "occurred_at": "2026-11-26T13:09:15.312Z"
+      }
+    ],
+    "integratedEvent": {
+      "id": "bb1ba64f-f50d-470c-9140-19707c7011dd",
+      "booking_id": "3ca1fe1e-1ba6-4314-8855-b6340b1711a6",
+      "actor_id": "hMULNpaNSh4YSmTozt1ytDP1IXtjzt7W",
+      "from_status": "Menunggu Pembayaran",
+      "to_status": "Booking Berhasil",
+      "occurred_at": "2026-11-26T13:09:15.312Z"
+    }
+  },
+  "uiDecision": {
+    "id": "50059d5d-4886-42b6-a24a-355840b6b591",
+    "status": "Menunggu Pembayaran",
+    "events": 2
+  }
+}
