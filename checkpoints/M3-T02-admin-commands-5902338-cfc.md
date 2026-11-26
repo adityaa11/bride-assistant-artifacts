@@ -1,0 +1,29 @@
+# M3-T02 CFC checkpoint — action boundary and loading proof
+
+- Ticket: [M3-T02](../tickets/m3-booking-core/M3-T02-admin-services-actions-commands.md); batch 2; state `awaiting_review`.
+- Code repository: `https://github.com/adityaa11/bride-assistant.git`; exact remediation commit `5902338f16e87fbb487cc942a637c50bda0305e6` (reviewed base `648874441f4b088bd2c8599e66d5df6f35fcf120`).
+- Frozen oracle: [first CK review](../feedback/M3-T02-admin-commands-6488744-ck.md), `CHANGES_REQUIRED`, `CK-001.a`, `CK-001.b`, `CK-002.a`. One ordinary CFC pass; no HMN authorization required.
+- Remediation diff: only `tests/m3-t02.browser.spec.ts`. Production behavior and schema are unchanged. The pre-existing user `AGENTS.md` worktree edit was excluded.
+
+## Authorized clause progress and closure
+
+| Clause | Ticket authority / frozen CK oracle | Status and evidence | Exact required command and result | Oracle |
+| --- | --- | --- | --- | --- |
+| `CK-001.a` | `RC-M3-T02A`; see CK frozen matrix for the exact customer/anonymous action-denial oracle and M2 route-denial boundary. | `PROVEN`. `tests/m3-t02.browser.spec.ts`, `submitForged` assertions: real captured Next Server Action POST replayed with signed-in customer and anonymous browser contexts; returned action result codes `FORBIDDEN` and `AUTHENTICATION_REQUIRED` (HTTP 200). Disposable PostgreSQL `public.catalogue` row snapshot stayed exactly equal, 1 row before and after each. The same test performs valid admin create and customer/anonymous protected-route denial. | `node scripts/m3-t02-browser.mjs .local-storage/m3-t02-cfc-browser` — PASS, 1/1 browser test; logged both result codes, 1→1 rows, `unchanged:true`. | Passed. |
+| `CK-001.b` | `RC-M3-T02A`; see CK frozen matrix for unknown type and malformed action/Zod oracle and valid selector/create boundary. | `PROVEN`. Same `submitForged` assertions replay the captured action as authenticated admin with `catalogue_type_id:999999` and empty `name`, proving typed `CONFLICT` and `INVALID_INPUT`. PostgreSQL row snapshot stayed exactly equal, 1 row before and after each. The browser checks the two selector options, submits type ID 1, creates `Photography`, and reloads it. | `node scripts/m3-t02-browser.mjs .local-storage/m3-t02-cfc-browser` — PASS, 1/1; logged both result codes, 1→1 rows, `unchanged:true`. | Passed. |
+| `CK-002.a` | `RC-M3-T02C` / UI readiness; see CK frozen matrix for in-flight loading and direct UI regression oracle. | `PROVEN`. `tests/m3-t02.browser.spec.ts` holds the real `/admin/catalogue` action request, asserts visible `Menyimpan…`, disabled submit, and focused editable name input, then releases it and asserts the saved heading. [Current loading capture](../evidence/m3-t02-cfc/catalogue-loading.png) was visually inspected. The same test covers initial empty state, error/conflict recovery, reload, desktop/mobile captures and focus on editor opening. | `node scripts/m3-t02-browser.mjs .local-storage/m3-t02-cfc-browser` — PASS, 1/1. | Passed. |
+
+## Shadow CK and direct regressions
+
+Internal readiness: `READY_FOR_CK`. All three authorized frozen clauses are `PROVEN` against their original CK closure oracles; no direct regression was observed. The actual repaired evidence path is protected `/admin/catalogue` → `AdminCatalogueLive` → `adminCatalogueCommand` action POST → `authorizeRequest` and Zod → `executeAdminCatalogueCommand` → durable `public.catalogue` result. The test captures a legitimate admin action request, replays it with customer, anonymous, unknown-type and malformed inputs, and compares PostgreSQL rows before/after. The valid admin create/reload, two type options, M2 route denials, empty state, conflict feedback, loading, responsive layout and focus all passed in that same integration.
+
+Previously proven `RC-M3-T02B` and `RC-M3-T02D` remain valid: the remediation changes only the browser test and neither production path nor data/schema. Their original evidence is at artifact commit `c88eb0f0089906b39a2f150cb2d7fbf9d60f38b7`, path `checkpoints/M3-T02-admin-commands-6488744.md`, blob `ea3ea25c8cddc878a546ad5428c1854b41aa03f7`, bound to code commit `648874441f4b088bd2c8599e66d5df6f35fcf120`. Current-revision local PostgreSQL rerun also passed overlap, concurrency, retry and unchanged base-price assertions.
+
+## Validation, SQL and evidence binding
+
+- `node scripts/m3-t02-contract.mjs .local-storage/m3-t02-cfc-contract` — PASS on fresh disposable Docker PostgreSQL 18.7; migrations `0001`–`0004`, empty state, type denial, retry, overlap, membership rollback, concurrent create `[true,false]`, unchanged `base_price=1000000.00`. Compose volume removed by the harness.
+- Fresh introspected `schema.json` exactly matched the committed [actual schema JSON](../evidence/m3-t02/schema.json). The rendered [actual ERD](../evidence/m3-t02/actual-erd.png) shows the nine affected tables, PKs, FKs and cardinalities; before/after schema is unchanged because this CFC changes no SQL. `migrations/0004_catalogue_packages_promotions.sql` remains the confirmed M3-T01 schema. Existing ERD and schema evidence resolve at artifact commit `c88eb0f0089906b39a2f150cb2d7fbf9d60f38b7`, blobs `ef5fdf0997f28342f25d972347ab1ad5ecd2b08d` and `231cb9c110e3b7f322222d41909d662fec9e97d7`, respectively; original code commit `648874441f4b088bd2c8599e66d5df6f35fcf120`. The fresh comparison establishes applicability to the current code commit.
+- `npm run lint` — PASS; `npm run typecheck` — PASS; `npm test` — 15/15 PASS; `npm run build` — PASS with Windows junction permission (sandbox attempt failed to create a Turbopack junction, then the elevated retry passed). `git diff --cached --check` — PASS before the source commit.
+- No provider path changed and no provider-only criterion applies. M2 Vercel/Neon evidence remains the baseline; no remote deployment claim is made.
+
+State: `awaiting_review`. Hand off to CK verification; CFC makes no PASS decision.
