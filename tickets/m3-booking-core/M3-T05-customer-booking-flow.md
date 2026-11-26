@@ -6,7 +6,7 @@
 - Local verification: disposable Docker PostgreSQL 18.7 and isolated rollback/factory data; local `DocumentStore` only if bytes are involved. Reuse M2-T01/T03 provider evidence unless this ticket changes a provider path or explicitly requires a remote behavior check.
 - Dependencies and accepted outputs: M3-T02 H-M3-02; M3-T03 H-M3-03; M3-T04 H-M3-04; M2-T05 H-M2-05.
 - Successors: M3-T07; M4 proof/exception consumers.
-- Activation: `active-in-this-ticket`; legacy production fixture paths forbidden.
+- Activation: `preparation-only` → M3-T07 activates customer submission and Booking Saya with authoritative date protection; legacy production fixture paths remain forbidden at activation.
 - SQL classification: intended-migration + ephemeral-test-setup.
 
 ## Outcome and exact scope
@@ -15,11 +15,11 @@ durable customer submission and Booking Saya read. Owns M3-W05; excludes proof u
 
 ## Entrypoint
 
-Authenticated customer booking form submits untrusted wedding date, location and package ID through T05 validation/actor boundary; it submits no promotion ID or price. Booking Saya uses the persisted session actor and trusted booking owner lookup; browser prices/owner/status are never authority.
+Authenticated customer booking form submits untrusted name, WhatsApp, email, wedding date, start time, location, optional notes and package ID through T05 validation/actor boundary; it submits no promotion ID or price. Booking Saya uses the persisted session actor and trusted booking owner lookup; browser prices/owner/status are never authority.
 
 ## Endpoint
 
-Successful submit commits one Menunggu Konfirmasi record and initial history before a prepared wa.me link is offered; own Booking Saya list/detail reads that record. Typed validation/conflict/absence errors show without losing durable state.
+The prepared submission commits one Menunggu Konfirmasi record and initial history before wa.me preparation; own Booking Saya list/detail reads that record. T07 owns production activation after date protection is integrated. Typed validation/conflict/absence errors show without losing durable state.
 
 ## Handoff
 
@@ -27,7 +27,7 @@ H-M3-05: booking ID, owner ID, selected wedding date/location, immutable snapsho
 
 ## Expected use path
 
-`EUP-M3-T05`: Protected customer route → T05 actor/input → T03 package selection + T02 promotion state + T04 booking transaction → committed booking ID → Booking Saya own-record read and optional wa.me preparation. Remove production localStorage/scenario submission. GO reports the actual composition-to-effect path; CK inspects it. Unit-only callers are insufficient.
+`EUP-M3-T05`: Disposable protected customer route/command → T05 actor/input and stable submission_key → T03 package selection + T02 promotion state + T04 booking transaction → committed booking ID and own-record read. GO proves the prepared route/repository handoff and CK checks production activation remains gated. T07 binds the production route to the shared date transaction, retires localStorage/scenario submission and proves its actual route-to-effect path.
 
 ## True path and legacy
 
@@ -51,7 +51,7 @@ Apply set decisions `RD-M3-01` T05 actor/input, `RD-M3-02` protected repository 
 
 ## Acceptance criteria
 
-- `AC-M3-T05-A` (Project booking flow; M3-W05): Valid submission uses its trusted created_at timestamp and Asia/Jakarta date to automatically find the active, published promotion linked to the package and within inclusive starts_on/ends_on; it computes final_price and persists the applied snapshot or null before WhatsApp preparation. Invalid package/date/fields fail without partial record. Review row `RC-M3-T05A`.
+- `AC-M3-T05-A` (Project booking flow; M3-W05): Valid submission uses its trusted created_at timestamp and Asia/Jakarta date to automatically find the active, published promotion linked to the package and within inclusive starts_on/ends_on; it computes final_price and persists the applied snapshot or null before WhatsApp preparation. Invalid package/date/contact/start-time/field combinations fail without partial record. Review row `RC-M3-T05A`.
 - `AC-M3-T05-B` (Project privacy/shared record; M2 H-M2-05): Booking Saya shows only the owner’s durable records/status/snapshot; cross-customer and anonymous reads are denied. Review row `RC-M3-T05B`.
 - `AC-M3-T05-C` (M1 UI reference; M3-W05): Customer booking/Booking Saya UI preserves reference hierarchy and exposes loading/error/success/empty states accessibly. Review row `RC-M3-T05C`.
 
@@ -59,7 +59,7 @@ Apply set decisions `RD-M3-01` T05 actor/input, `RD-M3-02` protected repository 
 
 | Row | Authority | Required behavior | Harness, observations and evidence | Forbidden substitute | Direct regression |
 | --- | --- | --- | --- | --- | --- |
-| `RC-M3-T05A` | Project booking flow; M3-W05 | PASS iff Valid submission uses its trusted created_at timestamp and Asia/Jakarta date to automatically find the active, published promotion linked to the package and within inclusive starts_on/ends_on; it computes final_price and persists the applied snapshot or null before WhatsApp preparation. Invalid package/date/fields fail without partial record. | End-to-end route + DB read before/on/after both promotion dates, wrong package, draft/inactive offer, no promotion and applicable promotion; verify no client promotion/price input, unchanged base price, no-number case and retry. GO records route/DB observations; CK independently checks them. | wa.me or localStorage as record. | T03 eligibility and T04 atomic create. |
+| `RC-M3-T05A` | Project booking flow; M3-W05 | PASS iff Valid submission uses its trusted created_at timestamp and Asia/Jakarta date to automatically find the active, published promotion linked to the package and within inclusive starts_on/ends_on; it computes final_price and persists the applied snapshot or null before WhatsApp preparation. Invalid package/date/contact/start-time/field combinations fail without partial record. | End-to-end route + DB read before/on/after both promotion dates, wrong package, draft/inactive offer, no promotion and applicable promotion; verify no client promotion/price input, unchanged base price, no-number case and retry. GO records route/DB observations; CK independently checks them. | wa.me or localStorage as record. | T03 eligibility and T04 atomic create. |
 | `RC-M3-T05B` | Project privacy/shared record; M2 H-M2-05 | PASS iff Booking Saya shows only the owner’s durable records/status/snapshot; cross-customer and anonymous reads are denied. | Two-customer and anonymous route tests, list/detail payload inspection, reload and empty state. GO records route/DB observations; CK independently checks them. | Client-side filtering or ID obscurity. | M2 session/role denials. |
 | `RC-M3-T05C` | M1 UI reference; M3-W05 | PASS iff Customer booking/Booking Saya UI preserves reference hierarchy and exposes loading/error/success/empty states accessibly. | Current desktop/mobile captures and keyboard/focus/state checks on changed screens. GO records route/DB observations; CK independently checks them. | Fixture status masquerading as saved result. | M1 customer visual baseline. |
 
@@ -74,3 +74,15 @@ Frontend-awareness State 2, Mode A: use M1 customer booking/Booking Saya referen
 ## Validation and hard stop
 
 Run focused disposable PostgreSQL integration/route tests, direct negative/empty cases, affected lint/typecheck/test/build checks, use-path inspection and migration inventory. Stop for a changed business rule, unresolved schema relationship, invalid M2 handoff or missing ERD confirmation.
+
+## Revision 1.8 amendment — retry and activation handoff
+
+This section supersedes the earlier active route claim where it differs. T05 prepares the customer command/read and UI handoff with disposable protected-route/repository evidence; T07 is the immediate production activation owner. The customer generates one submission_key per intended request and retains it across network retries. The server validates and persists all Project Context form fields: name, WhatsApp, email, wedding date, start time, location and optional notes, plus selected package ID; it computes a canonical payload hash without trusting a client hash. The server scopes it to the authenticated customer, ignores client price/promotion/status, and uses T04's replay result. T05 does not activate a date-sensitive production submission before T07's closure/reservation transaction is present.
+
+- AC-M3-T05-D (Project one-request integrity; M3-W05): Same-key retry returns the same booking ID and one initial history event; changed-payload key reuse conflicts without mutation. Bound to RC-M3-T05D.
+
+| Review row | Authority | Required behavior | Harness and evidence | Forbidden substitute | Regression |
+| --- | --- | --- | --- | --- | --- |
+| RC-M3-T05D | Project one-request integrity; M3-W05; SEC-M3-05 | PASS iff authenticated same-key retry yields one booking and initial event, and changed-payload reuse yields CONFLICT. | Disposable protected-route sequential/concurrent retry, changed payload, replay after later date/location update and reload; inspect immutable original request snapshot, DB counts and visible result. | Client-only button disable or a second booking. | T04 unique key and atomic create. |
+
+H-M3-05 now includes submission_key, actor-scoped replay identity, booking ID, snapshot and own-read result. EUP-M3-T05 ends at a prepared handoff to T07; T07 proves the production customer route and retires localStorage/scenario submission. RC-M3-T05A–C are exercised in disposable integration without claiming production date availability.

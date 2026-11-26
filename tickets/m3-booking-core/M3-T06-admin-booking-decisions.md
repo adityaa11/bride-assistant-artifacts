@@ -1,12 +1,12 @@
 # M3-T06 — admin queue and core status decisions
 
-- State: planned; batch 3 parallel with T05 after T04; milestone/work package M3 / M3-W06.
+- State: planned; batch 4 after T05 same-record handoff; milestone/work package M3 / M3-W06.
 - Code repository / exact source commit: `https://github.com/adityaa11/bride-assistant.git` / `fcaae2455308f10f2e46a0092fa097135b56994d`.
 - Authority: [Project Context](../../contexts/project.md), [Stack Context](../../contexts/stack.md), [Implementation Context](../../contexts/implementation.md), [M3 milestone](../../contexts/implementation/milestones/M3-booking-core.md), [architecture](../../contexts/implementation/architecture.md), [decisions](../../contexts/implementation/decisions.md), [verification](../../contexts/implementation/verification.md), and [M2 exit](../../contexts/implementation/milestones/M2-foundation.md#m2-exit--24-november-2026).
 - Local verification: disposable Docker PostgreSQL 18.7 and isolated rollback/factory data; local `DocumentStore` only if bytes are involved. Reuse M2-T01/T03 provider evidence unless this ticket changes a provider path or explicitly requires a remote behavior check.
-- Dependencies and accepted outputs: M3-T04 H-M3-04; M2-T05 H-M2-05; M2.1-T01 H-M2.1-01 after CK PASS.
+- Dependencies and accepted outputs: M3-T04 H-M3-04; M3-T05 H-M3-05 for same-record integration; M2-T05 H-M2-05; M2.1-T01 H-M2.1-01 after CK PASS.
 - Successors: M3-T07; M4 proof/exception consumers.
-- Activation: `active-in-this-ticket`; legacy production fixture paths forbidden.
+- Activation: `preparation-only` → M3-T07 activates the booking queue/detail and core decisions with the shared date transaction; legacy production fixture paths remain forbidden at activation.
 - SQL classification: intended-migration + ephemeral-test-setup.
 
 ## Outcome and exact scope
@@ -19,7 +19,7 @@ Protected admin booking queue/detail and status action call T05 with admin actor
 
 ## Endpoint
 
-Admin sees the same booking ID/snapshot/history; allowed core transitions persist status plus one ordered history event atomically. Invalid, stale, missing and unauthorized transitions return typed result without mutation.
+The prepared admin path reads the same booking ID/snapshot/history; allowed core transitions persist status plus one ordered history event atomically. Success requires explicit server-validated manual payment-review confirmation. Invalid, stale, missing and unauthorized transitions return typed result without mutation. T07 owns production activation of success with reservation.
 
 ## Handoff
 
@@ -27,7 +27,7 @@ H-M3-06: booking ID, canonical current status, actor/time and ordered transition
 
 ## Expected use path
 
-`EUP-M3-T06`: Protected admin route → T05 actor/input → T04 booking repository/current-state transaction → status/history result → existing admin queue/detail; remove production fixture status mutations and noncanonical labels. GO reports the actual composition-to-effect path; CK inspects it. Unit-only callers are insufficient.
+`EUP-M3-T06`: Disposable protected admin command → M2-T05 actor/input → T04 booking repository/current-state transaction using H-M3-05's same record → status/history result → prepared admin queue/detail. GO proves this handoff and CK checks activation remains gated. T07 binds the production route to reservation/closure conflict protection and retires fixture status mutations/noncanonical labels.
 
 ## True path and legacy
 
@@ -74,3 +74,15 @@ Frontend-awareness State 2, Mode A: keep M1 admin booking workspace and shared f
 ## Validation and hard stop
 
 Run focused disposable PostgreSQL integration/route tests, direct negative/empty cases, affected lint/typecheck/test/build checks, use-path inspection and migration inventory. Stop for a changed business rule, unresolved schema relationship, invalid M2 handoff or missing ERD confirmation.
+
+## Revision 1.8 amendment — same record, manual approval and activation
+
+This section supersedes the earlier T05/T06 parallel and active-success claims. T06 consumes H-M3-05 for its same-record read. The prepared success command requires explicit server-validated admin confirmation that payment proof received through the permitted manual channel was checked and approved. The status/history event records the deciding admin and time; M4 later owns in-app upload/review, with no proof byte or URL added here. Absent confirmation, stale status, customer actor or failed date integration cannot create a Booking Berhasil event.
+
+- AC-M3-T06-D (Project D2/D4 payment decision; M3-W06): A success command without explicit admin payment-review confirmation is denied without status/history mutation; a confirmed decision remains admin-only and reaches production only through T07's reservation transaction. Bound to RC-M3-T06D.
+
+| Review row | Authority | Required behavior | Harness and evidence | Forbidden substitute | Regression |
+| --- | --- | --- | --- | --- | --- |
+| RC-M3-T06D | Project D2/D4; SEC-M3-06 | PASS iff missing/false manual review confirmation and non-admin success attempts leave status/history unchanged, while a validated admin decision records actor/time and is handed to T07. | Disposable protected-command and DB negative/positive checks; inspect event count and T07 handoff. | UI-only checkbox, automatic payment claim or success before date conflict protection. | T04 history and T05 same record. |
+
+H-M3-06 is a prepared admin command/status-history handoff to T07. T07 owns production booking route activation, creates a reservation in the same success transaction, and proves the final admin route-to-effect path. RC-M3-T06A–C remain required preparation and UI checks.

@@ -24,7 +24,7 @@ One booking ID owns customer ID, its trusted created_at timestamp, submitted pac
 
 ## Handoff
 
-H-M3-04: booking ID, customer ID FK, package/promotion stable IDs, immutable submitted name/price/duration/description/composition and final-price snapshots, wedding date/location, canonical status, ordered history entries with actor/time; T05 owns submission/read and T06 owns admin status transition. Snapshot contents are copied into the aggregate, not live joins. The producer records exact schema/type, required fields, source identity, retry/idempotency behavior and consumer integration evidence in its GO checkpoint.
+H-M3-04: booking ID, customer ID FK, package/promotion stable IDs, immutable submitted contact/request facts, package name/price/duration/description/composition and final-price snapshots, wedding date/location, canonical status, ordered history entries with actor/time; T05 owns submission/read and T06 owns admin status transition. Snapshot contents are copied into the aggregate, not live joins. The producer records exact schema/type, required fields, source identity, retry/idempotency behavior and consumer integration evidence in its GO checkpoint.
 
 ## Expected use path
 
@@ -36,7 +36,7 @@ The true path is the one above. Production fixture/scenario/localStorage paths f
 
 ## SQL migration hygiene
 
-M3-SQL-04 intended migration: booking/status-history schema in [migration proposal](migration-proposal.md). No live prototype import or seed; local factory creates disposable rows in Docker. Confirm ERD before migration-dependent work. Every SQL-dependent GO/CFC must include a rendered actual ERD, migration-file/version links and comparison against a fresh migrated database; CK inspects that evidence. The [planning proposal](migration-proposal.md) and [rendered ERD](proposed-erd.svg) are for review, not migration authorization.
+M3-SQL-04 intended migration: booking/status-history schema, customer-scoped submission_key uniqueness, promotion/snapshot pair check, immutable snapshot trigger and append-only history trigger in [migration proposal](migration-proposal.md). No live prototype import or seed; local factory creates disposable rows in Docker. Confirm ERD before migration-dependent work. Every SQL-dependent GO/CFC must include a rendered actual ERD, migration-file/version links and comparison against a fresh migrated database; CK inspects that evidence. The [planning proposal](migration-proposal.md) and [rendered ERD](proposed-erd.svg) are for review, not migration authorization.
 
 ## Empty and initial state
 
@@ -77,3 +77,15 @@ Not applicable: aggregate/repository preparation only. For changed UI, apply fro
 ## Validation and hard stop
 
 Run focused local PostgreSQL integration/route tests, direct negative/empty cases, and affected lint/typecheck/test/build checks. Check the actual use path and migration inventory. Stop on a changed business rule, unresolved schema relationship, invalid M2 handoff, or missing required ERD confirmation; return to planning rather than invent a rule.
+
+## Revision 1.8 amendment — retry identity and schema protection
+
+This section supersedes SQL-04 and retry details above where they differ. The revised migration proposal and rendered ERD are pending fresh explicit confirmation. T04 owns a required booking.submission_key UUID with UNIQUE(customer_id, submission_key), immutable submission_snapshot JSONB containing all validated form facts, a server-computed immutable submission_payload_hash, and wedding_start_time; customer ID comes from the authenticated actor. On same-customer, same-key, same-canonical-submitted-payload-hash replay, the repository returns the existing booking and creates no second initial history event. Reuse of that key with a different canonical payload hash returns CONFLICT without mutation. Cross-customer keys are independent. The package/promotion snapshot pair check, immutable booking facts trigger and append-only history trigger are specified in the revised proposal.
+
+- AC-M3-T04-D (Project one-request integrity; M3-W04): One customer/key has one booking and initial event under sequential or concurrent retry; changed-payload reuse conflicts. Bound to RC-M3-T04D.
+
+| Review row | Authority | Required behavior | Harness and evidence | Forbidden substitute | Regression |
+| --- | --- | --- | --- | --- | --- |
+| RC-M3-T04D | Project one-request integrity; M3-W04; SEC-M3-04 | PASS iff identical replay returns the original ID with one initial history event, while changed-payload replay conflicts and cross-customer keys remain isolated. | Fresh Docker transactions for same-key sequential/concurrent replay, changed payload, different customer and replay after a later date/location update; inspect unique constraint, immutable snapshot/hash and row/event counts in GO/CK. | Browser-only button disable or duplicate booking. | T04 atomic create and T05 handoff. |
+
+H-M3-04 now includes the submission_key and replay/conflict result. T05 consumes it. No M3 SQL file may be written or run until the revised SQL-04 ERD and definition/purpose/responsibility are explicitly confirmed.
