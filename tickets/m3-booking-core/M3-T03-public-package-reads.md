@@ -1,6 +1,6 @@
 # M3-T03 — published package and eligible promotion reads
 
-- State: planned; batch 2 parallel with T02/T04 after T01; milestone/work package: M3 / M3-W03.
+- State: awaiting_review; batch 2 parallel with T02/T04 after T01; milestone/work package: M3 / M3-W03. GO checkpoint: [M3-T03 ae60f35](../../checkpoints/M3-T03-public-package-reads-ae60f35.md).
 - Code repository / exact source commit: `https://github.com/adityaa11/bride-assistant.git` / `fcaae2455308f10f2e46a0092fa097135b56994d`.
 - Authority: [Project Context](../../contexts/project.md), [Stack Context](../../contexts/stack.md), [Implementation Context](../../contexts/implementation.md), [M3 milestone](../../contexts/implementation/milestones/M3-booking-core.md), [architecture](../../contexts/implementation/architecture.md), [decisions](../../contexts/implementation/decisions.md), [verification](../../contexts/implementation/verification.md), and [M2 exit](../../contexts/implementation/milestones/M2-foundation.md#m2-exit--24-november-2026).
 - Local verification: disposable Docker PostgreSQL 18.7 and isolated rollback/factory data; local `DocumentStore` only if bytes are involved. Reuse M2-T01/T03 provider evidence unless this ticket changes a provider path or explicitly requires a remote behavior check.
