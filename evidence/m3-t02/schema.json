@@ -1,0 +1,118 @@
+{
+  "migrations": [
+    "0001",
+    "0002",
+    "0003",
+    "0004"
+  ],
+  "constraints": [
+    {
+      "source": "bundle",
+      "contype": "p",
+      "target": null,
+      "columns": "{id}"
+    },
+    {
+      "source": "bundle_catalogue",
+      "contype": "f",
+      "target": "bundle",
+      "columns": "{bundle_id}"
+    },
+    {
+      "source": "bundle_catalogue",
+      "contype": "f",
+      "target": "catalogue",
+      "columns": "{catalogue_id}"
+    },
+    {
+      "source": "bundle_catalogue",
+      "contype": "p",
+      "target": null,
+      "columns": "{bundle_id,catalogue_id}"
+    },
+    {
+      "source": "catalogue",
+      "contype": "f",
+      "target": "catalogue_types",
+      "columns": "{catalogue_type_id}"
+    },
+    {
+      "source": "catalogue",
+      "contype": "p",
+      "target": null,
+      "columns": "{id}"
+    },
+    {
+      "source": "catalogue_types",
+      "contype": "p",
+      "target": null,
+      "columns": "{id}"
+    },
+    {
+      "source": "master_package",
+      "contype": "p",
+      "target": null,
+      "columns": "{id}"
+    },
+    {
+      "source": "package_bundle",
+      "contype": "f",
+      "target": "bundle",
+      "columns": "{bundle_id}"
+    },
+    {
+      "source": "package_bundle",
+      "contype": "f",
+      "target": "master_package",
+      "columns": "{package_id}"
+    },
+    {
+      "source": "package_bundle",
+      "contype": "p",
+      "target": null,
+      "columns": "{package_id,bundle_id}"
+    },
+    {
+      "source": "package_catalogue",
+      "contype": "f",
+      "target": "catalogue",
+      "columns": "{catalogue_id}"
+    },
+    {
+      "source": "package_catalogue",
+      "contype": "f",
+      "target": "master_package",
+      "columns": "{package_id}"
+    },
+    {
+      "source": "package_catalogue",
+      "contype": "p",
+      "target": null,
+      "columns": "{package_id,catalogue_id}"
+    },
+    {
+      "source": "promotion",
+      "contype": "p",
+      "target": null,
+      "columns": "{id}"
+    },
+    {
+      "source": "promotion_package",
+      "contype": "f",
+      "target": "master_package",
+      "columns": "{package_id}"
+    },
+    {
+      "source": "promotion_package",
+      "contype": "f",
+      "target": "promotion",
+      "columns": "{promotion_id}"
+    },
+    {
+      "source": "promotion_package",
+      "contype": "p",
+      "target": null,
+      "columns": "{promotion_id,package_id}"
+    }
+  ]
+}
