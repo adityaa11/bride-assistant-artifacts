@@ -1,0 +1,274 @@
+{
+  "migration": [
+    "0001",
+    "0002",
+    "0003",
+    "0004",
+    "0005"
+  ],
+  "emptyCount": 0,
+  "promoted": {
+    "id": "e9a2f071-7702-4915-adff-5af093ad1187",
+    "packageId": "5f6fa85e-61ec-40b8-b75f-0bb6e209292a",
+    "promotionId": "1a5ee094-039c-4ebb-b990-54d71ddbb904",
+    "basePrice": "1000000.00",
+    "finalPrice": "900000.00"
+  },
+  "noPromotion": {
+    "id": "78163c04-d3b5-4bb5-b4c4-fb38ecdb527b",
+    "finalPrice": "2000000.00"
+  },
+  "replay": {
+    "originalId": "e9a2f071-7702-4915-adff-5af093ad1187",
+    "afterEditId": "e9a2f071-7702-4915-adff-5af093ad1187",
+    "bookings": 4,
+    "events": 4
+  },
+  "schema": [
+    {
+      "source": "booking",
+      "conname": "booking_created_at_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{created_at}"
+    },
+    {
+      "source": "booking",
+      "conname": "booking_customer_id_fkey",
+      "contype": "f",
+      "target": "auth.\"user\"",
+      "columns": "{customer_id}"
+    },
+    {
+      "source": "booking",
+      "conname": "booking_customer_id_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{customer_id}"
+    },
+    {
+      "source": "booking",
+      "conname": "booking_customer_submission_key_unique",
+      "contype": "u",
+      "target": null,
+      "columns": "{customer_id,submission_key}"
+    },
+    {
+      "source": "booking",
+      "conname": "booking_final_price_check",
+      "contype": "c",
+      "target": null,
+      "columns": "{final_price}"
+    },
+    {
+      "source": "booking",
+      "conname": "booking_final_price_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{final_price}"
+    },
+    {
+      "source": "booking",
+      "conname": "booking_id_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{id}"
+    },
+    {
+      "source": "booking",
+      "conname": "booking_package_id_fkey",
+      "contype": "f",
+      "target": "master_package",
+      "columns": "{package_id}"
+    },
+    {
+      "source": "booking",
+      "conname": "booking_package_id_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{package_id}"
+    },
+    {
+      "source": "booking",
+      "conname": "booking_package_snapshot_check",
+      "contype": "c",
+      "target": null,
+      "columns": "{package_snapshot}"
+    },
+    {
+      "source": "booking",
+      "conname": "booking_package_snapshot_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{package_snapshot}"
+    },
+    {
+      "source": "booking",
+      "conname": "booking_pkey",
+      "contype": "p",
+      "target": null,
+      "columns": "{id}"
+    },
+    {
+      "source": "booking",
+      "conname": "booking_promotion_id_fkey",
+      "contype": "f",
+      "target": "promotion",
+      "columns": "{promotion_id}"
+    },
+    {
+      "source": "booking",
+      "conname": "booking_promotion_snapshot_check",
+      "contype": "c",
+      "target": null,
+      "columns": "{promotion_snapshot}"
+    },
+    {
+      "source": "booking",
+      "conname": "booking_promotion_snapshot_pair",
+      "contype": "c",
+      "target": null,
+      "columns": "{promotion_id,promotion_snapshot}"
+    },
+    {
+      "source": "booking",
+      "conname": "booking_status_check",
+      "contype": "c",
+      "target": null,
+      "columns": "{status}"
+    },
+    {
+      "source": "booking",
+      "conname": "booking_status_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{status}"
+    },
+    {
+      "source": "booking",
+      "conname": "booking_submission_key_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{submission_key}"
+    },
+    {
+      "source": "booking",
+      "conname": "booking_submission_payload_hash_check",
+      "contype": "c",
+      "target": null,
+      "columns": "{submission_payload_hash}"
+    },
+    {
+      "source": "booking",
+      "conname": "booking_submission_payload_hash_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{submission_payload_hash}"
+    },
+    {
+      "source": "booking",
+      "conname": "booking_submission_snapshot_check",
+      "contype": "c",
+      "target": null,
+      "columns": "{submission_snapshot}"
+    },
+    {
+      "source": "booking",
+      "conname": "booking_submission_snapshot_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{submission_snapshot}"
+    },
+    {
+      "source": "booking",
+      "conname": "booking_updated_at_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{updated_at}"
+    },
+    {
+      "source": "booking",
+      "conname": "booking_wedding_date_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{wedding_date}"
+    },
+    {
+      "source": "booking",
+      "conname": "booking_wedding_location_check",
+      "contype": "c",
+      "target": null,
+      "columns": "{wedding_location}"
+    },
+    {
+      "source": "booking",
+      "conname": "booking_wedding_location_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{wedding_location}"
+    },
+    {
+      "source": "booking",
+      "conname": "booking_wedding_start_time_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{wedding_start_time}"
+    },
+    {
+      "source": "booking_status_history",
+      "conname": "booking_status_history_actor_id_fkey",
+      "contype": "f",
+      "target": "auth.\"user\"",
+      "columns": "{actor_id}"
+    },
+    {
+      "source": "booking_status_history",
+      "conname": "booking_status_history_actor_id_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{actor_id}"
+    },
+    {
+      "source": "booking_status_history",
+      "conname": "booking_status_history_booking_id_fkey",
+      "contype": "f",
+      "target": "booking",
+      "columns": "{booking_id}"
+    },
+    {
+      "source": "booking_status_history",
+      "conname": "booking_status_history_booking_id_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{booking_id}"
+    },
+    {
+      "source": "booking_status_history",
+      "conname": "booking_status_history_id_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{id}"
+    },
+    {
+      "source": "booking_status_history",
+      "conname": "booking_status_history_occurred_at_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{occurred_at}"
+    },
+    {
+      "source": "booking_status_history",
+      "conname": "booking_status_history_pkey",
+      "contype": "p",
+      "target": null,
+      "columns": "{id}"
+    },
+    {
+      "source": "booking_status_history",
+      "conname": "booking_status_history_to_status_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{to_status}"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1300" height="790" viewBox="0 0 1300 790" role="img" aria-labelledby="title desc">
+<title id="title">M3-T04 actual booking schema before and after migration 0005</title>
+<desc id="desc">Fresh PostgreSQL 18.7 schema: booking and booking_status_history primary keys, five foreign keys and cardinalities.</desc>
+<style>text{font-family:Segoe UI,Arial,sans-serif;fill:#302a34}.h{font-size:27px;font-weight:700}.sub{font-size:16px}.section{font-size:20px;font-weight:700;fill:#754365}.box{fill:white;stroke:#ac8da4;stroke-width:2}.head{fill:#754365}.name{font-size:18px;font-weight:700;fill:white}.field{font-size:15px}.edge{font-size:15px;font-weight:600;fill:#754365}</style>
+<rect width="1300" height="790" fill="#fffaf7"/>
+<text x="30" y="43" class="h">M3-T04 · actual booking aggregate ERD</text>
+<text x="30" y="70" class="sub">Fresh disposable PostgreSQL 18.7 · migrations 0001–0005 · code 42b7bfe</text>
+<text x="30" y="112" class="section">Before 0005 · existing referenced schema</text>
+<rect x="30" y="130" width="1240" height="112" rx="9" class="box"/>
+<text x="48" y="158" class="field">auth.user: id (PK) · public.master_package: id (PK) · public.promotion: id (PK)</text>
+<text x="48" y="187" class="field">Unchanged: auth.session, auth.account, auth.verification, app.admin_bootstrap_state, public.schema_migrations</text>
+<text x="48" y="216" class="field">Unchanged catalogue composition and promotion joins from 0004; no booking or booking_status_history table.</text>
+<text x="30" y="283" class="section">After 0005 · two new tables and five foreign keys</text>
+<rect x="30" y="306" width="605" height="337" rx="9" class="box"/><rect x="30" y="306" width="605" height="38" rx="9" class="head"/>
+<text x="48" y="332" class="name">public.booking</text>
+<text x="48" y="373" class="field">id UUID (PK)</text>
+<text x="48" y="401" class="field">customer_id (FK → auth.user.id, required)</text>
+<text x="48" y="429" class="field">package_id (FK → master_package.id, required)</text>
+<text x="48" y="457" class="field">promotion_id (FK → promotion.id, nullable)</text>
+<text x="48" y="485" class="field">customer_id + submission_key (UNIQUE)</text>
+<text x="48" y="513" class="field">submission_snapshot, submission_payload_hash</text>
+<text x="48" y="541" class="field">package_snapshot, promotion_snapshot, final_price</text>
+<text x="48" y="569" class="field">wedding_date, wedding_start_time, wedding_location</text>
+<text x="48" y="597" class="field">status, created_at, updated_at</text>
+<rect x="665" y="306" width="605" height="250" rx="9" class="box"/><rect x="665" y="306" width="605" height="38" rx="9" class="head"/>
+<text x="683" y="332" class="name">public.booking_status_history</text>
+<text x="683" y="373" class="field">id UUID (PK)</text>
+<text x="683" y="401" class="field">booking_id (FK → booking.id, required)</text>
+<text x="683" y="429" class="field">actor_id (FK → auth.user.id, required)</text>
+<text x="683" y="457" class="field">from_status, to_status, occurred_at</text>
+<text x="683" y="492" class="field">Append-only trigger; ordered by booking_id, occurred_at, id</text>
+<text x="30" y="682" class="edge">auth.user 1 → 0..N booking (customer) · master_package 1 → 0..N booking</text>
+<text x="30" y="710" class="edge">promotion 1 → 0..N booking (each booking 0..1 promotion) · booking 1 → 1..N history events</text>
+<text x="30" y="738" class="edge">auth.user 1 → 0..N history events (actor) · each event belongs to exactly one booking and actor</text>
+<text x="30" y="769" class="sub">0005 also enforces immutable booking facts and append-only history; no test seed or production booking rows.</text>
+</svg>
