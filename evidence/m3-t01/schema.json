@@ -1,0 +1,573 @@
+{
+  "migrations": [
+    "0001",
+    "0002",
+    "0003",
+    "0004"
+  ],
+  "constraints": [
+    {
+      "source": "bundle",
+      "conname": "bundle_active_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{active}"
+    },
+    {
+      "source": "bundle",
+      "conname": "bundle_created_at_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{created_at}"
+    },
+    {
+      "source": "bundle",
+      "conname": "bundle_description_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{description}"
+    },
+    {
+      "source": "bundle",
+      "conname": "bundle_id_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{id}"
+    },
+    {
+      "source": "bundle",
+      "conname": "bundle_name_check",
+      "contype": "c",
+      "target": null,
+      "columns": "{name}"
+    },
+    {
+      "source": "bundle",
+      "conname": "bundle_name_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{name}"
+    },
+    {
+      "source": "bundle",
+      "conname": "bundle_pkey",
+      "contype": "p",
+      "target": null,
+      "columns": "{id}"
+    },
+    {
+      "source": "bundle",
+      "conname": "bundle_updated_at_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{updated_at}"
+    },
+    {
+      "source": "bundle_catalogue",
+      "conname": "bundle_catalogue_bundle_id_fkey",
+      "contype": "f",
+      "target": "bundle",
+      "columns": "{bundle_id}"
+    },
+    {
+      "source": "bundle_catalogue",
+      "conname": "bundle_catalogue_bundle_id_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{bundle_id}"
+    },
+    {
+      "source": "bundle_catalogue",
+      "conname": "bundle_catalogue_catalogue_id_fkey",
+      "contype": "f",
+      "target": "catalogue",
+      "columns": "{catalogue_id}"
+    },
+    {
+      "source": "bundle_catalogue",
+      "conname": "bundle_catalogue_catalogue_id_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{catalogue_id}"
+    },
+    {
+      "source": "bundle_catalogue",
+      "conname": "bundle_catalogue_pkey",
+      "contype": "p",
+      "target": null,
+      "columns": "{bundle_id,catalogue_id}"
+    },
+    {
+      "source": "catalogue",
+      "conname": "catalogue_active_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{active}"
+    },
+    {
+      "source": "catalogue",
+      "conname": "catalogue_catalogue_type_id_fkey",
+      "contype": "f",
+      "target": "catalogue_types",
+      "columns": "{catalogue_type_id}"
+    },
+    {
+      "source": "catalogue",
+      "conname": "catalogue_catalogue_type_id_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{catalogue_type_id}"
+    },
+    {
+      "source": "catalogue",
+      "conname": "catalogue_created_at_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{created_at}"
+    },
+    {
+      "source": "catalogue",
+      "conname": "catalogue_description_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{description}"
+    },
+    {
+      "source": "catalogue",
+      "conname": "catalogue_id_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{id}"
+    },
+    {
+      "source": "catalogue",
+      "conname": "catalogue_name_check",
+      "contype": "c",
+      "target": null,
+      "columns": "{name}"
+    },
+    {
+      "source": "catalogue",
+      "conname": "catalogue_name_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{name}"
+    },
+    {
+      "source": "catalogue",
+      "conname": "catalogue_pkey",
+      "contype": "p",
+      "target": null,
+      "columns": "{id}"
+    },
+    {
+      "source": "catalogue",
+      "conname": "catalogue_updated_at_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{updated_at}"
+    },
+    {
+      "source": "catalogue_types",
+      "conname": "catalogue_types_code_check",
+      "contype": "c",
+      "target": null,
+      "columns": "{code}"
+    },
+    {
+      "source": "catalogue_types",
+      "conname": "catalogue_types_code_key",
+      "contype": "u",
+      "target": null,
+      "columns": "{code}"
+    },
+    {
+      "source": "catalogue_types",
+      "conname": "catalogue_types_code_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{code}"
+    },
+    {
+      "source": "catalogue_types",
+      "conname": "catalogue_types_created_at_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{created_at}"
+    },
+    {
+      "source": "catalogue_types",
+      "conname": "catalogue_types_id_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{id}"
+    },
+    {
+      "source": "catalogue_types",
+      "conname": "catalogue_types_known",
+      "contype": "c",
+      "target": null,
+      "columns": "{id,code,label}"
+    },
+    {
+      "source": "catalogue_types",
+      "conname": "catalogue_types_label_check",
+      "contype": "c",
+      "target": null,
+      "columns": "{label}"
+    },
+    {
+      "source": "catalogue_types",
+      "conname": "catalogue_types_label_key",
+      "contype": "u",
+      "target": null,
+      "columns": "{label}"
+    },
+    {
+      "source": "catalogue_types",
+      "conname": "catalogue_types_label_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{label}"
+    },
+    {
+      "source": "catalogue_types",
+      "conname": "catalogue_types_pkey",
+      "contype": "p",
+      "target": null,
+      "columns": "{id}"
+    },
+    {
+      "source": "catalogue_types",
+      "conname": "catalogue_types_updated_at_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{updated_at}"
+    },
+    {
+      "source": "master_package",
+      "conname": "master_package_active_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{active}"
+    },
+    {
+      "source": "master_package",
+      "conname": "master_package_base_price_check",
+      "contype": "c",
+      "target": null,
+      "columns": "{base_price}"
+    },
+    {
+      "source": "master_package",
+      "conname": "master_package_base_price_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{base_price}"
+    },
+    {
+      "source": "master_package",
+      "conname": "master_package_created_at_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{created_at}"
+    },
+    {
+      "source": "master_package",
+      "conname": "master_package_description_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{description}"
+    },
+    {
+      "source": "master_package",
+      "conname": "master_package_duration_minutes_check",
+      "contype": "c",
+      "target": null,
+      "columns": "{duration_minutes}"
+    },
+    {
+      "source": "master_package",
+      "conname": "master_package_duration_minutes_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{duration_minutes}"
+    },
+    {
+      "source": "master_package",
+      "conname": "master_package_id_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{id}"
+    },
+    {
+      "source": "master_package",
+      "conname": "master_package_name_check",
+      "contype": "c",
+      "target": null,
+      "columns": "{name}"
+    },
+    {
+      "source": "master_package",
+      "conname": "master_package_name_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{name}"
+    },
+    {
+      "source": "master_package",
+      "conname": "master_package_pkey",
+      "contype": "p",
+      "target": null,
+      "columns": "{id}"
+    },
+    {
+      "source": "master_package",
+      "conname": "master_package_published_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{published}"
+    },
+    {
+      "source": "master_package",
+      "conname": "master_package_updated_at_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{updated_at}"
+    },
+    {
+      "source": "package_bundle",
+      "conname": "package_bundle_bundle_id_fkey",
+      "contype": "f",
+      "target": "bundle",
+      "columns": "{bundle_id}"
+    },
+    {
+      "source": "package_bundle",
+      "conname": "package_bundle_bundle_id_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{bundle_id}"
+    },
+    {
+      "source": "package_bundle",
+      "conname": "package_bundle_package_id_fkey",
+      "contype": "f",
+      "target": "master_package",
+      "columns": "{package_id}"
+    },
+    {
+      "source": "package_bundle",
+      "conname": "package_bundle_package_id_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{package_id}"
+    },
+    {
+      "source": "package_bundle",
+      "conname": "package_bundle_pkey",
+      "contype": "p",
+      "target": null,
+      "columns": "{package_id,bundle_id}"
+    },
+    {
+      "source": "package_catalogue",
+      "conname": "package_catalogue_catalogue_id_fkey",
+      "contype": "f",
+      "target": "catalogue",
+      "columns": "{catalogue_id}"
+    },
+    {
+      "source": "package_catalogue",
+      "conname": "package_catalogue_catalogue_id_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{catalogue_id}"
+    },
+    {
+      "source": "package_catalogue",
+      "conname": "package_catalogue_package_id_fkey",
+      "contype": "f",
+      "target": "master_package",
+      "columns": "{package_id}"
+    },
+    {
+      "source": "package_catalogue",
+      "conname": "package_catalogue_package_id_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{package_id}"
+    },
+    {
+      "source": "package_catalogue",
+      "conname": "package_catalogue_pkey",
+      "contype": "p",
+      "target": null,
+      "columns": "{package_id,catalogue_id}"
+    },
+    {
+      "source": "promotion",
+      "conname": "promotion_active_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{active}"
+    },
+    {
+      "source": "promotion",
+      "conname": "promotion_created_at_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{created_at}"
+    },
+    {
+      "source": "promotion",
+      "conname": "promotion_description_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{description}"
+    },
+    {
+      "source": "promotion",
+      "conname": "promotion_discount_type_check",
+      "contype": "c",
+      "target": null,
+      "columns": "{discount_type}"
+    },
+    {
+      "source": "promotion",
+      "conname": "promotion_discount_type_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{discount_type}"
+    },
+    {
+      "source": "promotion",
+      "conname": "promotion_discount_value_check",
+      "contype": "c",
+      "target": null,
+      "columns": "{discount_value}"
+    },
+    {
+      "source": "promotion",
+      "conname": "promotion_discount_value_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{discount_value}"
+    },
+    {
+      "source": "promotion",
+      "conname": "promotion_ends_on_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{ends_on}"
+    },
+    {
+      "source": "promotion",
+      "conname": "promotion_id_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{id}"
+    },
+    {
+      "source": "promotion",
+      "conname": "promotion_percent_limit",
+      "contype": "c",
+      "target": null,
+      "columns": "{discount_type,discount_value}"
+    },
+    {
+      "source": "promotion",
+      "conname": "promotion_pkey",
+      "contype": "p",
+      "target": null,
+      "columns": "{id}"
+    },
+    {
+      "source": "promotion",
+      "conname": "promotion_published_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{published}"
+    },
+    {
+      "source": "promotion",
+      "conname": "promotion_starts_on_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{starts_on}"
+    },
+    {
+      "source": "promotion",
+      "conname": "promotion_title_check",
+      "contype": "c",
+      "target": null,
+      "columns": "{title}"
+    },
+    {
+      "source": "promotion",
+      "conname": "promotion_title_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{title}"
+    },
+    {
+      "source": "promotion",
+      "conname": "promotion_updated_at_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{updated_at}"
+    },
+    {
+      "source": "promotion",
+      "conname": "promotion_window",
+      "contype": "c",
+      "target": null,
+      "columns": "{starts_on,ends_on}"
+    },
+    {
+      "source": "promotion_package",
+      "conname": "promotion_package_package_id_fkey",
+      "contype": "f",
+      "target": "master_package",
+      "columns": "{package_id}"
+    },
+    {
+      "source": "promotion_package",
+      "conname": "promotion_package_package_id_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{package_id}"
+    },
+    {
+      "source": "promotion_package",
+      "conname": "promotion_package_pkey",
+      "contype": "p",
+      "target": null,
+      "columns": "{promotion_id,package_id}"
+    },
+    {
+      "source": "promotion_package",
+      "conname": "promotion_package_promotion_id_fkey",
+      "contype": "f",
+      "target": "promotion",
+      "columns": "{promotion_id}"
+    },
+    {
+      "source": "promotion_package",
+      "conname": "promotion_package_promotion_id_not_null",
+      "contype": "n",
+      "target": null,
+      "columns": "{promotion_id}"
+    }
+  ],
+  "empty": {
+    "catalogue": 0,
+    "bundle": 0,
+    "bundle_catalogue": 0,
+    "master_package": 0,
+    "package_catalogue": 0,
+    "package_bundle": 0,
+    "promotion": 0,
+    "promotion_package": 0
+  }
+}
