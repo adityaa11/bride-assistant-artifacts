@@ -21,7 +21,7 @@ A promotion stores UI title/description, type/value, inclusive `starts_on`/`ends
 | 2 | [M3-T02 admin service/package commands](M3-T02-admin-services-actions-commands.md) — W02 | approved ([CK PASS](../../feedback/M3-T02-admin-commands-5902338-ck.md)) | T01, M2-T05, M2.1-T01 CK | active | Parallel with T03/T04 after T01 |
 | 2 | [M3-T03 public package reads](M3-T03-public-package-reads.md) — W03 | approved ([CK PASS](../../feedback/M3-T03-public-package-reads-25782a2-ck.md)) | T01 | active | Parallel with T02/T04 |
 | 2 | [M3-T04 booking model](M3-T04-booking-model.md) — W04 | awaiting_review ([GO checkpoint](../../checkpoints/M3-T04-booking-aggregate-42b7bfe.md)) | T01, M2-T05/T06 | preparation-only → T05/T06 | Parallel with T02/T03 after T01 |
-| 3 | [M3-T05 customer booking flow](M3-T05-customer-booking-flow.md) — W05 | awaiting_review ([GO checkpoint](../../checkpoints/M3-T05-customer-booking-378248c.md)) | T02/T03/T04, M2-T05 | preparation-only → T07 | Booking handoff; date-sensitive production activation waits for T07 |
+| 3 | [M3-T05 customer booking flow](M3-T05-customer-booking-flow.md) — W05 | approved ([CK PASS](../../feedback/M3-T05-customer-booking-378248c-ck.md)) | T02/T03/T04, M2-T05 | preparation-only → T07 | Booking handoff; date-sensitive production activation waits for T07 |
 | 4 | [M3-T06 admin booking decisions](M3-T06-admin-booking-decisions.md) — W06 | planned | T04/T05, M2-T05, M2.1-T01 CK | preparation-only → T07 | Same-record decision handoff after T05 |
 | 5 | [M3-T07 transactional availability](M3-T07-transactional-availability.md) — W07 | planned | T05/T06 | active | Final M3 booking activation and date integration |
 

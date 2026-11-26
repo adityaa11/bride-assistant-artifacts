@@ -1,6 +1,6 @@
 # M3-T05 — durable customer submission and Booking Saya read
 
-- State: awaiting_review; batch 3; milestone/work package M3 / M3-W05. [GO checkpoint](../../checkpoints/M3-T05-customer-booking-378248c.md) at code commit `378248c1945f3f75b5b1d67f6545d0358f57fee7`.
+- State: approved ([CK PASS](../../feedback/M3-T05-customer-booking-378248c-ck.md)); batch 3; milestone/work package M3 / M3-W05. [GO checkpoint](../../checkpoints/M3-T05-customer-booking-378248c.md) at code commit `378248c1945f3f75b5b1d67f6545d0358f57fee7`.
 - Code repository / exact source commit: `https://github.com/adityaa11/bride-assistant.git` / `fcaae2455308f10f2e46a0092fa097135b56994d`.
 - Authority: [Project Context](../../contexts/project.md), [Stack Context](../../contexts/stack.md), [Implementation Context](../../contexts/implementation.md), [M3 milestone](../../contexts/implementation/milestones/M3-booking-core.md), [architecture](../../contexts/implementation/architecture.md), [decisions](../../contexts/implementation/decisions.md), [verification](../../contexts/implementation/verification.md), and [M2 exit](../../contexts/implementation/milestones/M2-foundation.md#m2-exit--24-november-2026).
 - Local verification: disposable Docker PostgreSQL 18.7 and isolated rollback/factory data; local `DocumentStore` only if bytes are involved. Reuse M2-T01/T03 provider evidence unless this ticket changes a provider path or explicitly requires a remote behavior check.
