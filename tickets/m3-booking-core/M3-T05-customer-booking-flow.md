@@ -1,6 +1,6 @@
 # M3-T05 — durable customer submission and Booking Saya read
 
-- State: planned; batch 3; milestone/work package M3 / M3-W05.
+- State: awaiting_review; batch 3; milestone/work package M3 / M3-W05. [GO checkpoint](../../checkpoints/M3-T05-customer-booking-378248c.md) at code commit `378248c1945f3f75b5b1d67f6545d0358f57fee7`.
 - Code repository / exact source commit: `https://github.com/adityaa11/bride-assistant.git` / `fcaae2455308f10f2e46a0092fa097135b56994d`.
 - Authority: [Project Context](../../contexts/project.md), [Stack Context](../../contexts/stack.md), [Implementation Context](../../contexts/implementation.md), [M3 milestone](../../contexts/implementation/milestones/M3-booking-core.md), [architecture](../../contexts/implementation/architecture.md), [decisions](../../contexts/implementation/decisions.md), [verification](../../contexts/implementation/verification.md), and [M2 exit](../../contexts/implementation/milestones/M2-foundation.md#m2-exit--24-november-2026).
 - Local verification: disposable Docker PostgreSQL 18.7 and isolated rollback/factory data; local `DocumentStore` only if bytes are involved. Reuse M2-T01/T03 provider evidence unless this ticket changes a provider path or explicitly requires a remote behavior check.
@@ -86,3 +86,7 @@ This section supersedes the earlier active route claim where it differs. T05 pre
 | RC-M3-T05D | Project one-request integrity; M3-W05; SEC-M3-05 | PASS iff authenticated same-key retry yields one booking and initial event, and changed-payload reuse yields CONFLICT. | Disposable protected-route sequential/concurrent retry, changed payload, replay after later date/location update and reload; inspect immutable original request snapshot, DB counts and visible result. | Client-only button disable or a second booking. | T04 unique key and atomic create. |
 
 H-M3-05 now includes submission_key, actor-scoped replay identity, booking ID, snapshot and own-read result. EUP-M3-T05 ends at a prepared handoff to T07; T07 proves the production customer route and retires localStorage/scenario submission. RC-M3-T05A–C are exercised in disposable integration without claiming production date availability.
+
+## GO confirmation and handoff — 26 November 2026
+
+After the unchanged-schema rendered ERD preview and the definitions, purposes and responsibilities of migrations `0001`–`0005` were shown for this ticket, the user explicitly replied **“i confirm”**. This authorized T05's migration-dependent implementation and disposable fresh migration check; no new SQL migration or production seed was written. The actual rendered [T05 ERD](../../evidence/m3-t05/actual-erd.png), fresh [schema comparison](../../evidence/m3-t05/schema.json), and [GO checkpoint](../../checkpoints/M3-T05-customer-booking-378248c.md) bind the implementation to the confirmed unchanged schema. T07's separate SQL-07 proposal remains unconfirmed by this reply.

@@ -1,0 +1,27 @@
+{
+  "migrations": [
+    "0001",
+    "0002",
+    "0003",
+    "0004",
+    "0005"
+  ],
+  "retry": {
+    "id": "6dc13d4f-ea20-4c05-8ad8-114934e01b8f",
+    "counts": {
+      "bookings": 1,
+      "events": 1
+    }
+  },
+  "promotion": {
+    "before": null,
+    "onStart": "a29dab6c-e5f0-4431-b1cf-03efbe567165",
+    "onEnd": "a29dab6c-e5f0-4431-b1cf-03efbe567165",
+    "after": null
+  },
+  "privacy": {
+    "anonymous": 401,
+    "other": 404,
+    "owner": 200
+  }
+}
