@@ -1,0 +1,243 @@
+{
+  "versions": [
+    "0001",
+    "0002",
+    "0003",
+    "0004",
+    "0005",
+    "0006"
+  ],
+  "constraints": [
+    {
+      "source": "admin_closed_date",
+      "conname": "admin_closed_date_closed_by_fkey",
+      "contype": "f",
+      "target": "auth.\"user\"",
+      "columns": "{closed_by}"
+    },
+    {
+      "source": "admin_closed_date",
+      "conname": "admin_closed_date_pkey",
+      "contype": "p",
+      "target": null,
+      "columns": "{date}"
+    },
+    {
+      "source": "booking",
+      "conname": "booking_customer_id_fkey",
+      "contype": "f",
+      "target": "auth.\"user\"",
+      "columns": "{customer_id}"
+    },
+    {
+      "source": "booking",
+      "conname": "booking_package_id_fkey",
+      "contype": "f",
+      "target": "master_package",
+      "columns": "{package_id}"
+    },
+    {
+      "source": "booking",
+      "conname": "booking_promotion_id_fkey",
+      "contype": "f",
+      "target": "promotion",
+      "columns": "{promotion_id}"
+    },
+    {
+      "source": "booking",
+      "conname": "booking_pkey",
+      "contype": "p",
+      "target": null,
+      "columns": "{id}"
+    },
+    {
+      "source": "booking",
+      "conname": "booking_customer_submission_key_unique",
+      "contype": "u",
+      "target": null,
+      "columns": "{customer_id,submission_key}"
+    },
+    {
+      "source": "booking_date_reservation",
+      "conname": "booking_date_reservation_booking_id_fkey",
+      "contype": "f",
+      "target": "booking",
+      "columns": "{booking_id}"
+    },
+    {
+      "source": "booking_date_reservation",
+      "conname": "booking_date_reservation_pkey",
+      "contype": "p",
+      "target": null,
+      "columns": "{booking_id}"
+    },
+    {
+      "source": "booking_date_reservation",
+      "conname": "booking_date_reservation_wedding_date_key",
+      "contype": "u",
+      "target": null,
+      "columns": "{wedding_date}"
+    },
+    {
+      "source": "booking_status_history",
+      "conname": "booking_status_history_actor_id_fkey",
+      "contype": "f",
+      "target": "auth.\"user\"",
+      "columns": "{actor_id}"
+    },
+    {
+      "source": "booking_status_history",
+      "conname": "booking_status_history_booking_id_fkey",
+      "contype": "f",
+      "target": "booking",
+      "columns": "{booking_id}"
+    },
+    {
+      "source": "booking_status_history",
+      "conname": "booking_status_history_pkey",
+      "contype": "p",
+      "target": null,
+      "columns": "{id}"
+    },
+    {
+      "source": "bundle",
+      "conname": "bundle_pkey",
+      "contype": "p",
+      "target": null,
+      "columns": "{id}"
+    },
+    {
+      "source": "bundle_catalogue",
+      "conname": "bundle_catalogue_bundle_id_fkey",
+      "contype": "f",
+      "target": "bundle",
+      "columns": "{bundle_id}"
+    },
+    {
+      "source": "bundle_catalogue",
+      "conname": "bundle_catalogue_catalogue_id_fkey",
+      "contype": "f",
+      "target": "catalogue",
+      "columns": "{catalogue_id}"
+    },
+    {
+      "source": "bundle_catalogue",
+      "conname": "bundle_catalogue_pkey",
+      "contype": "p",
+      "target": null,
+      "columns": "{bundle_id,catalogue_id}"
+    },
+    {
+      "source": "catalogue",
+      "conname": "catalogue_catalogue_type_id_fkey",
+      "contype": "f",
+      "target": "catalogue_types",
+      "columns": "{catalogue_type_id}"
+    },
+    {
+      "source": "catalogue",
+      "conname": "catalogue_pkey",
+      "contype": "p",
+      "target": null,
+      "columns": "{id}"
+    },
+    {
+      "source": "catalogue_types",
+      "conname": "catalogue_types_pkey",
+      "contype": "p",
+      "target": null,
+      "columns": "{id}"
+    },
+    {
+      "source": "catalogue_types",
+      "conname": "catalogue_types_code_key",
+      "contype": "u",
+      "target": null,
+      "columns": "{code}"
+    },
+    {
+      "source": "catalogue_types",
+      "conname": "catalogue_types_label_key",
+      "contype": "u",
+      "target": null,
+      "columns": "{label}"
+    },
+    {
+      "source": "master_package",
+      "conname": "master_package_pkey",
+      "contype": "p",
+      "target": null,
+      "columns": "{id}"
+    },
+    {
+      "source": "package_bundle",
+      "conname": "package_bundle_bundle_id_fkey",
+      "contype": "f",
+      "target": "bundle",
+      "columns": "{bundle_id}"
+    },
+    {
+      "source": "package_bundle",
+      "conname": "package_bundle_package_id_fkey",
+      "contype": "f",
+      "target": "master_package",
+      "columns": "{package_id}"
+    },
+    {
+      "source": "package_bundle",
+      "conname": "package_bundle_pkey",
+      "contype": "p",
+      "target": null,
+      "columns": "{package_id,bundle_id}"
+    },
+    {
+      "source": "package_catalogue",
+      "conname": "package_catalogue_catalogue_id_fkey",
+      "contype": "f",
+      "target": "catalogue",
+      "columns": "{catalogue_id}"
+    },
+    {
+      "source": "package_catalogue",
+      "conname": "package_catalogue_package_id_fkey",
+      "contype": "f",
+      "target": "master_package",
+      "columns": "{package_id}"
+    },
+    {
+      "source": "package_catalogue",
+      "conname": "package_catalogue_pkey",
+      "contype": "p",
+      "target": null,
+      "columns": "{package_id,catalogue_id}"
+    },
+    {
+      "source": "promotion",
+      "conname": "promotion_pkey",
+      "contype": "p",
+      "target": null,
+      "columns": "{id}"
+    },
+    {
+      "source": "promotion_package",
+      "conname": "promotion_package_package_id_fkey",
+      "contype": "f",
+      "target": "master_package",
+      "columns": "{package_id}"
+    },
+    {
+      "source": "promotion_package",
+      "conname": "promotion_package_promotion_id_fkey",
+      "contype": "f",
+      "target": "promotion",
+      "columns": "{promotion_id}"
+    },
+    {
+      "source": "promotion_package",
+      "conname": "promotion_package_pkey",
+      "contype": "p",
+      "target": null,
+      "columns": "{promotion_id,package_id}"
+    }
+  ]
+}

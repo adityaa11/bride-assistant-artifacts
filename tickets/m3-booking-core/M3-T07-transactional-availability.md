@@ -1,6 +1,6 @@
 # M3-T07 — transactional date protection and admin closure
 
-- State: planned; batch 5; milestone/work package M3 / M3-W07.
+- State: awaiting_review ([GO checkpoint](../../checkpoints/M3-T07-transactional-availability-1981c95.md)); batch 5; milestone/work package M3 / M3-W07.
 - Code repository / exact source commit: `https://github.com/adityaa11/bride-assistant.git` / `fcaae2455308f10f2e46a0092fa097135b56994d`.
 - Authority: [Project Context](../../contexts/project.md), [Stack Context](../../contexts/stack.md), [Implementation Context](../../contexts/implementation.md), [M3 milestone](../../contexts/implementation/milestones/M3-booking-core.md), [architecture](../../contexts/implementation/architecture.md), [decisions](../../contexts/implementation/decisions.md), [verification](../../contexts/implementation/verification.md), and [M2 exit](../../contexts/implementation/milestones/M2-foundation.md#m2-exit--24-november-2026).
 - Local verification: disposable Docker PostgreSQL 18.7 and isolated rollback/factory data; local `DocumentStore` only if bytes are involved. Reuse M2-T01/T03 provider evidence unless this ticket changes a provider path or explicitly requires a remote behavior check.
@@ -8,6 +8,7 @@
 - Successors: M4 exception/reschedule and M5 release.
 - Activation: `active-in-this-ticket`; legacy production fixture paths forbidden.
 - SQL classification: intended-migration + ephemeral-test-setup.
+- Revised M3-SQL-07 confirmation: On 26 November 2026 the rendered [revised ERD](proposed-erd.svg) and the [definition, purpose, responsibilities and boundaries](migration-proposal.md) were shown for the reservation/closure proposal. The user explicitly replied **“i confirm”** before `0006` was written or run. The confirmation applies to this revised SQL-07 proposal.
 
 ## Outcome and exact scope
 

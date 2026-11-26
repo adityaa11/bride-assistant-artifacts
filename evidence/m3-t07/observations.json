@@ -1,0 +1,73 @@
+{
+  "twoSuccesses": {
+    "statuses": [
+      200,
+      409
+    ],
+    "rows": [
+      {
+        "id": "a08a4219-e1b9-4d4d-8e67-02a4c0cf9ef9",
+        "status": "Booking Berhasil",
+        "events": 3,
+        "reservations": 1
+      },
+      {
+        "id": "dfad8857-39a8-4e36-8c83-fe467314bc0f",
+        "status": "Menunggu Pembayaran",
+        "events": 2,
+        "reservations": 0
+      }
+    ],
+    "projection": [
+      {
+        "date": "2027-02-14",
+        "state": "unavailable"
+      }
+    ]
+  },
+  "closureRace": {
+    "statuses": [
+      200,
+      409
+    ],
+    "closures": 1,
+    "reservations": 0
+  },
+  "pendingInitial": {
+    "bookingId": "b08c131e-5198-43b9-8521-3e9816306c22",
+    "availableBeforeClosure": true
+  },
+  "pendingException": {
+    "cancellation": {
+      "date": "2027-02-17",
+      "rows": {
+        "status": "Menunggu Pembatalan Booking",
+        "reservations": 1,
+        "events": 4
+      }
+    },
+    "reschedule": {
+      "date": "2027-02-14",
+      "rows": {
+        "status": "Menunggu Reschedule Booking",
+        "reservations": 1,
+        "events": 4
+      }
+    }
+  },
+  "rollbackRetry": {
+    "rolledBack": {
+      "ok": false,
+      "code": "CONFLICT"
+    },
+    "rows": {
+      "reservations": 1,
+      "events": 3
+    }
+  },
+  "emptyAndClosure": {
+    "firstAvailable": true,
+    "firstClosureProjected": true,
+    "absentOpenIdempotent": true
+  }
+}
